@@ -1,8 +1,8 @@
-np.App {
+.App {
   text-align: center;
 }
 
-.App-logo1 {
+.App-logo {
   height: 40vmin;
   pointer-events: none;
 }
