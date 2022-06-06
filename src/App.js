@@ -1,10 +1,35 @@
-import logo from './logo1.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+
+// import logo from './logo.png';
+import "./App.css";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import Home from "./components/home/Home";
+import About from "./components/about/About";
+import Profile from "./components/profile/Profile";
+import SignInOrSignUP from "./components/sign-in/SignInOrSignUp";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Header />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/signIn" element={<SignInOrSignUP />} />
+        </Routes>
+      </Router>
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+
+/* 
+  <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           
@@ -18,8 +43,4 @@ function App() {
           Welcome to STEMers
         </a>
       </header>
-    </div>
-  );
-}
-
-export default App;
+*/
