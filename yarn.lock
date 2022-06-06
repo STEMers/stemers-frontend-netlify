@@ -4437,6 +4437,7 @@
   dependencies:
     "@babel/code-frame" "^7.8.3"
     "@types/json-schema" "^7.0.5"
+<<<<<<< HEAD
     "chalk" "^4.1.0"
     "chokidar" "^3.4.2"
     "cosmiconfig" "^6.0.0"
@@ -7245,6 +7246,7 @@
   "version" "12.0.1"
   dependencies:
     "@babel/code-frame" "^7.16.0"
+<<<<<<< HEAD
     "address" "^1.1.2"
     "browserslist" "^4.18.1"
     "chalk" "^4.1.2"
