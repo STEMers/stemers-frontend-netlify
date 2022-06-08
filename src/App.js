@@ -15,13 +15,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/stemers-frontend-netlify" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="stemers-frontend-netlify/about" element={<About />} />
           <Route path="/profile/:id" element={<Profile />} />
-          <Route path="stemers-frontend-netlify/profile/:id" element={<Profile />} />
           <Route path="/signIn" element={<SignInOrSignUP />} />
-          <Route path="stemers-frontend-netlify/signIn" element={<SignInOrSignUP />} />
         </Routes>
       </Router>
       <Footer />
