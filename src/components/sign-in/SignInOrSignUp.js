@@ -12,8 +12,8 @@ import { baseUrl } from "../../config";
 // const [globalError, setGlobalError]=useState(null);
 
 export default function SignInOrSignUp({
-  userState,
-  setUserState,
+  needSignIn,
+  setNeedSignIn,
   formInitialValues,
   formValues,
   setFormValues,
@@ -42,7 +42,7 @@ export default function SignInOrSignUp({
     e.preventDefault();
 
     try {
-      /* set up body and url: use ternary to  */
+      /* set up body and url: use ternary */
       const signInBody = {
         identifier: formValues.usrOrEmail,
         password: formValues.password,
@@ -52,8 +52,8 @@ export default function SignInOrSignUp({
         email: formValues.email,
         password: formValues.password,
       };
-      const body = userState.needSignIn ? signInBody : signUpBody;
-      const url = userState.needSignIn ? SignInUrl : SignUpUrl;
+      const body = needSignIn ? signInBody : signUpBody;
+      const url = needSignIn ? SignInUrl : SignUpUrl;
 
       /* fetch data */
       const response = await fetch(encodeURI(url), {
@@ -89,7 +89,7 @@ export default function SignInOrSignUp({
         className="entry-form"
         onSubmit={handleSubmit}
       >
-        {userState.needSignIn ? (
+        {needSignIn? (
           <div className="sign-in-section">
             <label htmlFor="usr-email">Username/Email:</label>
             <input
