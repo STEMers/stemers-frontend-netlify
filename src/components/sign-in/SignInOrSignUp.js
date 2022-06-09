@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 
 export default function SignInOrSignUp() {
-  const initialValues = { username: "", email: "", password: "" };
+  const initialValues = { usrOrEmail: "", username: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ export default function SignInOrSignUp() {
           id="usr-email"
           placeholder="Enter username or email"
           className="sign-in--uer-email"
-          value={formValues.email}
+          value={formValues.usrOrEmail}
           required
         />
         <p className="error-username error"> email error</p>
