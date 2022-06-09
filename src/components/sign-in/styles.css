@@ -1,0 +1,114 @@
+.sign-in-or-sign-up {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+  width: 100vw;
+}
+
+.entry-form {
+  width: 80%;
+}
+
+.stemers-description {
+  max-width: 90%;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.stem-highlight {
+  color: #ffa800;
+}
+
+.sign-in--label {
+}
+
+.user-input {
+  width: 258px;
+  height: 36px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn {
+  color: white;
+  border-radius: 4px;
+  width: 258px;
+  height: 36px;
+  margin: 10px auto;
+  font-size: 16px;
+}
+
+.btn[type="submit"],
+.continue-button {
+  cursor: pointer;
+}
+
+.btn[type="submit"]:hover,
+.continue-button:hover {
+  transform: scale(1.05);
+}
+
+/* sign in section */
+.sign-in-section {
+  /* text-align: start; */
+}
+
+.remember-me-section {
+}
+
+.forgot-password-section {
+}
+
+.switch-to-Sign-up-section {
+}
+
+.toggle-sign-up,
+.toggle-sign-in {
+  margin-left: 4px;
+  text-decoration: underline;
+  color: blue;
+}
+
+.toggle-sign-up:hover,
+.toggle-sign-in:hover {
+  text-transform: uppercase;
+}
+
+/* sign up section */
+.sign-up-section {
+}
+
+.sign-in--button,
+.sign-up--button {
+  background-color: #e60000;
+  border: 1px solid #e60000;
+}
+
+.switch-to-Sign-in-section {
+}
+
+/* continue section */
+.continue-section {
+}
+
+.continue-with-github {
+}
+
+.continue-button {
+}
+
+.github-continue-button {
+  color: white;
+  background-color: #000000;
+  border: 1px solid #000000;
+}
+
+.linkedin-continue-button {
+  background-color: #2465b5;
+  border: 1px solid #2465b5;
+}
