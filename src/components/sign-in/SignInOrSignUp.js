@@ -72,6 +72,7 @@ export default function SignInOrSignUp({
             >
               Sign In
             </button>
+            <p className="to-sign-up">Not register yet? <span className="toggle-sign-up">Sign Up</span> </p>
           </div>
         ) : (
           <div className="sign-up-section">
