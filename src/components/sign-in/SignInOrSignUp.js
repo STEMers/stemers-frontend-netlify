@@ -14,30 +14,83 @@ import { baseUrl } from "../../config";
 export default function SignInOrSignUp({
   userState,
   setUserState,
+  formInitialValues,
   formValues,
   setFormValues,
+  userData,
+  setUserData,
   globalError,
   setGlobalError,
 }) {
   const SignInUrl = `${baseUrl}/auth/local`;
   const SignUpUrl = `${baseUrl}/auth/local/register`;
-
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   /* handle and store user input */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+    console.log("formValues after change", formValues);
   };
 
   /* handle toggle sign up section */
   const handleToggleSignUp = () => {};
 
-  /* handle form submit */
-  const handleSubmit = () => {};
+  /* handle form submit: use async fn */
+  const handleSubmit = async (e) => {
+    console.log("in handleSubmit");
+    e.preventDefault();
+
+    try {
+      /* set up body and url: use ternary to  */
+      const signInBody = {
+        identifier: formValues.usrOrEmail,
+        password: formValues.password,
+      };
+      const signUpBody = {
+        username: formValues.username,
+        email: formValues.email,
+        password: formValues.password,
+      };
+      const body = userState.needSignIn ? signInBody : signUpBody;
+      const url = userState.needSignIn ? SignInUrl : SignUpUrl;
+
+      /* fetch data */
+      const response = await fetch(encodeURI(url), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        throw new Error("didn't receive expected data.");
+      }
+
+      const json = await response.json();
+      console.log("sign in or sign up json:", json);
+      setUserData(json);
+
+      setFormValues(formInitialValues); // clear input fields
+      navigate("/"); // redirect to home;
+    } catch (err) {
+      setGlobalError(err);
+    } finally {
+      setIsLoading(false);
+      console.log(" sign in or sign up form submitted");
+    }
+  };
+
   return (
     <div className="sign-in-or-sign-up">
-      <form name="entry-form" id="entry-form" className="entry-form">
+      <form
+        name="entry-form"
+        id="entry-form"
+        className="entry-form"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         {userState.needSignIn ? (
           <div className="sign-in-section">
             <label htmlFor="usr-email">Username/Email:</label>
@@ -85,7 +138,7 @@ export default function SignInOrSignUp({
               value="Submit"
               name="signIn"
               className="sign-in--button"
-              onSubmit={handleSubmit}
+              onSubmit={(e) => handleSubmit(e)}
             >
               Sign In
             </button>
@@ -93,7 +146,9 @@ export default function SignInOrSignUp({
             <div className="switch-to-Sign-up-section">
               <p className="to-sign-up">
                 Not register yet?
-                <span className="toggle-sign-up" onClick={handleToggleSignUp}>Sign Up</span>
+                <span className="toggle-sign-up" onClick={handleToggleSignUp}>
+                  Sign Up
+                </span>
               </p>
             </div>
           </div>
@@ -142,7 +197,7 @@ export default function SignInOrSignUp({
               value="Submit"
               name="sign-up"
               className="sign-up--button"
-              onSubmit={handleSubmit}
+              onSubmit={(e) => handleSubmit(e)}
             >
               Sign Up
             </button>
