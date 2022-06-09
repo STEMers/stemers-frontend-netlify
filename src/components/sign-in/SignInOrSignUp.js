@@ -71,8 +71,8 @@ export default function SignInOrSignUp({
         body: JSON.stringify(body),
       });
       if (!response.ok) {
-          const errorJson= await response.json();
-          const message= `\nStatus: ${response.status} \nStatus Text: ${response.statusText} \nMessage:${errorJson.error.message} \nurl-> ${url}`
+        const errorJson = await response.json();
+        const message = `\nStatus: ${response.status} \nStatus Text: ${response.statusText} \nMessage:${errorJson.error.message} \nurl-> ${url}`;
         throw new Error(message);
       }
 
@@ -84,7 +84,7 @@ export default function SignInOrSignUp({
       navigate("/"); // redirect to home;
     } catch (err) {
       alert(err);
-    //   setGlobalError(err);  //  globalError didn't use!
+      //   setGlobalError(err);  //  globalError didn't use!
     } finally {
       setIsLoading(false);
       //   console.log(" sign in or sign up form submitted");
@@ -99,27 +99,36 @@ export default function SignInOrSignUp({
         className="entry-form"
         onSubmit={handleSubmit}
       >
+        <div className="stemers-description">
+          Recognize <span className="stem-highlight">STEM</span> women who go
+          above and beyond. Lift up the women who inspire and educate your
+          communities with <span className="stem-highlight">STEMers</span> program
+        </div>
         {needSignIn ? (
           <div className="sign-in-section">
-            <label htmlFor="usr-email">Username/Email:</label>
+            <label htmlFor="userNameOrEmail" className="sign-in--label">
+              Username/Email:
+            </label> <br />
             <input
               type="text"
               name="usrOrEmail"
-              id="usr-email"
+              id="userNameOrEmail"
               placeholder="Enter username or email"
-              className="username-or-email"
+              className="username-or-email user-input"
               value={formValues.usrOrEmail}
               onChange={handleChange}
               required
             />
             <p className="error-username error"> email error</p>
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password" className="sign-in--label">
+              Password:
+            </label> <br />
             <input
               type="password"
               name="password"
               id="password"
               placeholder="Enter Password"
-              className="sign-in--password"
+              className="sign-in--password user-input"
               value={formValues.password}
               onChange={handleChange}
               required
@@ -132,12 +141,19 @@ export default function SignInOrSignUp({
                 id="remember-me"
                 className="sign-in--checkbox"
               />
-              <label htmlFor="remember-me">Remember me</label>
+              <label
+                htmlFor="remember-me"
+                className="sign-in--label label-remember-me"
+              >
+                Remember me
+              </label>
             </div>
 
             <div className="forgot-password-section">
               <MdHttps className="sign-in--lock" />
-              <span>Forgot your password?</span>
+              <span className="span-forgot-password">
+                Forgot your password?
+              </span>
             </div>
 
             <button
@@ -145,7 +161,7 @@ export default function SignInOrSignUp({
               form="entry-form"
               value="Submit"
               name="signIn"
-              className="sign-in--button"
+              className="sign-in--button btn"
               onSubmit={handleSubmit}
             >
               Sign In
@@ -162,38 +178,44 @@ export default function SignInOrSignUp({
           </div>
         ) : (
           <div className="sign-up-section">
-            <label htmlFor="username">Username:</label>
+            <label htmlFor="username" className="sign-in--label">
+              Username:
+            </label> <br />
             <input
               type="text"
               name="username"
               id="username"
               placeholder="Enter username"
-              className="sign-up-username"
+              className="sign-up-username user-input"
               value={formValues.username}
               onChange={handleChange}
               required
             />
             <p className="error-username error"> username error</p>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email" className="sign-in--label">
+              Email:
+            </label> <br />
             <input
               type="email"
               name="email"
               id="email"
               placeholder="Enter email"
-              className="email"
+              className="email user-input"
               value={formValues.email}
               onChange={handleChange}
               required
             />
             <p className="error-username error"> email error</p>
 
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password" className="sign-in--label">
+              Password:
+            </label> <br />
             <input
               type="password"
               name="password"
               id="password"
               placeholder="Enter Password"
-              className="sign-up--password"
+              className="sign-up--password user-input"
               value={formValues.password}
               onChange={handleChange}
               required
@@ -204,7 +226,7 @@ export default function SignInOrSignUp({
               form="entry-form"
               value="Submit"
               name="sign-up"
-              className="sign-up--button"
+              className="sign-up--button btn"
               onSubmit={handleSubmit}
             >
               Sign Up
@@ -222,15 +244,15 @@ export default function SignInOrSignUp({
         )}
 
         <p>OR</p>
-        <div className="continue-container">
+        <div className="continue-section">
           <div className="continue-with-github">
-            <button>
+            <button className="github-continue-button continue-button btn">
               <FaGithub className="continue-github" /> Continue with Github
             </button>
           </div>
 
           <div className="continue-with-linkedin">
-            <button>
+            <button className="linkedin-continue-button continue-button btn">
               <FaLinkedinIn className="continue-linkedin" /> Continue with
               LinkedIn
             </button>
