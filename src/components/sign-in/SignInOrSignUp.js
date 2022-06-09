@@ -71,7 +71,9 @@ export default function SignInOrSignUp({
         body: JSON.stringify(body),
       });
       if (!response.ok) {
-        throw new Error("didn't receive expected data.");
+          const errorJson= await response.json();
+          const message= `\nStatus: ${response.status} \nStatus Text: ${response.statusText} \nMessage:${errorJson.error.message} \nurl-> ${url}`
+        throw new Error(message);
       }
 
       const json = await response.json();
@@ -81,7 +83,8 @@ export default function SignInOrSignUp({
       setFormValues(formInitialValues); // clear input fields
       navigate("/"); // redirect to home;
     } catch (err) {
-      setGlobalError(err);
+      alert(err);
+    //   setGlobalError(err);  //  globalError didn't use!
     } finally {
       setIsLoading(false);
       //   console.log(" sign in or sign up form submitted");
@@ -209,7 +212,7 @@ export default function SignInOrSignUp({
 
             <div className="switch-to-Sign-in-section">
               <p className="to-sign-in">
-                Already have an account? 
+                Already have an account?
                 <span className="toggle-sign-in" onClick={handleToggleSignIn}>
                   Sign In
                 </span>
