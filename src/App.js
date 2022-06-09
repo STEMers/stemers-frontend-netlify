@@ -12,7 +12,7 @@ import SignInOrSignUP from "./components/sign-in/SignInOrSignUp";
 function App() {
   // sign in or sign up states 
   const [userState, setUserState] = useState({needSignIn:true, needSignUp:false});
-  const initialValues = { usernameEmail: "", username: "", email: "", password: "" };
+  const initialValues = { usrOrEmail: "", username: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [globalError, setGlobalError]=useState(null);
 

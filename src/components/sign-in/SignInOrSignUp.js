@@ -4,9 +4,10 @@ import { MdHttps } from "react-icons/md";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
 import "./styles.css";
+import { baseUrl } from "../../config";
 
 // const [userState, setUserState] = useState({needSignIn:true, needSignUp:false});
-// const initialValues = { usernameEmail: "", username: "", email: "", password: "" };
+// const initialValues = { usrOrEmail: "", username: "", email: "", password: "" };
 // const [formValues, setFormValues] = useState(initialValues);
 // const [globalError, setGlobalError]=useState(null);
 
@@ -18,8 +19,10 @@ export default function SignInOrSignUp({
   globalError,
   setGlobalError,
 }) {
-  const navigate = useNavigate();
+  const SignInUrl = `${baseUrl}/auth/local`;
+  const SignUpUrl = `${baseUrl}/auth/local/register`;
 
+  const navigate = useNavigate();
   const handleChange = () => {};
   const handleSubmit = () => {};
   return (
@@ -30,7 +33,7 @@ export default function SignInOrSignUp({
             <label htmlFor="usr-email">Username/Email:</label>
             <input
               type="text"
-              name="usr-email"
+              name="usrOrEmail"
               id="usr-email"
               placeholder="Enter username or email"
               className="username-or-email"
@@ -53,7 +56,7 @@ export default function SignInOrSignUp({
             <p className="error-password error"> password error</p>
             <input
               type="checkbox"
-              name="sign-in--checkbox"
+              name="signInCheckbox"
               id="remember-me"
               className="sign-in--checkbox"
             />
@@ -66,13 +69,15 @@ export default function SignInOrSignUp({
               type="submit"
               form="entry-form"
               value="Submit"
-              name="sign-in"
+              name="signIn"
               className="sign-in--button"
               onSubmit={handleSubmit}
             >
               Sign In
             </button>
-            <p className="to-sign-up">Not register yet? <span className="toggle-sign-up">Sign Up</span> </p>
+            <p className="to-sign-up">
+              Not register yet? <span className="toggle-sign-up">Sign Up</span>{" "}
+            </p>
           </div>
         ) : (
           <div className="sign-up-section">
