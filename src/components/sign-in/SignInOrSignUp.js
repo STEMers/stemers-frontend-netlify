@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdHttps } from "react-icons/md";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
