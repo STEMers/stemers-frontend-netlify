@@ -35,7 +35,6 @@ export default function SignInOrSignUp() {
         <p className="error-password error"> password error</p>
         <input type="checkbox" name="sign-in--checkbox" id="remember-me"/>
         <label htmlFor="remember-me">Remember me</label>
-        
 
       </form>
     </div>
