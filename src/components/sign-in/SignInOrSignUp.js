@@ -5,14 +5,19 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
 import "./styles.css";
 
-export default function SignInOrSignUp() {
-  const initialValues = {
-    usrOrEmail: "",
-    username: "",
-    email: "",
-    password: "",
-  };
-  const [formValues, setFormValues] = useState(initialValues);
+// const [userState, setUserState] = useState({needSignIn:true, needSignUp:false});
+// const initialValues = { usernameEmail: "", username: "", email: "", password: "" };
+// const [formValues, setFormValues] = useState(initialValues);
+// const [globalError, setGlobalError]=useState(null);
+
+export default function SignInOrSignUp({
+  userState,
+  setUserState,
+  formValues, 
+  setFormValues,
+  globalError,
+  setGlobalError,
+}) {
   const navigate = useNavigate();
 
   const handleChange = () => {};
