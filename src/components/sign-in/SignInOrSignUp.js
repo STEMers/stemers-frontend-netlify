@@ -34,10 +34,14 @@ export default function SignInOrSignUp({
     setFormValues({ ...formValues, [name]: value });
   };
 
-  /* handle toggle sign up section */
+  /* switch section on: sign in -> sign up */
   const handleToggleSignUp = () => {
     setNeedSignIn(false);
+  };
 
+  /* switch section on: sign up -> sign in */
+  const handleToggleSignIn = () => {
+    setNeedSignIn(true);
   };
 
   /* handle form submit: use async fn */
@@ -92,7 +96,7 @@ export default function SignInOrSignUp({
         className="entry-form"
         onSubmit={handleSubmit}
       >
-        {needSignIn? (
+        {needSignIn ? (
           <div className="sign-in-section">
             <label htmlFor="usr-email">Username/Email:</label>
             <input
@@ -202,6 +206,15 @@ export default function SignInOrSignUp({
             >
               Sign Up
             </button>
+
+            <div className="switch-to-Sign-in-section">
+              <p className="to-sign-in">
+                Already have an account? 
+                <span className="toggle-sign-in" onClick={handleToggleSignIn}>
+                  Sign In
+                </span>
+              </p>
+            </div>
           </div>
         )}
 
