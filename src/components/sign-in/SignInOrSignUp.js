@@ -77,7 +77,7 @@ export default function SignInOrSignUp({
       setGlobalError(err);
     } finally {
       setIsLoading(false);
-    //   console.log(" sign in or sign up form submitted");
+      //   console.log(" sign in or sign up form submitted");
     }
   };
 
@@ -87,7 +87,7 @@ export default function SignInOrSignUp({
         name="entry-form"
         id="entry-form"
         className="entry-form"
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={handleSubmit}
       >
         {userState.needSignIn ? (
           <div className="sign-in-section">
@@ -136,7 +136,7 @@ export default function SignInOrSignUp({
               value="Submit"
               name="signIn"
               className="sign-in--button"
-              onSubmit={(e) => handleSubmit(e)}
+              onSubmit={handleSubmit}
             >
               Sign In
             </button>
@@ -195,7 +195,7 @@ export default function SignInOrSignUp({
               value="Submit"
               name="sign-up"
               className="sign-up--button"
-              onSubmit={(e) => handleSubmit(e)}
+              onSubmit={handleSubmit}
             >
               Sign Up
             </button>
