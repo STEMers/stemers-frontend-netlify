@@ -23,7 +23,17 @@ export default function SignInOrSignUp({
   const SignUpUrl = `${baseUrl}/auth/local/register`;
 
   const navigate = useNavigate();
-  const handleChange = () => {};
+
+  /* handle and store user input */
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  /* handle toggle sign up section */
+  const handleToggleSignUp = () => {};
+
+  /* handle form submit */
   const handleSubmit = () => {};
   return (
     <div className="sign-in-or-sign-up">
@@ -54,17 +64,21 @@ export default function SignInOrSignUp({
               required
             />
             <p className="error-password error"> password error</p>
-            <input
-              type="checkbox"
-              name="signInCheckbox"
-              id="remember-me"
-              className="sign-in--checkbox"
-            />
-            <label htmlFor="remember-me">Remember me</label>
-            <br />
-            <MdHttps className="sign-in--lock" />
-            <span>Forgot your password</span>
-            <br />
+            <div className="remember-me-section">
+              <input
+                type="checkbox"
+                name="signInCheckbox"
+                id="remember-me"
+                className="sign-in--checkbox"
+              />
+              <label htmlFor="remember-me">Remember me</label>
+            </div>
+
+            <div className="forgot-password-section">
+              <MdHttps className="sign-in--lock" />
+              <span>Forgot your password?</span>
+            </div>
+
             <button
               type="submit"
               form="entry-form"
@@ -75,9 +89,13 @@ export default function SignInOrSignUp({
             >
               Sign In
             </button>
-            <p className="to-sign-up">
-              Not register yet? <span className="toggle-sign-up">Sign Up</span>{" "}
-            </p>
+
+            <div className="switch-to-Sign-up-section">
+              <p className="to-sign-up">
+                Not register yet?
+                <span className="toggle-sign-up" onClick={handleToggleSignUp}>Sign Up</span>
+              </p>
+            </div>
           </div>
         ) : (
           <div className="sign-up-section">
