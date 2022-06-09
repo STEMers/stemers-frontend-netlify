@@ -11,10 +11,11 @@ import SignInOrSignUP from "./components/sign-in/SignInOrSignUp";
 
 function App() {
   // sign in or sign up states 
-  const [userState, setUserState] = useState({needSignIn:true, needSignUp:false});
-  const initialValues = { usrOrEmail: "", username: "", email: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [globalError, setGlobalError]=useState(null);
+  const [userState, setUserState] = useState({needSignIn:true, needSignUp:false}); // for toggle sign in or sign up
+  const formInitialValues = { usrOrEmail: "", username: "", email: "", password: "" };
+  const [formValues, setFormValues] = useState(formInitialValues); // collect form data
+  const [userData, setUserData]= useState(null); // data from sign in or sign up, in case other components needed it.
+  const [globalError, setGlobalError]=useState(null); // display error msg
 
   return (
     <div className="App">
@@ -27,8 +28,11 @@ function App() {
           <Route path="/signIn" element={<SignInOrSignUP 
           userState={userState}
           setUserState={setUserState}
+          formInitialValues={formInitialValues}
           formValues={formValues}
           setFormValues={setFormValues}
+          userData={userData}
+          setUserData={setUserData}
           globalError={globalError}
           setGlobalError={setGlobalError}
           />} />
