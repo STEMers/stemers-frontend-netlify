@@ -32,7 +32,6 @@ export default function SignInOrSignUp({
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log("formValues after change", formValues);
   };
 
   /* handle toggle sign up section */
@@ -40,7 +39,6 @@ export default function SignInOrSignUp({
 
   /* handle form submit: use async fn */
   const handleSubmit = async (e) => {
-    console.log("in handleSubmit");
     e.preventDefault();
 
     try {
@@ -79,7 +77,7 @@ export default function SignInOrSignUp({
       setGlobalError(err);
     } finally {
       setIsLoading(false);
-      console.log(" sign in or sign up form submitted");
+    //   console.log(" sign in or sign up form submitted");
     }
   };
 
