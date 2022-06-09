@@ -35,7 +35,10 @@ export default function SignInOrSignUp({
   };
 
   /* handle toggle sign up section */
-  const handleToggleSignUp = () => {};
+  const handleToggleSignUp = () => {
+    setNeedSignIn(false);
+
+  };
 
   /* handle form submit: use async fn */
   const handleSubmit = async (e) => {
