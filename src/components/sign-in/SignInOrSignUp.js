@@ -13,7 +13,7 @@ import "./styles.css";
 export default function SignInOrSignUp({
   userState,
   setUserState,
-  formValues, 
+  formValues,
   setFormValues,
   globalError,
   setGlobalError,
@@ -21,66 +21,121 @@ export default function SignInOrSignUp({
   const navigate = useNavigate();
 
   const handleChange = () => {};
-
+  const handleSubmit = () => {};
   return (
     <div className="sign-in-or-sign-up">
-      <form name="sign-in--form" id="sign-in-form" className="sign-in-form">
-        <label htmlFor="usr-email">Username/Email:</label>
-        <input
-          type="text"
-          name="usr-email"
-          id="usr-email"
-          placeholder="Enter username or email"
-          className="sign-in--uer-email"
-          value={formValues.usrOrEmail}
-          onChange={handleChange}
-          required
-        />
-        <p className="error-username error"> email error</p>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Enter Password"
-          className="sign-in--password"
-          value={formValues.password}
-          onChange={handleChange}
-          required
-        />
-        <p className="error-password error"> password error</p>
-        <input
-          type="checkbox"
-          name="sign-in--checkbox"
-          id="remember-me"
-          className="sign-in--checkbox"
-        />
-        <label htmlFor="remember-me">Remember me</label>
-        <br />
-        <MdHttps className="sign-in--lock" />
-        <span>Forgot your password</span>
-        <br />
-        <button
-          type="submit"
-          form="sign-in-form"
-          value="Submit"
-          name="sign-in"
-          className="sign-in--button"
-        >
-          Sign In
-        </button>
+      <form name="entry-form" id="entry-form" className="entry-form">
+        {userState.needSignIn ? (
+          <div className="sign-in-section">
+            <label htmlFor="usr-email">Username/Email:</label>
+            <input
+              type="text"
+              name="usr-email"
+              id="usr-email"
+              placeholder="Enter username or email"
+              className="username-or-email"
+              value={formValues.usrOrEmail}
+              onChange={handleChange}
+              required
+            />
+            <p className="error-username error"> email error</p>
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter Password"
+              className="sign-in--password"
+              value={formValues.password}
+              onChange={handleChange}
+              required
+            />
+            <p className="error-password error"> password error</p>
+            <input
+              type="checkbox"
+              name="sign-in--checkbox"
+              id="remember-me"
+              className="sign-in--checkbox"
+            />
+            <label htmlFor="remember-me">Remember me</label>
+            <br />
+            <MdHttps className="sign-in--lock" />
+            <span>Forgot your password</span>
+            <br />
+            <button
+              type="submit"
+              form="entry-form"
+              value="Submit"
+              name="sign-in"
+              className="sign-in--button"
+              onSubmit={handleSubmit}
+            >
+              Sign In
+            </button>
+          </div>
+        ) : (
+          <div className="sign-up-section">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Enter username"
+              className="sign-up-username"
+              value={formValues.username}
+              onChange={handleChange}
+              required
+            />
+            <p className="error-username error"> username error</p>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter email"
+              className="email"
+              value={formValues.email}
+              onChange={handleChange}
+              required
+            />
+            <p className="error-username error"> email error</p>
+
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter Password"
+              className="sign-up--password"
+              value={formValues.password}
+              onChange={handleChange}
+              required
+            />
+            <p className="error-password error"> password error</p>
+            <button
+              type="submit"
+              form="entry-form"
+              value="Submit"
+              name="sign-up"
+              className="sign-up--button"
+              onSubmit={handleSubmit}
+            >
+              Sign Up
+            </button>
+          </div>
+        )}
 
         <p>OR</p>
-        <div className="sign-in--continue-container">
+        <div className="continue-container">
           <div className="continue-with-github">
             <button>
-              <FaGithub className="sign-in--github" /> Continue with Github
+              <FaGithub className="continue-github" /> Continue with Github
             </button>
           </div>
 
           <div className="continue-with-linkedin">
             <button>
-              <FaLinkedinIn className="sign-in--linkedin" /> Continue with
+              <FaLinkedinIn className="continue-linkedin" /> Continue with
               LinkedIn
             </button>
           </div>
