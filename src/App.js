@@ -11,7 +11,7 @@ import SignInOrSignUP from "./components/sign-in/SignInOrSignUp";
 
 function App() {
   // sign in or sign up states 
-  const [userState, setUserState] = useState({needSignIn:true, needSignUp:false}); // for toggle sign in or sign up
+  const [needSignIn, setNeedSignIn] = useState(true); // for toggle sign in or sign up
   const formInitialValues = { usrOrEmail: "", username: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(formInitialValues); // collect form data
   const [userData, setUserData]= useState(null); // data from sign in or sign up, in case other components needed it.
@@ -26,8 +26,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/signIn" element={<SignInOrSignUP 
-          userState={userState}
-          setUserState={setUserState}
+          needSignIn={needSignIn}
+          setNeedSignIn={setNeedSignIn}
           formInitialValues={formInitialValues}
           formValues={formValues}
           setFormValues={setFormValues}
