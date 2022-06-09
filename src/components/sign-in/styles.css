@@ -4,20 +4,32 @@
   padding: 20px;
   text-align: center;
   width: 100vw;
+  margin: 0 auto;
 }
 
 .entry-form {
   width: 80%;
 }
 
-.stemers-description {
-  max-width: 90%;
+/* stemers description section */
+.stemers-description-section {
+  max-width: 70%;
+  margin: 2px auto;
   font-weight: 700;
   padding: 10px;
 }
 
 .stem-highlight {
   color: #ffa800;
+}
+
+/* form main section */
+.form-main {
+  margin: 2px auto;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sign-in--label {
@@ -55,7 +67,6 @@
 
 /* sign in section */
 .sign-in-section {
-  /* text-align: start; */
 }
 
 .remember-me-section {

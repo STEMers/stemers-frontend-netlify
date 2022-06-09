@@ -99,163 +99,167 @@ export default function SignInOrSignUp({
         className="entry-form"
         onSubmit={handleSubmit}
       >
-        <div className="stemers-description">
+        <div className="stemers-description-section">
           Recognize <span className="stem-highlight">STEM</span> women who go
           above and beyond. Lift up the women who inspire and educate your
-          communities with <span className="stem-highlight">STEMers</span> program
+          communities with <span className="stem-highlight">STEMers</span>{" "}
+          program
         </div>
-        {needSignIn ? (
-          <div className="sign-in-section">
-            <label htmlFor="userNameOrEmail" className="sign-in--label">
-              Username/Email:
-            </label> <br />
-            <input
-              type="text"
-              name="usrOrEmail"
-              id="userNameOrEmail"
-              placeholder="Enter username or email"
-              className="username-or-email user-input"
-              value={formValues.usrOrEmail}
-              onChange={handleChange}
-              required
-            />
-            <p className="error-username error"> email error</p>
-            <label htmlFor="password" className="sign-in--label">
-              Password:
-            </label> <br />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Enter Password"
-              className="sign-in--password user-input"
-              value={formValues.password}
-              onChange={handleChange}
-              required
-            />
-            <p className="error-password error"> password error</p>
-            <div className="remember-me-section">
+
+        <div className="form-main">
+          {needSignIn ? (
+            <div className="sign-in-section">
+              <label htmlFor="userNameOrEmail" className="sign-in--label">
+                Username/Email:
+              </label>{" "}
+              <br />
               <input
-                type="checkbox"
-                name="signInCheckbox"
-                id="remember-me"
-                className="sign-in--checkbox"
+                type="text"
+                name="usrOrEmail"
+                id="userNameOrEmail"
+                placeholder="Enter username or email"
+                className="username-or-email user-input"
+                value={formValues.usrOrEmail}
+                onChange={handleChange}
+                required
               />
-              <label
-                htmlFor="remember-me"
-                className="sign-in--label label-remember-me"
+              <p className="error-username error"> email error</p>
+              <label htmlFor="password" className="sign-in--label">
+                Password:
+              </label>{" "}
+              <br />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter Password"
+                className="sign-in--password user-input"
+                value={formValues.password}
+                onChange={handleChange}
+                required
+              />
+              <p className="error-password error"> password error</p>
+              <div className="remember-me-section">
+                <input
+                  type="checkbox"
+                  name="signInCheckbox"
+                  id="remember-me"
+                  className="sign-in--checkbox"
+                />
+                <label
+                  htmlFor="remember-me"
+                  className="sign-in--label label-remember-me"
+                >
+                  Remember me
+                </label>
+              </div>
+              <div className="forgot-password-section">
+                <MdHttps className="sign-in--lock" />
+                <span className="span-forgot-password">
+                  Forgot your password?
+                </span>
+              </div>
+              <button
+                type="submit"
+                form="entry-form"
+                value="Submit"
+                name="signIn"
+                className="sign-in--button btn"
+                onSubmit={handleSubmit}
               >
-                Remember me
-              </label>
+                Sign In
+              </button>
+              <div className="switch-to-Sign-up-section">
+                <p className="to-sign-up">
+                  Not register yet?
+                  <span className="toggle-sign-up" onClick={handleToggleSignUp}>
+                    Sign Up
+                  </span>
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="sign-up-section">
+              <label htmlFor="username" className="sign-in--label">
+                Username:
+              </label>{" "}
+              <br />
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Enter username"
+                className="sign-up-username user-input"
+                value={formValues.username}
+                onChange={handleChange}
+                required
+              />
+              <p className="error-username error"> username error</p>
+              <label htmlFor="email" className="sign-in--label">
+                Email:
+              </label>{" "}
+              <br />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter email"
+                className="email user-input"
+                value={formValues.email}
+                onChange={handleChange}
+                required
+              />
+              <p className="error-username error"> email error</p>
+              <label htmlFor="password" className="sign-in--label">
+                Password:
+              </label>{" "}
+              <br />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter Password"
+                className="sign-up--password user-input"
+                value={formValues.password}
+                onChange={handleChange}
+                required
+              />
+              <p className="error-password error"> password error</p>
+              <button
+                type="submit"
+                form="entry-form"
+                value="Submit"
+                name="sign-up"
+                className="sign-up--button btn"
+                onSubmit={handleSubmit}
+              >
+                Sign Up
+              </button>
+              <div className="switch-to-Sign-in-section">
+                <p className="to-sign-in">
+                  Already have an account?
+                  <span className="toggle-sign-in" onClick={handleToggleSignIn}>
+                    Sign In
+                  </span>
+                </p>
+              </div>
+            </div>
+          )}
+
+          <p>OR</p>
+          <div className="continue-section">
+            <div className="continue-with-github">
+              <button className="github-continue-button continue-button btn">
+                <FaGithub className="continue-github" /> Continue with Github
+              </button>
             </div>
 
-            <div className="forgot-password-section">
-              <MdHttps className="sign-in--lock" />
-              <span className="span-forgot-password">
-                Forgot your password?
-              </span>
+            <div className="continue-with-linkedin">
+              <button className="linkedin-continue-button continue-button btn">
+                <FaLinkedinIn className="continue-linkedin" /> Continue with
+                LinkedIn
+              </button>
             </div>
-
-            <button
-              type="submit"
-              form="entry-form"
-              value="Submit"
-              name="signIn"
-              className="sign-in--button btn"
-              onSubmit={handleSubmit}
-            >
-              Sign In
-            </button>
-
-            <div className="switch-to-Sign-up-section">
-              <p className="to-sign-up">
-                Not register yet?
-                <span className="toggle-sign-up" onClick={handleToggleSignUp}>
-                  Sign Up
-                </span>
-              </p>
-            </div>
-          </div>
-        ) : (
-          <div className="sign-up-section">
-            <label htmlFor="username" className="sign-in--label">
-              Username:
-            </label> <br />
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Enter username"
-              className="sign-up-username user-input"
-              value={formValues.username}
-              onChange={handleChange}
-              required
-            />
-            <p className="error-username error"> username error</p>
-            <label htmlFor="email" className="sign-in--label">
-              Email:
-            </label> <br />
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter email"
-              className="email user-input"
-              value={formValues.email}
-              onChange={handleChange}
-              required
-            />
-            <p className="error-username error"> email error</p>
-
-            <label htmlFor="password" className="sign-in--label">
-              Password:
-            </label> <br />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Enter Password"
-              className="sign-up--password user-input"
-              value={formValues.password}
-              onChange={handleChange}
-              required
-            />
-            <p className="error-password error"> password error</p>
-            <button
-              type="submit"
-              form="entry-form"
-              value="Submit"
-              name="sign-up"
-              className="sign-up--button btn"
-              onSubmit={handleSubmit}
-            >
-              Sign Up
-            </button>
-
-            <div className="switch-to-Sign-in-section">
-              <p className="to-sign-in">
-                Already have an account?
-                <span className="toggle-sign-in" onClick={handleToggleSignIn}>
-                  Sign In
-                </span>
-              </p>
-            </div>
-          </div>
-        )}
-
-        <p>OR</p>
-        <div className="continue-section">
-          <div className="continue-with-github">
-            <button className="github-continue-button continue-button btn">
-              <FaGithub className="continue-github" /> Continue with Github
-            </button>
-          </div>
-
-          <div className="continue-with-linkedin">
-            <button className="linkedin-continue-button continue-button btn">
-              <FaLinkedinIn className="continue-linkedin" /> Continue with
-              LinkedIn
-            </button>
           </div>
         </div>
       </form>
