@@ -7,11 +7,13 @@ import useFetch from "../hooks/useFetch";
 export default function Stars() {
   const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`;
 
+  const { data, loading } = useFetch(defaultUrl);
 
   /* submit filter form */
-  const handleSubmit = () => {
-      const selectedCountry= document.getElementById("country").value;
-      const selectedCatogry= document.getElementById("category").value;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const selectedCountry = document.getElementById("country").value;
+    const selectedCategory = document.getElementById("category").value;
   };
 
   return (
@@ -31,7 +33,7 @@ export default function Stars() {
           <div className="country-section">
             <label htmlFor="country"></label>
             <select name="country" id="country" className="country-select">
-              <option value="" selected disabled hidden>Select Country</option>
+              <option value="">Select Country</option>
               <option value="Afghanistan">Afghanistan</option>
               <option value="Åland Islands">Åland Islands</option>
               <option value="Albania">Albania</option>
@@ -335,7 +337,7 @@ export default function Stars() {
           <div className="category-section">
             <label htmlFor="category"></label>
             <select name="category" id="category" className="category-select">
-              <option value="" selected disabled hidden>Select Category</option>
+              <option value="">Select Category</option>
               <option value="Engineering">Engineering</option>
               <option value="Math">Math</option>
               <option value="Science">Science</option>
