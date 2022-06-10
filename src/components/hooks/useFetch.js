@@ -17,7 +17,7 @@ const useFetch = (url, selectedCategory, selectedCountry, newEvent) => {
         }
 
         const json = await response.json();
-        console.log("json", json);
+        // console.log("json", json);
         // console.log("json 1 country name", json[1].country.name);
 
         // const filteredUsers = await json.filter(
