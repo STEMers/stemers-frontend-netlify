@@ -1,26 +1,45 @@
 import { Link } from "react-router-dom";
 
 import "./styles.css";
-import { baseUrl } from "../../config";
+import { baseUrl, imgUrl } from "../../config";
 import useFetch from "../hooks/useFetch";
+import { useState } from "react";
 
 export default function Stars() {
-  const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`;
+  const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`; // strapi filter not work, so always fetch all users data
+  const [submitCount, setSubmitCount] = useState(0);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const { data, loading } = useFetch(defaultUrl);
+  const { data, loading } = useFetch(
+    defaultUrl,
+    selectedCountry,
+    selectedCategory,
+    submitCount
+  );
+  if (data !== null) {
+    console.log("data:", data);
+    console.log("data[0].avatar.url:", data[0].avatar.url);
+    console.log("data[0].avatar.formats.thumbnail.url:", data[0].avatar.formats.thumbnail.url);
+  }
 
   /* submit filter form */
   const handleSubmit = (e) => {
     e.preventDefault();
-    const selectedCountry = document.getElementById("country").value;
-    const selectedCategory = document.getElementById("category").value;
+    setSubmitCount((c) => c + 1);
+    const Country = document.getElementById("country").value.toLowerCase();
+    setSelectedCountry(Country);
+    const Category = document.getElementById("category").value.toLowerCase();
+    setSelectedCategory(Category);
   };
 
+  if (loading) return <div className="loading">Loading...</div>; // prevent reading data before end loading .
+
   return (
-    <div className="stars">
+    <div className="stars-page">
       <div className=" stars--title-section">
         <h1 className="stars--title">
-          Meet The <span className="highlight-stars">STARS</span>{" "}
+          Meet The <span className="highlight-stars">STARS</span>
         </h1>
       </div>
       <div className="stars--filter-section">
@@ -352,7 +371,25 @@ export default function Stars() {
           ></input>
         </form>
       </div>
-      <div className="stars--stars-container"></div>
+      <div className="stars--stars-container">
+        {data && data.map((user, index) => (
+          <div className="user card" key={index}>
+            <img src="http://localhost:1337/uploads/image_1_1_5a916903c0.png" alt="user face" className="user-avatar"/>
+            {/* <img src={`${imgUrl}${user.avatar.url}`} alt="user face" className="user-avatar"/> */}
+            <div className="user-short-info">
+            <p className="user-id">{user.id}</p>
+            <p className="user-name" id={user.id}>{user.username} {`${user.firstname} ${user.lastname}`}</p>
+            {/* <p className="user-flag">{user.country.emoji}</p> */}
+            </div>
+
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
+
+/* 
+http://localhost:1337/uploads/image_1_1_5a916903c0.png
+
+*/
