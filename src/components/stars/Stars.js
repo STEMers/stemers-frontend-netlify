@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 
 import "./styles.css";
+import { baseUrl } from "../../config";
 
 export default function Stars() {
+    const defaultUrl= `${baseUrl}/users?populate=category,country,avatar`;
+
   /* submit filter form */
   const handleSubmit = () => {};
-  
+
   return (
     <div className="stars">
       <div className=" stars--title-section">
