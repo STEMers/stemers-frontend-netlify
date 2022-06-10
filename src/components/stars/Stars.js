@@ -19,11 +19,11 @@ export default function Stars() {
   );
   if (data !== null) {
     console.log("data:", data);
-    console.log("data[0].avatar.url:", data[0].avatar.url);
+    console.log("data[0].avatar.url:", data[0].avatar.url); // works
     console.log(
       "data[0].avatar.formats.thumbnail.url:",
       data[0].avatar.formats.thumbnail.url
-    );
+    ); // works
   }
 
   /* submit filter form */
@@ -426,4 +426,3 @@ https://stemers-backend-heroku.herokuapp.com/uploads/image_1_1_5a916903c0.png   
     },
 
 */
-
