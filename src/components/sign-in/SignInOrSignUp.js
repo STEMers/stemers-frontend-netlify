@@ -6,14 +6,15 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import "./styles.css";
 import { baseUrl } from "../../config";
 
-// const [userState, setUserState] = useState({needSignIn:true, needSignUp:false});
-// const initialValues = { usrOrEmail: "", username: "", email: "", password: "" };
-// const [formValues, setFormValues] = useState(initialValues);
-// const [globalError, setGlobalError]=useState(null);
+// const [userState, setUserState] = useState({needSignIn:true, forgotPassword:false}); // for toggle sign in or sign up
+// const formInitialValues = { usrOrEmail: "", username: "", email: "", password: "" };
+// const [formValues, setFormValues] = useState(formInitialValues); // collect form data
+// const [userData, setUserData]= useState(null); // data from sign in or sign up, in case other components needed it.
+// const [globalError, setGlobalError]=useState(null); // display error msg
 
 export default function SignInOrSignUp({
-  needSignIn,
-  setNeedSignIn,
+  userState, 
+  setUserState,
   formInitialValues,
   formValues,
   setFormValues,
@@ -36,12 +37,12 @@ export default function SignInOrSignUp({
 
   /* switch section on: sign in -> sign up */
   const handleToggleSignUp = () => {
-    setNeedSignIn(false);
+    setUserState({...userState, needSignIn:false});
   };
 
   /* switch section on: sign up -> sign in */
   const handleToggleSignIn = () => {
-    setNeedSignIn(true);
+    setUserState({...userState, needSignIn:true});
   };
 
   /* handle form submit: use async fn */
@@ -59,8 +60,8 @@ export default function SignInOrSignUp({
         email: formValues.email,
         password: formValues.password,
       };
-      const body = needSignIn ? signInBody : signUpBody;
-      const url = needSignIn ? SignInUrl : SignUpUrl;
+      const body = userState.needSignIn ? signInBody : signUpBody;
+      const url = userState.needSignIn ? SignInUrl : SignUpUrl;
 
       /* fetch data */
       const response = await fetch(encodeURI(url), {
@@ -107,7 +108,7 @@ export default function SignInOrSignUp({
         </div>
 
         <div className="form-main">
-          {needSignIn ? (
+          {userState.needSignIn ? (
             <div className="sign-in-section">
               <label htmlFor="userNameOrEmail" className="sign-in--label">
                 Username/Email:
