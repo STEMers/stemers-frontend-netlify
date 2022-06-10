@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./styles.css";
 import { baseUrl } from "../../config";
+import useFetch from "../hooks/useFetch";
 
 export default function Stars() {
     const defaultUrl= `${baseUrl}/users?populate=category,country,avatar`;
