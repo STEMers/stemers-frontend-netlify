@@ -60,7 +60,7 @@ option {
 .stars--stars-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  gap: 30px;
 }
 
 .card {
