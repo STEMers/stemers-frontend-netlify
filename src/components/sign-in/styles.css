@@ -29,7 +29,7 @@
 
 /* form main section */
 .form-main {
-  text-align: start;
+  /* text-align: start; */
   display: flex;
   flex-direction: column;
   align-items: center;
