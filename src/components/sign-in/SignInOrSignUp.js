@@ -148,7 +148,6 @@ export default function SignInOrSignUp({
               <label htmlFor="userNameOrEmail" className="sign-in--label">
                 Username/Email:
               </label>
-              <br />
               <input
                 type="text"
                 name="usrOrEmail"
@@ -163,7 +162,6 @@ export default function SignInOrSignUp({
               <label htmlFor="password" className="sign-in--label">
                 Password:
               </label>
-              <br />
               <input
                 type="password"
                 name="password"
@@ -184,7 +182,7 @@ export default function SignInOrSignUp({
                 />
                 <label
                   htmlFor="remember-me"
-                  className="sign-in--label label-remember-me"
+                  className="label-remember-me"
                 >
                   Remember me
                 </label>
@@ -219,7 +217,6 @@ export default function SignInOrSignUp({
               <label htmlFor="username" className="sign-in--label">
                 Username:
               </label>
-              <br />
               <input
                 type="text"
                 name="username"
@@ -234,7 +231,6 @@ export default function SignInOrSignUp({
               <label htmlFor="email" className="sign-in--label">
                 Email:
               </label>
-              <br />
               <input
                 type="email"
                 name="email"
@@ -249,7 +245,6 @@ export default function SignInOrSignUp({
               <label htmlFor="password" className="sign-in--label">
                 Password:
               </label>
-              <br />
               <input
                 type="password"
                 name="password"
