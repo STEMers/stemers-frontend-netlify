@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useFetch = (url, newEvent) => {
+const useFetch = (url, selectedCategory, selectedCountry, newEvent) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,24 +17,32 @@ const useFetch = (url, newEvent) => {
         }
 
         const json = await response.json();
-        console.log("useFetch json:", json);
+        console.log("json", json);
+        // console.log("json 1 country name", json[1].country.name);
 
-        setData(json);
+        // const filteredUsers = await json.filter(
+        //   (user, index) =>
+        //     user.category.type === selectedCategory &&
+        //     user.country.name === selectedCountry
+        // );
 
-        //   setLoading(false); 
+        // console.log("filteredUsers", filteredUsers);
+
+        // setData(filteredUsers);  // way1: output filtered data
+        setData(json); // way2: output raw data
+
+        setLoading(false);
       } catch (error) {
         alert(error);
-        //   setGlobalError(err);  //  ?
-        // setLoading(false);
-      }finally {
-        // setLoading(false);
+        //   setGlobalError(error);  //  ?
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [url, newEvent]);
+  }, [url, selectedCategory, selectedCountry, newEvent]);
 
-  return { data, loading};
+  return { data, loading };
 };
 
 export default useFetch;
