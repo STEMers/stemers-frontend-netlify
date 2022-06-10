@@ -6,12 +6,6 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import "./styles.css";
 import { baseUrl } from "../../config";
 
-// const [userState, setUserState] = useState({needSignIn:true, forgotPassword:false}); // for toggle sign in or sign up
-// const formInitialValues = { usrOrEmail: "", username: "", email: "", password: "" };
-// const [formValues, setFormValues] = useState(formInitialValues); // collect form data
-// const [userData, setUserData]= useState(null); // data from sign in or sign up, in case other components needed it.
-// const [globalError, setGlobalError]=useState(null); // display error msg
-
 export default function SignInOrSignUp({
   userState,
   setUserState,
@@ -52,7 +46,6 @@ export default function SignInOrSignUp({
     } else if (!regex.test(values.email)) {
       errors.email = "This is not a valid email format!";
     }
-
     if (!values.password) {
       errors.password = "Password is required";
     } else if (values.password.length < 6) {
