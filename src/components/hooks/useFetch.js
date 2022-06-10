@@ -28,8 +28,8 @@ const useFetch = (url, selectedCategory, selectedCountry, newEvent) => {
 
         // console.log("filteredUsers", filteredUsers);
 
-        // setData(filteredUsers);  // way1: output filtered data
-        setData(json); // way2: output raw data
+        // setData(filteredUsers);  // way1: output filtered data // not work
+        setData(json); // way2: output raw data // works
 
         setLoading(false);
       } catch (error) {
