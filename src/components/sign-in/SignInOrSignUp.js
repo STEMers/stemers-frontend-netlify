@@ -13,21 +13,21 @@ import { baseUrl } from "../../config";
 // const [globalError, setGlobalError]=useState(null); // display error msg
 
 export default function SignInOrSignUp({
-  userState, 
+  userState,
   setUserState,
   formInitialValues,
   formValues,
   setFormValues,
   userData,
   setUserData,
+  isLoading,
+  setIsLoading,
   globalError,
   setGlobalError,
 }) {
   const SignInUrl = `${baseUrl}/auth/local`;
   const SignUpUrl = `${baseUrl}/auth/local/register`;
   const navigate = useNavigate();
-
-  const [isLoading, setIsLoading] = useState(true);
 
   /* handle and store user input */
   const handleChange = (e) => {
@@ -37,17 +37,18 @@ export default function SignInOrSignUp({
 
   /* switch section on: sign in -> sign up */
   const handleToggleSignUp = () => {
-    setUserState({...userState, needSignIn:false});
+    setUserState({ ...userState, needSignIn: false });
   };
 
   /* switch section on: sign up -> sign in */
   const handleToggleSignIn = () => {
-    setUserState({...userState, needSignIn:true});
+    setUserState({ ...userState, needSignIn: true });
   };
 
   /* handle form submit: use async fn */
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); //
 
     try {
       /* set up body and url: use ternary */
@@ -88,9 +89,10 @@ export default function SignInOrSignUp({
       //   setGlobalError(err);  //  globalError didn't use!
     } finally {
       setIsLoading(false);
-      //   console.log(" sign in or sign up form submitted");
     }
   };
+
+  if(isLoading) return <div className="is-loading loading">Loading...</div>
 
   return (
     <div className="sign-in-or-sign-up">
@@ -112,7 +114,7 @@ export default function SignInOrSignUp({
             <div className="sign-in-section">
               <label htmlFor="userNameOrEmail" className="sign-in--label">
                 Username/Email:
-              </label>{" "}
+              </label>
               <br />
               <input
                 type="text"

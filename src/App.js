@@ -15,6 +15,7 @@ function App() {
   const formInitialValues = { usrOrEmail: "", username: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(formInitialValues); // collect form data
   const [userData, setUserData]= useState(null); // data from sign in or sign up, in case other components needed it.
+  const [isLoading, setIsLoading] = useState(false);
   const [globalError, setGlobalError]=useState(null); // display error msg
 
   return (
@@ -33,6 +34,8 @@ function App() {
           setFormValues={setFormValues}
           userData={userData}
           setUserData={setUserData}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
           globalError={globalError}
           setGlobalError={setGlobalError}
           />} />
