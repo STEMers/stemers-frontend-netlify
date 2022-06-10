@@ -29,7 +29,6 @@
 
 /* form main section */
 .form-main {
-  margin: 2px auto;
   text-align: start;
   display: flex;
   flex-direction: column;
@@ -69,6 +68,11 @@
   transform: scale(1.05);
 }
 
+.validation-error{
+  color: #e60000;
+  margin: 2px auto;
+}
+
 /* sign in section */
 .sign-in-section {
 }
@@ -77,6 +81,11 @@
 }
 
 .forgot-password-section {
+}
+
+.sign-in--lock{
+  font-size: 18px;
+  padding-right: 3px;
 }
 
 .switch-to-Sign-up-section {
@@ -92,6 +101,18 @@
 .toggle-sign-up:hover,
 .toggle-sign-in:hover {
   text-transform: uppercase;
+}
+
+.switch-section{
+
+}
+
+.to-another{
+  margin: 3px;
+}
+
+.or{
+  margin: 3px;
 }
 
 /* sign up section */

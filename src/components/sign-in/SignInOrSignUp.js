@@ -202,8 +202,8 @@ export default function SignInOrSignUp({
               >
                 Sign In
               </button>
-              <div className="switch-to-Sign-up-section">
-                <p className="to-sign-up">
+              <div className="switch-to-Sign-up-section switch-section">
+                <p className="to-sign-up to-another">
                   Not register yet?
                   <span className="toggle-sign-up" onClick={handleToggleSignUp}>
                     Sign Up
@@ -268,8 +268,8 @@ export default function SignInOrSignUp({
               >
                 Sign Up
               </button>
-              <div className="switch-to-Sign-in-section">
-                <p className="to-sign-in">
+              <div className="switch-to-Sign-in-section switch-section">
+                <p className="to-sign-in to-another">
                   Already have an account?
                   <span className="toggle-sign-in" onClick={handleToggleSignIn}>
                     Sign In
@@ -279,7 +279,7 @@ export default function SignInOrSignUp({
             </div>
           )}
 
-          <p>OR</p>
+          <p className="or">OR</p>
           <div className="continue-section">
             <div className="continue-with-github">
               <button className="github-continue-button continue-button btn">
