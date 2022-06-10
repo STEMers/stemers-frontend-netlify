@@ -401,6 +401,29 @@ export default function Stars() {
 }
 
 /* 
-http://localhost:1337/uploads/image_1_1_5a916903c0.png
+http://localhost:1337/uploads/image_1_1_5a916903c0.png           // localhost, works
+https://stemers-backend-heroku.herokuapp.com/uploads/image_1_1_5a916903c0.png   // 404:NotFoundError
+
+  "url": "/uploads/image_1_1_5a916903c0.png",  // can't read property of null(url)
+
+   "country": {
+        "id": 5,
+        "name": "China",                            // can't read property of null(name)
+        "shortName": "CN",
+        "createdAt": "2022-06-07T10:57:56.363Z",
+        "updatedAt": "2022-06-07T11:03:29.483Z",
+        "publishedAt": "2022-06-07T11:03:29.370Z",
+        "emoji": "🇨🇳"                                // can't read property of null(emoji)
+    },
+
+    "category": {
+        "id": 3,
+        "type": "engineering",                       // can't read property of null(type)
+        "shortName": "CN",
+        "createdAt": "2022-06-05T11:26:06.135Z",
+        "updatedAt": "2022-06-07T11:05:11.830Z",
+        "publishedAt": "2022-06-05T11:26:09.358Z"
+    },
 
 */
+
