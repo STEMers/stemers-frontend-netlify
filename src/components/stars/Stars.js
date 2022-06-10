@@ -7,7 +7,7 @@ export default function Stars() {
   return (
     <div className="stars">
       <div className=" stars--title-section">
-        <h1 className="title">Meet The STARS</h1>
+        <h1 className="title">Meet The <span className="highlight-stars">STARS</span> </h1>
       </div>
       <div className="stars--filter-section">
         <form
