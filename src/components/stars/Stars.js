@@ -20,7 +20,10 @@ export default function Stars() {
   if (data !== null) {
     console.log("data:", data);
     console.log("data[0].avatar.url:", data[0].avatar.url);
-    console.log("data[0].avatar.formats.thumbnail.url:", data[0].avatar.formats.thumbnail.url);
+    console.log(
+      "data[0].avatar.formats.thumbnail.url:",
+      data[0].avatar.formats.thumbnail.url
+    );
   }
 
   /* submit filter form */
@@ -372,18 +375,26 @@ export default function Stars() {
         </form>
       </div>
       <div className="stars--stars-container">
-        {data && data.map((user, index) => (
-          <div className="user card" key={index}>
-            <img src="http://localhost:1337/uploads/image_1_1_5a916903c0.png" alt="user face" className="user-avatar"/>
-            {/* <img src={`${imgUrl}${user.avatar.url}`} alt="user face" className="user-avatar"/> */}
-            <div className="user-short-info">
-            <p className="user-id">{user.id}</p>
-            <p className="user-name" id={user.id}>{user.username} {`${user.firstname} ${user.lastname}`}</p>
-            {/* <p className="user-flag">{user.country.emoji}</p> */}
-            </div>
-
-          </div>
-        ))}
+        {data &&
+          data.map((user, index) => (
+            <Link to={`/profile/${user.id}`}>
+              <div className="user card" key={index}>
+                <img
+                  src="http://localhost:1337/uploads/image_1_1_5a916903c0.png"
+                  alt="user face"
+                  className="user-avatar"
+                />
+                {/* <img src={`${imgUrl}${user.avatar.url}`} alt="user face" className="user-avatar"/> */}
+                <div className="user-short-info">
+                  <p className="user-id">{user.id}</p>
+                  <p className="user-name" id={user.id}>
+                    {user.username} {`${user.firstname} ${user.lastname}`}
+                  </p>
+                  {/* <p className="user-flag">{user.country.emoji}</p> */}
+                </div>
+              </div>
+            </Link>
+          ))}
       </div>
     </div>
   );
