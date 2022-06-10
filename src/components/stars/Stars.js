@@ -377,8 +377,8 @@ export default function Stars() {
       <div className="stars--stars-container">
         {data &&
           data.map((user, index) => (
-            <Link to={`/profile/${user.id}`}>
-              <div className="user card" key={index}>
+            <div className="user card" key={index}>
+              <Link to={`/profile/${user.id}`}>
                 <img
                   src="http://localhost:1337/uploads/image_1_1_5a916903c0.png"
                   alt="user face"
@@ -392,8 +392,8 @@ export default function Stars() {
                   </p>
                   {/* <p className="user-flag">{user.country.emoji}</p> */}
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           ))}
       </div>
     </div>
