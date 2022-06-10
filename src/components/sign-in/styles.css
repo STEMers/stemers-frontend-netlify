@@ -16,10 +16,11 @@
 
 /* stemers description section */
 .stemers-description-section {
-  max-width: 70%;
+  max-width: 65%;
   margin: 2px auto;
   font-weight: 700;
   padding: 10px;
+  line-height: 2;
 }
 
 .stem-highlight {
