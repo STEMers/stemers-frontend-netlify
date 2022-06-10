@@ -8,6 +8,7 @@ import Home from "./components/home/Home";
 import About from "./components/about/About";
 import Profile from "./components/profile/Profile";
 import SignInOrSignUP from "./components/sign-in/SignInOrSignUp";
+import Stars from "./components/stars/Stars";
 
 function App() {
   // sign in or sign up states 
@@ -24,6 +25,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/stars" element={<Stars />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/signIn" element={<SignInOrSignUP 
