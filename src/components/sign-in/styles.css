@@ -10,6 +10,12 @@
   align-items: center;
 }
 
+.is-loading{
+  color: #2465b5;
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .entry-form {
   width: 80%;
 }

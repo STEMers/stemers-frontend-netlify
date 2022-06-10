@@ -34,12 +34,11 @@ export default function SignInOrSignUp({
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+    setFormErrors(formInitialValues); // clear error when user input
   };
 
   /* validate sign in or sign up form */
   const validate = (values) => {
-    console.log("validate be called"); //
-
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!values.usrOrEmail) {
@@ -66,12 +65,16 @@ export default function SignInOrSignUp({
 
   /* switch section on: sign in -> sign up */
   const handleToggleSignUp = () => {
+    setFormErrors(formInitialValues);  // clear error when switch to sign in/ sign up section
     setUserState({ ...userState, needSignIn: false });
+    
   };
 
   /* switch section on: sign up -> sign in */
   const handleToggleSignIn = () => {
+    setFormErrors(formInitialValues); // clear error when switch to sign in/ sign up section
     setUserState({ ...userState, needSignIn: true });
+      
   };
 
   /* handle form submit: use async fn */
@@ -79,6 +82,7 @@ export default function SignInOrSignUp({
     e.preventDefault();
     setIsLoading(true);
     setFormErrors(validate(formValues)); // validate form
+    
 
     try {
       /* set up body and url: use ternary */
@@ -122,10 +126,9 @@ export default function SignInOrSignUp({
     }
   };
 
-  if (isLoading) return <div className="is-loading loading">Loading...</div>;
-
   return (
     <div className="sign-in-or-sign-up">
+      {isLoading&&<div className="is-loading loading">Loading...</div> }
       <form
         name="entry-form"
         id="entry-form"
