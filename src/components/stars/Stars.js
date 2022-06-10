@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 
 export default function Stars() {
+  /* submit filter form */
   const handleSubmit = () => {};
+  
   return (
     <div className="stars">
       <div className=" stars--title-section">
-        <h1 className="title">Meet The <span className="highlight-stars">STARS</span> </h1>
+        <h1 className="stars--title">
+          Meet The <span className="highlight-stars">STARS</span>{" "}
+        </h1>
       </div>
       <div className="stars--filter-section">
         <form
