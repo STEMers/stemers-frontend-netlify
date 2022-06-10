@@ -28,11 +28,40 @@ export default function SignInOrSignUp({
   const SignInUrl = `${baseUrl}/auth/local`;
   const SignUpUrl = `${baseUrl}/auth/local/register`;
   const navigate = useNavigate();
+  const [formErrors, setFormErrors] = useState({}); // validate form
 
   /* handle and store user input */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+  };
+
+  /* validate sign in or sign up form */
+  const validate = (values) => {
+    console.log("validate be called"); //
+
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.usrOrEmail) {
+      errors.usrOrEmail = "Username/Email is required!";
+    }
+    if (!values.username) {
+      errors.username = "Username is required!";
+    }
+    if (!values.email) {
+      errors.email = "Email is required!";
+    } else if (!regex.test(values.email)) {
+      errors.email = "This is not a valid email format!";
+    }
+
+    if (!values.password) {
+      errors.password = "Password is required";
+    } else if (values.password.length < 6) {
+      errors.password = "Password must be more than 6 characters";
+    } else if (values.password.length > 10) {
+      errors.password = "Password cannot exceed more than 10 characters";
+    }
+    return errors;
   };
 
   /* switch section on: sign in -> sign up */
@@ -48,7 +77,8 @@ export default function SignInOrSignUp({
   /* handle form submit: use async fn */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); //
+    setIsLoading(true);
+    setFormErrors(validate(formValues)); // validate form
 
     try {
       /* set up body and url: use ternary */
@@ -92,7 +122,7 @@ export default function SignInOrSignUp({
     }
   };
 
-  if(isLoading) return <div className="is-loading loading">Loading...</div>
+  if (isLoading) return <div className="is-loading loading">Loading...</div>;
 
   return (
     <div className="sign-in-or-sign-up">
@@ -105,7 +135,7 @@ export default function SignInOrSignUp({
         <div className="stemers-description-section">
           Recognize <span className="stem-highlight">STEM</span> women who go
           above and beyond. Lift up the women who inspire and educate your
-          communities with <span className="stem-highlight">STEMers</span>{" "}
+          communities with <span className="stem-highlight">STEMers</span>
           program
         </div>
 
@@ -126,10 +156,10 @@ export default function SignInOrSignUp({
                 onChange={handleChange}
                 required
               />
-              <p className="error-username error"> email error</p>
+              <p className="validation-error error">{formErrors.usrOrEmail}</p>
               <label htmlFor="password" className="sign-in--label">
                 Password:
-              </label>{" "}
+              </label>
               <br />
               <input
                 type="password"
@@ -141,7 +171,7 @@ export default function SignInOrSignUp({
                 onChange={handleChange}
                 required
               />
-              <p className="error-password error"> password error</p>
+              <p className="validation-error error"> {formErrors.password}</p>
               <div className="remember-me-section">
                 <input
                   type="checkbox"
@@ -185,7 +215,7 @@ export default function SignInOrSignUp({
             <div className="sign-up-section">
               <label htmlFor="username" className="sign-in--label">
                 Username:
-              </label>{" "}
+              </label>
               <br />
               <input
                 type="text"
@@ -197,10 +227,10 @@ export default function SignInOrSignUp({
                 onChange={handleChange}
                 required
               />
-              <p className="error-username error"> username error</p>
+              <p className="validation-error error"> {formErrors.username}</p>
               <label htmlFor="email" className="sign-in--label">
                 Email:
-              </label>{" "}
+              </label>
               <br />
               <input
                 type="email"
@@ -212,10 +242,10 @@ export default function SignInOrSignUp({
                 onChange={handleChange}
                 required
               />
-              <p className="error-username error"> email error</p>
+              <p className="validation-error error">{formErrors.email}</p>
               <label htmlFor="password" className="sign-in--label">
                 Password:
-              </label>{" "}
+              </label>
               <br />
               <input
                 type="password"
@@ -227,7 +257,7 @@ export default function SignInOrSignUp({
                 onChange={handleChange}
                 required
               />
-              <p className="error-password error"> password error</p>
+              <p className="validation-error error"> {formErrors.password}</p>
               <button
                 type="submit"
                 form="entry-form"
