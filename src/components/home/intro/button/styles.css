@@ -1,0 +1,28 @@
+.nominate-star {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+}
+
+.btn-nominate,
+.btn-invite {
+    padding: 10px 25px;
+    border-radius: 10px;
+    color: var(--bg);
+    font-weight: 600;    
+}
+
+.btn-nominate {
+    background-color: var(--blue);
+}
+
+.btn-invite {
+    background-color: var(--orange);
+}
+
+.btn-nominate:hover,
+.btn-invite:hover {
+    opacity: 0.6;
+}
