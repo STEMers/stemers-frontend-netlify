@@ -1,43 +1,40 @@
 import { Link } from "react-router-dom";
 
 import "./styles.css";
-import { baseUrl, imgUrl } from "../../config";
+import { baseUrl, imgUrl } from "../../config";  // imgUrl is localhost version, heroku version not work, 404 error
 import useFetch from "../hooks/useFetch";
 import { useState } from "react";
 
 export default function Stars() {
-  const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`; // strapi filter not work, so always fetch all users data
+  const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`; // strapi filter not work
   const [submitCount, setSubmitCount] = useState(0);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState(null); // store user input
+  const [selectedCategory, setSelectedCategory] = useState(null); // store user input
 
+  /* fetch filtered user data */
   const { data, loading } = useFetch(
     defaultUrl,
-    selectedCountry,
     selectedCategory,
+    selectedCountry,
     submitCount
   );
-  if (data !== null) {
-    console.log("data:", data);
-    console.log("data[0].avatar.url:", data[0].avatar.url); // works
-    console.log(
-      "data[0].avatar.formats.thumbnail.url:",
-      data[0].avatar.formats.thumbnail.url
-    ); // works
-  }
 
   /* submit filter form */
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    /* get user input*/
+    const country = document.getElementById("country").value.toLowerCase();
+    setSelectedCountry(country);
+    const category = document.getElementById("category").value.toLowerCase();
+    setSelectedCategory(category);
+
+    /* fire useFetch() */
     setSubmitCount((c) => c + 1);
-    const Country = document.getElementById("country").value.toLowerCase();
-    setSelectedCountry(Country);
-    const Category = document.getElementById("category").value.toLowerCase();
-    setSelectedCategory(Category);
   };
 
-  if (loading) return <div className="loading">Loading...</div>; // prevent reading data before end loading .
-
+  /* prevent reading data before end loading */
+  if (loading) return <div className="loading">Loading...</div>;
   return (
     <div className="stars-page">
       <div className=" stars--title-section">
@@ -375,26 +372,27 @@ export default function Stars() {
         </form>
       </div>
       <div className="stars--stars-container">
-        {data &&
-          data.map((user, index) => (
-            <div className="user card" key={index}>
-              <Link to={`/profile/${user.id}`}>
-                <img
-                  src="http://localhost:1337/uploads/image_1_1_5a916903c0.png"
-                  alt="user face"
-                  className="user-avatar"
-                />
-                {/* <img src={`${imgUrl}${user.avatar.url}`} alt="user face" className="user-avatar"/> */}
-                <div className="user-short-info">
-                  <p className="user-id">{user.id}</p>
-                  <p className="user-name" id={user.id}>
-                    {user.username} {`${user.firstname} ${user.lastname}`}
-                  </p>
-                  {/* <p className="user-flag">{user.country.emoji}</p> */}
-                </div>
-              </Link>
-            </div>
-          ))}
+        {data.map((user, index) => (
+          <div className="user card" key={index}>
+            <Link to={`/profile/${user.id}`}>
+              <img
+                src={`${imgUrl}${user.avatar.url}`}
+                alt="user face"
+                className="user-avatar"
+              />
+              <div className="user-short-info">
+                <p className="user-id">{user.id}</p>
+                <p className="user-name" id={user.id}>
+                  {user.username} {`${user.firstname} ${user.lastname}`}
+                </p>
+                <span className="user-country-sn">
+                  {user.country.shortName}
+                </span>
+                <span className="user-flag">{user.country.emoji}</span>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -402,27 +400,6 @@ export default function Stars() {
 
 /* 
 http://localhost:1337/uploads/image_1_1_5a916903c0.png           // localhost, works
-https://stemers-backend-heroku.herokuapp.com/uploads/image_1_1_5a916903c0.png   // 404:NotFoundError
-
-  "url": "/uploads/image_1_1_5a916903c0.png",  // can't read property of null(url)
-
-   "country": {
-        "id": 5,
-        "name": "China",                            // can't read property of null(name)
-        "shortName": "CN",
-        "createdAt": "2022-06-07T10:57:56.363Z",
-        "updatedAt": "2022-06-07T11:03:29.483Z",
-        "publishedAt": "2022-06-07T11:03:29.370Z",
-        "emoji": "🇨🇳"                                // can't read property of null(emoji)
-    },
-
-    "category": {
-        "id": 3,
-        "type": "engineering",                       // can't read property of null(type)
-        "shortName": "CN",
-        "createdAt": "2022-06-05T11:26:06.135Z",
-        "updatedAt": "2022-06-07T11:05:11.830Z",
-        "publishedAt": "2022-06-05T11:26:09.358Z"
-    },
+https://stemers-backend-heroku.herokuapp.com/uploads/image_1_1_5a916903c0.png   // heroku url : 404 NotFoundError
 
 */
