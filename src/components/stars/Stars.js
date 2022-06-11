@@ -375,7 +375,7 @@ export default function Stars() {
       <div className="stars--stars-container">
         {data.map((user, index) => (
           <div className="user card" key={index}>
-            <Link to={`/profile/${user.id}`}>
+            <Link to={`/profile/${user.id}`} className="link">
               <img
                 src={`${imgUrl}${user.avatar.url}`}
                 alt="user face"
