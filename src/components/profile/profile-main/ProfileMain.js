@@ -25,18 +25,35 @@ export default function ProfileMain() {
               className="profile-img"
             />
           </div>
-          <div className="infos-short">
-            <p className="profile-age">{data.age}</p>
-            <p className="profile-location">{data.location}</p>
-            <p className="profile-eduction">{data.education}</p>
-            <p className="profile-job">{data.job}</p>
-            <p className="profile-family">{data.family}</p>
+          <div className="short-infos-container">
+            <div className="age short-info">
+              <p className="profile-left-list">Age:</p>
+              <p className="s-info-property">{data.age}</p>
+            </div>
+            <div className="location short-info">
+              <p className="profile-left-list">Location:</p>
+              <p className="s-info-property">{data.location}</p>
+            </div>
+            <div className="eduction short-info">
+              <p className="profile-left-list">Education:</p>
+              <p className="profile-eduction">{data.education}</p>
+            </div>
+            <div className="job short-info">
+              <p className="profile-left-list">Job:</p>
+              <p className="profile-job">{data.job}</p>
+            </div>
+            <div className="family short-info">
+              <p className="profile-left-list">Family:</p>
+              <p className="profile-family">{data.family}</p>
+            </div>
           </div>
         </div>
         <div className="infos-right">
-        <h3 className="profile-name">{data.firstname} {data.lastname}</h3>
-        <p className="profile-quote">{data.quote}</p>
-        <p className="profile-bio">{data.bio}</p>
+          <h3 className="profile-name">
+            {data.firstname} {data.lastname}
+          </h3>
+          <p className="profile-quote">{data.quote}</p>
+          <p className="profile-bio">{data.bio}</p>
         </div>
       </div>
     </div>
