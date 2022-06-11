@@ -1,7 +1,8 @@
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import { useState } from "react";
 
 import "./App.css";
+import "./normalize.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Home from "./components/home/Home";
@@ -20,9 +21,9 @@ function App() {
   const [globalError, setGlobalError]=useState(null); // display error msg
 
   return (
-    <div className="App">
-      <Header />
+    <div className="App">      
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/stars" element={<Stars />} />

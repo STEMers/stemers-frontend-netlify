@@ -1,0 +1,47 @@
+.star {
+    width: 20%;
+    border: 3px solid var(--blue);
+    margin: 20px 0;
+    padding: 0;
+    border-radius: 20px;
+    position: relative;
+}
+
+.star-photo {
+    width: 100%;
+    border-radius: 16px;
+}
+.star-badge {
+    position: absolute;
+    max-width: 25px;
+    border-radius: 20px;
+    border: 3px var(--bg) solid;
+    top: 5px;
+    right: 5px;
+}
+
+.star-info {
+    transform: translateY(-20px);
+    background-color: #F5F5F5;
+}
+
+.star-info h2 {
+    display: inline;
+}
+
+.star-name,
+.star-category,
+.star-job {
+    margin: 5px;
+    padding: 5px;
+}
+
+.star-job {
+    color: var(--pink);
+    font-style: italic;
+}
+
+.star-name {
+    color: var(--blue);
+    font-style: italic;
+}
