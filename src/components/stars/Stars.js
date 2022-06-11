@@ -6,7 +6,8 @@ import useFetch from "../hooks/useFetch";
 import { useState } from "react";
 
 export default function Stars() {
-  const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`; // strapi filter not work
+  // const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`; // strapi filter not work
+  const defaultUrl = `${baseUrl}/users?populate=*`; // strapi filter not work
   const [submitCount, setSubmitCount] = useState(0);
   const [selectedCountry, setSelectedCountry] = useState(null); // store user input
   const [selectedCategory, setSelectedCategory] = useState(null); // store user input
@@ -389,6 +390,7 @@ export default function Stars() {
                 </span>
                 <span className="user-flag">{user.country.emoji}</span>
               </div>
+              <div className="badges">{user.nominations_received.length === 1 ? "Copper": user.nominations_received.length >1 && user.nominations_received.length <= 3? "Silver": "Gold"}</div>
             </Link>
           </div>
         ))}
@@ -400,5 +402,5 @@ export default function Stars() {
 /* 
 http://localhost:1337/uploads/image_1_1_5a916903c0.png           // localhost, works
 https://stemers-backend-heroku.herokuapp.com/uploads/image_1_1_5a916903c0.png   // heroku url : 404 NotFoundError
-
+copper, silver, gold badges
 */
