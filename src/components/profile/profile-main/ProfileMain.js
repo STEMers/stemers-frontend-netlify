@@ -49,11 +49,14 @@ export default function ProfileMain() {
           </div>
         </div>
         <div className="infos-right">
-          <h3 className="profile-name">
+          <h2 className="profile-name">
             {data.firstname} {data.lastname}
-          </h3>
+          </h2>
           <p className="profile-quote">{data.quote}</p>
-          <p className="profile-bio">{data.bio}</p>
+          <div className="bio-container">
+            <p className="profile-right-list">BIO</p>
+            <p className="profile-bio">{data.bio}</p>
+          </div>
         </div>
       </div>
     </div>
