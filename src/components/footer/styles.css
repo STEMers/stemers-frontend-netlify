@@ -1,6 +1,6 @@
-footer{
+.footer{
     margin-top: 1rem;
-    padding: 1rem;
+    padding: 0,5rem;
     background-color: rgb(64, 150, 235);
     position: fixed;
     bottom: 0;
