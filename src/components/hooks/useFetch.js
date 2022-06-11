@@ -17,19 +17,20 @@ const useFetch = (url, selectedCategory, selectedCountry, newEvent) => {
         }
 
         const json = await response.json();
-        // console.log("json", json);
-        // console.log("json 1 country name", json[1].country.name);
+        console.log("json", json);
 
-        // const filteredUsers = await json.filter(
-        //   (user, index) =>
-        //     user.category.type === selectedCategory &&
-        //     user.country.name === selectedCountry
-        // );
+        const filteredUsers = json
+          .filter((user) => user.category !== null)
+          .filter((user) => user.country !== null)
+          .filter((user) =>
+            !selectedCategory ? true : user.category.type.toLowerCase() === selectedCategory
+          )
+          .filter((user) =>
+            !selectedCountry ? true : user.country.name.toLowerCase() === selectedCountry
+          );
+        console.log("filteredUsers", filteredUsers);
 
-        // console.log("filteredUsers", filteredUsers);
-
-        // setData(filteredUsers);  // way1: output filtered data // not work
-        setData(json); // way2: output raw data // works
+        setData(filteredUsers); // output filtered data 
 
         setLoading(false);
       } catch (error) {
@@ -40,7 +41,7 @@ const useFetch = (url, selectedCategory, selectedCountry, newEvent) => {
     };
 
     fetchData();
-  }, [url, selectedCategory, selectedCountry, newEvent]);
+  }, [url, newEvent]);
 
   return { data, loading };
 };
