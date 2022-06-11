@@ -1,0 +1,33 @@
+.intro{
+    /* border: 1px red solid; */
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+/* .intro-title,.intro-content{
+text-align: left;
+margin: 20px 100px;
+} */
+.intro-title{
+    font-style: italic;
+    text-align: left;
+    font-size: 40px;
+    line-height: 60px;
+    font-weight: 600;
+    color: var(--blue);
+}
+.intro-title span{
+    color:var(--orange);
+}
+.intro-content {
+    font-size:40px ;
+    line-height: 60px;
+    color: var(--blue);
+    font-weight: 600;
+    text-align: center;
+}
+
+.intro-content span{
+    color: var(--orange);
+    font-style: italic;  
+}
