@@ -381,9 +381,8 @@ export default function Stars() {
                 className="user-avatar"
               />
               <div className="user-short-info">
-                <p className="user-id">{user.id}</p>
                 <p className="user-name" id={user.id}>
-                  {user.username} {`${user.firstname} ${user.lastname}`}
+                {`${user.firstname} ${user.lastname}`}
                 </p>
                 <span className="user-country-sn">
                   {user.country.shortName}
