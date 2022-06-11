@@ -1,8 +1,12 @@
 import './styles.css';
+import React from "react";
 
-export default function Footer () {
+const Footer = () => {
+    return (
+    <div className="footer">
+        <p>Hello Footer</p>
+    </div>
+    );   
+};
 
-    return( 
-        <p> Template Footer </p>
-    )
-}
+export default Footer;
