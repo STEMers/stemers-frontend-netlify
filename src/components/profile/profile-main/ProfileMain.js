@@ -1,11 +1,13 @@
-import './styles.css';
+import { useParams } from "react-router-dom";
 
-export default function ProfileMain () {
+import "./styles.css";
+import { baseUrl } from "../../../config";
 
-return(
-    <div className='profile-main'>
-        Template Profile Main
-    </div>
-)
+export default function ProfileMain() {
+  // 👇️ get ID from url
+  const params = useParams();
+  const userId= params.id;
+  const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
 
+  return <div className="profile-main">Template Profile Main</div>;
 }
