@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import './styles.css';
 
-import "./styles.css";
-import { baseUrl, imgUrl } from "../../../config";
-import useFetchUser from "../../hooks/useFetchUser";
+import { useParams } from 'react-router-dom';
+
+import { baseUrl, imgUrl } from '../../../config';
+import { useFetchUser } from '../../../hooks';
 
 export default function ProfileMain() {
   // get ID from url

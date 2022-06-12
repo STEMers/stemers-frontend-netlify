@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import './styles.css';
 
-import "./styles.css";
-import { baseUrl, imgUrl } from "../../config";  // imgUrl is localhost version, heroku version not work, 404 error
-import useFetch from "../hooks/useFetch";
-import { useState } from "react";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { baseUrl, imgUrl } from '../../config';  // imgUrl is localhost version, heroku version not work, 404 error
+import { useFetch } from '../../hooks';
 
 export default function Stars() {
   // const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`; // strapi filter not work
@@ -383,14 +384,14 @@ export default function Stars() {
               />
               <div className="user-short-info">
                 <p className="user-name" id={user.id}>
-                {`${user.firstname} ${user.lastname}`}
+                  {`${user.firstname} ${user.lastname}`}
                 </p>
                 <span className="user-country-sn">
                   {user.country.shortName}
                 </span>
                 <span className="user-flag">{user.country.emoji}</span>
               </div>
-              <div className="badges">{user.nominations_received.length === 1 ? "Copper": user.nominations_received.length >1 && user.nominations_received.length <= 3? "Silver": "Gold"}</div>
+              <div className="badges">{user.nominations_received.length === 1 ? "Copper" : user.nominations_received.length > 1 && user.nominations_received.length <= 3 ? "Silver" : "Gold"}</div>
             </Link>
           </div>
         ))}
