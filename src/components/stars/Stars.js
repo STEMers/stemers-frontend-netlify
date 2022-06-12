@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./styles.css";
-import { baseUrl, imgUrl } from "../../config"; // imgUrl is localhost version, heroku version not work, 404 error
+import { baseUrl, imgUrl } from "../../config"; 
 import { useFetch } from "../../hooks";
 import User from "./user/User";
 import badge1 from "../../images/badge1.png";
@@ -401,12 +401,3 @@ export default function Stars() {
     </div>
   );
 }
-
-/* 
-http://localhost:1337/uploads/image_1_1_5a916903c0.png           // localhost, works
-https://stemers-backend-heroku.herokuapp.com/uploads/image_1_1_5a916903c0.png   // heroku url : 404 NotFoundError
-copper, silver, gold badges
-*/
-
-/* /uploads/default_avatar2_076e77e12e.png */
-/* https://stemers-backend-heroku.herokuapp.com/uploads/image_1_1_5a916903c0.png */
