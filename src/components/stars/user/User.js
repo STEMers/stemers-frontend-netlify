@@ -1,4 +1,4 @@
-import countryFlagEmoji from "country-flag-emoji";  // module issue
+import countryFlagEmoji from "country-flag-emoji"; // module issue
 
 import "./styles.css";
 
@@ -13,7 +13,8 @@ export default function User({
   badge1,
   badge2,
   badge3,
-  emoji
+  job,
+  emoji,
 }) {
   return (
     <div className="user card">
@@ -30,6 +31,7 @@ export default function User({
         alt="badge"
       />
       <div className="user-short-info">
+        <p className="user-job">{job}</p>
         <p className="user-name" id={userId}>
           {`${firstName} ${lastName}`}
         </p>
@@ -37,7 +39,6 @@ export default function User({
         <span className="user-flag">{emoji}</span>
         {/* <span className="user-flag">{countryFlagEmoji.get(country).emoji}</span> */}
       </div>
-      
     </div>
   );
 }
