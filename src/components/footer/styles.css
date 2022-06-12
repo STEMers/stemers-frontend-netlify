@@ -1,9 +1,27 @@
 .footer{
-    margin-top: 1rem;
-    padding: 0,5rem;
-    background-color: rgb(64, 150, 235);
-    position: fixed;
+    background-color: #236192;
+    color: #ffffff;
+    position: static;
     bottom: 0;
     left: 0;
     width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    padding: 0 60px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+}
+
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    padding: 0 60px;
+    margin: 0 auto;
 }
