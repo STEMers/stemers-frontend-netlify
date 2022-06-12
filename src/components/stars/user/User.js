@@ -31,7 +31,7 @@ export default function User({
         alt="badge"
       />
       <div className="user-short-info">
-        <p className="user-job">{job}</p>
+        <p className="user-job">{job?job:"untold"}</p>
         <p className="user-name" id={userId}>
           {`${firstName} ${lastName}`}
         </p>
