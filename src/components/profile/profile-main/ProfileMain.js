@@ -51,7 +51,7 @@ export default function ProfileMain() {
         </div>
         <div className="infos-right">
           <h2 className="profile-name">
-            {data.firstname} {data.lastname}
+            {data.first_name} {data.last_name}
           </h2>
           <p className="profile-quote">{data.quote}</p>
           <div className="bio-container">
