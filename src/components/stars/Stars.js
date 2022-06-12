@@ -1,14 +1,19 @@
-import './styles.css';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import "./styles.css";
+import { baseUrl, imgUrl } from "../../config"; // imgUrl is localhost version, heroku version not work, 404 error
+import { useFetch } from "../../hooks";
+import User from "./user/User";
+import badge1 from "../../images/badge1.png";
+import badge2 from "../../images/badge2.png"
+import badge3 from "../../images/badge3.png"
 
-import { baseUrl, imgUrl } from '../../config';  // imgUrl is localhost version, heroku version not work, 404 error
-import { useFetch } from '../../hooks';
 
 export default function Stars() {
   // const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`; // strapi filter not work
   const defaultUrl = `${baseUrl}/users?populate=*`; // strapi filter not work
+  const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
   const [submitCount, setSubmitCount] = useState(0);
   const [selectedCountry, setSelectedCountry] = useState(null); // store user input
   const [selectedCategory, setSelectedCategory] = useState(null); // store user input
@@ -375,25 +380,22 @@ export default function Stars() {
       </div>
       <div className="stars--stars-container">
         {data.map((user, index) => (
-          <div className="user card" key={index}>
-            <Link to={`/profile/${user.id}`} className="link">
-              <img
-                src={`${imgUrl}${user.avatar.url}`}
-                alt="user face"
-                className="user-avatar"
-              />
-              <div className="user-short-info">
-                <p className="user-name" id={user.id}>
-                  {`${user.firstname} ${user.lastname}`}
-                </p>
-                <span className="user-country-sn">
-                  {user.country.shortName}
-                </span>
-                <span className="user-flag">{user.country.emoji}</span>
-              </div>
-              <div className="badges">{user.nominations_received.length === 1 ? "Copper" : user.nominations_received.length > 1 && user.nominations_received.length <= 3 ? "Silver" : "Gold"}</div>
-            </Link>
-          </div>
+          <Link to={`/profile/${user.id}`} key={`${user}-${index}`}>
+            <User
+              srcAvatar={
+                user.avatar ? `${imgUrl}${user.avatar.url}` : defaultImgUrl
+              }
+              userId={user.id}
+              firstName={user.first_name}
+              lastName={user.last_name}
+              country={user.country.name}
+              countrySN={user.country.shortName}
+              nominationsR={user.nominations_received}
+              badge1={badge1}
+              badge2={badge2}
+              badge3={badge3}
+            />
+          </Link>
         ))}
       </div>
     </div>
@@ -405,3 +407,6 @@ http://localhost:1337/uploads/image_1_1_5a916903c0.png           // localhost, w
 https://stemers-backend-heroku.herokuapp.com/uploads/image_1_1_5a916903c0.png   // heroku url : 404 NotFoundError
 copper, silver, gold badges
 */
+
+/* /uploads/default_avatar2_076e77e12e.png */
+/* https://stemers-backend-heroku.herokuapp.com/uploads/image_1_1_5a916903c0.png */
