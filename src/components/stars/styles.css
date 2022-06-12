@@ -58,3 +58,7 @@ option {
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
+
+.stars--stars-container a {
+  text-decoration: none;
+}
