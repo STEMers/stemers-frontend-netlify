@@ -13,6 +13,7 @@ export default function User({
   badge1,
   badge2,
   badge3,
+  emoji
 }) {
   return (
     <div className="user card">
@@ -33,6 +34,7 @@ export default function User({
           {`${firstName} ${lastName}`}
         </p>
         <span className="user-country-sn">{countrySN}</span>
+        <span className="user-flag">{emoji}</span>
         {/* <span className="user-flag">{countryFlagEmoji.get(country).emoji}</span> */}
       </div>
       

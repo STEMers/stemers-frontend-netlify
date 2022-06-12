@@ -394,6 +394,7 @@ export default function Stars() {
               badge1={badge1}
               badge2={badge2}
               badge3={badge3}
+              emoji={user.country.emoji}
             />
           </Link>
         ))}
