@@ -258,9 +258,9 @@ https://www.codeinwp.com/snippets/list-of-all-countries-html-select-javascript-a
  */
 
 export const categories = [
-  { name: "Select Category", value: "" },
-  { name: "Engineering", value: "Engineering" },
-  { name: "Mathematics", value: "Mathematics" },
-  { name: "Science", value: "Science" },
-  { name: "Technology", value: "Technology" },
+  "Select Category",
+  "Engineering",
+  "Mathematics",
+  "Science",
+  "Technology",
 ];
