@@ -8,6 +8,7 @@ import User from "./user/User";
 import badge1 from "../../images/badge1.png";
 import badge2 from "../../images/badge2.png";
 import badge3 from "../../images/badge3.png";
+import {countries, categories} from "../../json-data/countriesAndCategories";
 
 export default function Stars() {
   const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
@@ -367,7 +368,7 @@ export default function Stars() {
             <select name="category" id="category" className="category-select">
               <option value="">Select Category</option>
               <option value="Engineering">Engineering</option>
-              <option value="Math">Mathematics</option>
+              <option value="Mathematics">Mathematics</option>
               <option value="Science">Science</option>
               <option value="Technology">Technology</option>
             </select>
