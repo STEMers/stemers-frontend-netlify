@@ -367,7 +367,7 @@ export default function Stars() {
             <select name="category" id="category" className="category-select">
               <option value="">Select Category</option>
               <option value="Engineering">Engineering</option>
-              <option value="Math">Math</option>
+              <option value="Math">Mathematics</option>
               <option value="Science">Science</option>
               <option value="Technology">Technology</option>
             </select>
