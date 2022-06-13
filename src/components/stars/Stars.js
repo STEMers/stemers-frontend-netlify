@@ -2,27 +2,29 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./styles.css";
-import { baseUrl, imgUrl } from "../../config"; 
+import { baseUrl, imgUrl } from "../../config";
 import { useFetch } from "../../hooks";
 import User from "./user/User";
 import badge1 from "../../images/badge1.png";
-import badge2 from "../../images/badge2.png"
-import badge3 from "../../images/badge3.png"
-
+import badge2 from "../../images/badge2.png";
+import badge3 from "../../images/badge3.png";
 
 export default function Stars() {
-  // const defaultUrl = `${baseUrl}/users?populate=category,country,avatar`; // strapi filter not work
-  const defaultUrl = `${baseUrl}/users?populate=*`; // strapi filter not work
   const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
   const [submitCount, setSubmitCount] = useState(0);
   const [selectedCountry, setSelectedCountry] = useState(null); // store user input
   const [selectedCategory, setSelectedCategory] = useState(null); // store user input
+  const defaultUrl = `${baseUrl}/users?populate=*`; // by default display all users/stars
+  const filteredUrl = !selectedCategory
+    ? `${baseUrl}/users?populate=*&filters[country][name][$containsi]=${selectedCountry}`
+    : !selectedCountry
+    ? `${baseUrl}/users?populate=*&filters[category][type][$containsi]=${selectedCategory}`
+    : `${baseUrl}/users?populate=*&filters[category][type][$containsi]=${selectedCategory}&filters[country][name][$containsi]=${selectedCountry}`; // for filter with country, category
+  const starsUrl =
+    !selectedCountry && !selectedCategory ? defaultUrl : filteredUrl;
 
-  /* fetch filtered user data */
   const { data, loading } = useFetch(
-    defaultUrl,
-    selectedCategory,
-    selectedCountry,
+    starsUrl,
     submitCount
   );
 
@@ -31,9 +33,9 @@ export default function Stars() {
     e.preventDefault();
 
     /* get user input*/
-    const country = document.getElementById("country").value.toLowerCase();
+    const country = document.getElementById("country").value;
     setSelectedCountry(country);
-    const category = document.getElementById("category").value.toLowerCase();
+    const category = document.getElementById("category").value;
     setSelectedCategory(category);
 
     /* fire useFetch() */
@@ -403,3 +405,8 @@ export default function Stars() {
     </div>
   );
 }
+
+/* 
+ref:
+https://stemers-backend-heroku.herokuapp.com/uploads/famale2_f67bc5a834_54fe281aeb.png    // issue 404
+*/
