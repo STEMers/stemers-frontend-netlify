@@ -12,7 +12,7 @@ const useFetchUser = (url) => {
         const response = await fetch(encodeURI(url));
         if (!response.ok) {
           const errorJson = await response.json();
-          const message = `\nStatus: ${response.status} \nStatus Text: ${response.statusText} \nMessage:${errorJson.error.message} \nurl-> ${url}`;
+          const message = `\nStatus: ${response.status} \nStatus Text: ${response.statusText} \nMessage:${errorJson.error.message} \nurl: ${url}`;
           throw new Error(message);
         }
 
