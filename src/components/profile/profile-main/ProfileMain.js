@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 
 import "./styles.css";
 import { baseUrl, imgUrl } from "../../../config";
-// import useFetchUser from "../../hooks/useFetchUser";
 import useFetch from "../../../hooks/useFetch";  // src/hooks/useFetch.js
 
 export default function ProfileMain() {
@@ -12,7 +11,6 @@ export default function ProfileMain() {
   const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
   const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
 
-  // const { data, loading } = useFetchUser(profileUrl);
   const { data, loading } = useFetch(profileUrl);
 
   /* prevent reading data before end loading */
