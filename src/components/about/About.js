@@ -1,9 +1,9 @@
 import "./styles.css";
 import checklist from "../../images/checklist.webp";
-import badge1 from "../../images/badge1.png";
-import badge2 from "../../images/badge2.png";
-import badge3 from "../../images/badge3.png";
-import { BsCheck2Circle } from "react-icons/bs";
+import badge1 from "../../json-data/about/badge1.png";
+import badge2 from "../../json-data/about/badge2.png";
+import badge3 from "../../json-data/about/badge3.png";
+import { BsCheck2Circle } from "react-icons/bs"
 import { Developer } from "./developers/Developer";
 
 export default function About() {
