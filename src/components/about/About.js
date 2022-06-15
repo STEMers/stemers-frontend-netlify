@@ -1,5 +1,5 @@
 import "./styles.css";
-import checklist from "../../images/checklist.webp";
+import checklist from "../../json-data/about/checklist.webp";
 import badge1 from "../../json-data/about/badge1.png";
 import badge2 from "../../json-data/about/badge2.png";
 import badge3 from "../../json-data/about/badge3.png";
