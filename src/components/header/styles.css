@@ -1,6 +1,8 @@
-.header {
+header {
     background-color: #236192;
     color: #ffffff;
+    width: 100%;
+    top: 0;
 }
 
 .toggle-menu {
