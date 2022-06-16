@@ -6,7 +6,6 @@ import Footer from "./components/footer/Footer";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
 import Profile from "./components/profile/Profile";
-// import SignInOrSignUP from './components/sign-in/SignInOrSignUp';
 import Stars from "./components/stars/Stars";
 import { Login, Register } from "./routes";
 
