@@ -1,28 +1,31 @@
-import './LoginForm.css';
+// import './LoginForm.css';
+import "./LoginForm.module.css";
 
-import { Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
+import { Field, Form, Formik } from "formik";
+import * as Yup from "yup";
 
-import FlexBox from '../flex-box/FlexBox';
+import FlexBox from "../flex-box/FlexBox";
 
 const LoginFormSchema = Yup.object().shape({
+  usernameOrEmail: Yup.string().required("Username/Email is required!"),
+  // username: Yup.string().required("Username is required!"),
+  // email: Yup.string()
+  //   .email("This is not a valid email format!")
+  //   .required("Username/Email is required!"),
   password: Yup.string()
-    .min(6, 'Password must be more than 6 characters')
-    .max(10, 'Password cannot exceed more than 10 characters')
-    .required('Password is required'),
-  username: Yup.string()
-    .email('This is not a valid email format!')
-    .required('Username/Email is required!')
+    .min(6, "Password must be more than 6 characters")
+    .max(10, "Password cannot exceed more than 10 characters")
+    .required("Password is required"),
 });
 
 const LoginForm = ({ onSubmit }) => {
   return (
     <Formik
-      initialValues={{ password: '', username: '' }}
+      initialValues={{ usernameOrEmail: "", password: "" }}
       validationSchema={LoginFormSchema}
       onSubmit={onSubmit}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, values, handleChange }) => (
         <Form>
           <FlexBox alignItems="center" flexDirection="column">
             <label className="sign-in--label" htmlFor="userNameOrEmail">
@@ -30,13 +33,15 @@ const LoginForm = ({ onSubmit }) => {
             </label>
             <Field
               className="username-or-email user-input"
-              id="UsernameField"
-              name="username"
-              placeholder="Enter username or email"
-              required
+              id="usernameOrEmail"
+              name="usernameOrEmail"
+              placeholder="Enter Username or Email"
+              value={values.usernameOrEmail}
+              onChange={handleChange("usernameOrEmail")}
+              // required
             />
-            {errors.username && touched.username && (
-              <p className="validation-error error">{errors.username}</p>
+            {errors.usernameOrEmail && touched.usernameOrEmail && (
+              <p className="validation-error error">{errors.usernameOrEmail}</p>
             )}
 
             <label htmlFor="password" className="sign-in--label">
@@ -44,13 +49,15 @@ const LoginForm = ({ onSubmit }) => {
             </label>
             <Field
               className="sign-in--password user-input"
-              id="PasswordField"
+              id="password"
               name="password"
               placeholder="Enter Password"
-              required
-              type="password"
+              value={values.password}
+              onChange={handleChange("password")}
+              // required
+              // type="password"
             />
-            {errors.password && touched.password &&(
+            {errors.password && touched.password && (
               <p className="validation-error error">{errors.password}</p>
             )}
 
@@ -61,7 +68,7 @@ const LoginForm = ({ onSubmit }) => {
         </Form>
       )}
     </Formik>
-  )
-}
+  );
+};
 
 export default LoginForm;
