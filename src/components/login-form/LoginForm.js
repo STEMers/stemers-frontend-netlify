@@ -1,5 +1,6 @@
 // import './LoginForm.css';
-import "./LoginForm.module.css";
+// import "./LoginForm.module.css";
+import styles from "./LoginForm.module.css";
 
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -28,11 +29,11 @@ const LoginForm = ({ onSubmit }) => {
       {({ errors, touched, values, handleChange }) => (
         <Form>
           <FlexBox alignItems="center" flexDirection="column">
-            <label className="sign-in--label" htmlFor="userNameOrEmail">
+            <label className={styles.label} htmlFor="userNameOrEmail">
               Username/Email:
             </label>
             <Field
-              className="username-or-email user-input"
+              className={styles.input}
               id="usernameOrEmail"
               name="usernameOrEmail"
               placeholder="Enter Username or Email"
@@ -41,14 +42,14 @@ const LoginForm = ({ onSubmit }) => {
               // required
             />
             {errors.usernameOrEmail && touched.usernameOrEmail && (
-              <p className="validation-error error">{errors.usernameOrEmail}</p>
+              <p className={styles.error}>{errors.usernameOrEmail}</p>
             )}
 
-            <label htmlFor="password" className="sign-in--label">
+            <label htmlFor="password" className={styles.label}>
               Password:
             </label>
             <Field
-              className="sign-in--password user-input"
+              className={styles.input}
               id="password"
               name="password"
               placeholder="Enter Password"
@@ -58,10 +59,10 @@ const LoginForm = ({ onSubmit }) => {
               // type="password"
             />
             {errors.password && touched.password && (
-              <p className="validation-error error">{errors.password}</p>
+              <p className={styles.error}>{errors.password}</p>
             )}
 
-            <button className="sign-in--button btn" type="submit">
+            <button className={styles.btn} type="submit">
               Sign In
             </button>
           </FlexBox>
