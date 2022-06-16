@@ -1,18 +1,12 @@
-// import './LoginForm.css';
-// import "./LoginForm.module.css";
-import styles from "./LoginForm.module.css";
-
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import FlexBox from "../flex-box/FlexBox";
+// import "./LoginForm.module.css";  // not work. how to use style from it?
+import styles from "./LoginForm.module.css"; // works
 
 const LoginFormSchema = Yup.object().shape({
   usernameOrEmail: Yup.string().required("Username/Email is required!"),
-  // username: Yup.string().required("Username is required!"),
-  // email: Yup.string()
-  //   .email("This is not a valid email format!")
-  //   .required("Username/Email is required!"),
   password: Yup.string()
     .min(6, "Password must be more than 6 characters")
     .max(10, "Password cannot exceed more than 10 characters")
@@ -39,7 +33,6 @@ const LoginForm = ({ onSubmit }) => {
               placeholder="Enter Username or Email"
               value={values.usernameOrEmail}
               onChange={handleChange("usernameOrEmail")}
-              // required
             />
             {errors.usernameOrEmail && touched.usernameOrEmail && (
               <p className={styles.error}>{errors.usernameOrEmail}</p>
@@ -55,8 +48,6 @@ const LoginForm = ({ onSubmit }) => {
               placeholder="Enter Password"
               value={values.password}
               onChange={handleChange("password")}
-              // required
-              // type="password"
             />
             {errors.password && touched.password && (
               <p className={styles.error}>{errors.password}</p>
