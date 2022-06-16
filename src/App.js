@@ -12,7 +12,7 @@ import { Login, Register } from "./routes";
 
 function App() {
   // sign in or sign up state
-  const [currentUserData, setCurrentUserData] = useState(null); // store sign in/sign up user data
+  const [userData, setUserData] = useState(null); // store sign in/sign up user data // can't pass setUserData to Register or Login ?
   
   return (
     <div className="App">
@@ -26,11 +26,11 @@ function App() {
           <Route
             path="/login"
             element={<Login />}
-            setCurrentUserData={setCurrentUserData}
+            setUserData={setUserData}
           />
           <Route
             path="/register"
-            element={<Register setCurrentUserData={setCurrentUserData} />}
+            element={<Register setUserData={setUserData} />}
           />
         </Routes>
       </Router>
