@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import FlexBox from "../components/flex-box/FlexBox";
+import styles from "../components/login-form/LoginForm.module.css"; // not work
 import RegisterForm from "../components/register-form/RegisterForm";
 import ContinueWithLinkedIn from "../components/continue-with-linked-in/ContinueWithLinkedIn";
 import { baseUrl } from "../config";
 
 const SignUpUrl = `${baseUrl}/auth/local/register`;
 
-const RegisterRoute = ({ setCurrentUserData }) => {
+const RegisterRoute = ({ setUserData }) => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +40,7 @@ const RegisterRoute = ({ setCurrentUserData }) => {
       const json = await response.json();
       console.log("SIGN UP SUCCESS", json);
 
-      setCurrentUserData(json); // store register usr for develop other authenticated feature
+      // setUserData(json); // store register usr for develop other authenticated feature // TypeError: setUserData is not a function
 
       navigate("/");
     } catch (err) {
@@ -59,10 +60,10 @@ const RegisterRoute = ({ setCurrentUserData }) => {
 
   return (
     <FlexBox alignItems="center" flexDirection="column" gap="1rem">
-      <div className="stemers-description-section">
-        Recognize <span className="stem-highlight">STEM</span> women who go
+      <div className={styles.description}>
+        Recognize <span className={styles.highlight}>STEM</span> women who go
         above and beyond. Lift up the women who inspire and educate your
-        communities with <span className="stem-highlight">STEMers</span>
+        communities with <span className={styles.highlight}>STEMers</span>
         program
       </div>
 
@@ -74,7 +75,7 @@ const RegisterRoute = ({ setCurrentUserData }) => {
             type="checkbox"
             name="signInCheckbox"
             id="remember-me"
-            className="sign-in--checkbox"
+            className={styles.checkbox}
           />
           <label htmlFor="remember-me" className="label-remember-me">
             Remember me
@@ -82,16 +83,16 @@ const RegisterRoute = ({ setCurrentUserData }) => {
         </div>
       </FlexBox>
 
-      <div className="switch-to-Sign-in-section switch-section">
-        <p className="to-sign-in to-another">
+      <div className={styles.switchSection}>
+        <p className={styles.toAnother}>
           Already have an account?
-          <span className="toggle-sign-in" onClick={() => navigate("/login")}>
+          <span className={styles.switch} onClick={() => navigate("/login")}>
             Sign In
           </span>
         </p>
       </div>
 
-      <p className="or">OR</p>
+      <p className={styles.or}>OR</p>
       <ContinueWithLinkedIn />
     </FlexBox>
   );
