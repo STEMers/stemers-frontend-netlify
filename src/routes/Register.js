@@ -69,20 +69,6 @@ const RegisterRoute = ({ setUserData }) => {
 
       <RegisterForm onSubmit={handleSignUpSubmit} />
 
-      <FlexBox alignItems="center" flexDirection="column" gap="1rem">
-        <div className="remember-me-section">
-          <input
-            type="checkbox"
-            name="signInCheckbox"
-            id="remember-me"
-            className={styles.checkbox}
-          />
-          <label htmlFor="remember-me" className="label-remember-me">
-            Remember me
-          </label>
-        </div>
-      </FlexBox>
-
       <div className={styles.switchSection}>
         <p className={styles.toAnother}>
           Already have an account?
