@@ -58,13 +58,19 @@
   margin: 2px auto;
 }
 
-.forgotPasswordSection {
-  text-align: start;
+.rememberSection{
+
 }
 
 .checkbox {
   margin-right: 5px;
 }
+
+.forgotPasswordSection {
+  text-align: start;
+}
+
+
 
 .lock {
   font-size: 18px;

@@ -69,24 +69,24 @@ const LoginRoute = ({ setUserData }) => {
 
       <LoginForm onSubmit={handleLoginSubmit} />
 
-      <FlexBox alignItems="center" flexDirection="column" gap="1rem">
-        <div className="remember-me-section">
-          <input
-            type="checkbox"
-            name="signInCheckbox"
-            id="remember-me"
-            className={styles.checkbox}
-          />
-          <label htmlFor="remember-me" className="label-remember-me">
-            Remember me
-          </label>
-        </div>
+      {/* <FlexBox alignItems="center" flexDirection="column" gap="1rem"> */}
+      <div className={styles.rememberSection}>
+        <input
+          type="checkbox"
+          name="signInCheckbox"
+          id="remember-me"
+          className={styles.checkbox}
+        />
+        <label htmlFor="remember-me" className="label-remember-me">
+          Remember me
+        </label>
+      </div>
 
-        <div className={styles.forgotPasswordSection}>
-          <MdHttps className={styles.lock} />
-          <span className="span-forgot-password">Forgot your password?</span>
-        </div>
-      </FlexBox>
+      <div className={styles.forgotPasswordSection}>
+        <MdHttps className={styles.lock} />
+        <span className="span-forgot-password">Forgot your password?</span>
+      </div>
+      {/* </FlexBox> */}
 
       <div className={styles.switchSection}>
         <p className={styles.toAnother}>
