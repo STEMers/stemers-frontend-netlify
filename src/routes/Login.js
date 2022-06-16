@@ -40,7 +40,7 @@ const LoginRoute = ({ setUserData }) => {
       const json = await response.json();
       console.log("LOGIN SUCCESS", json);
 
-      // setUserData(json); // store register usr for develop other authenticated feature // TypeError: setUserData is not a function
+      setUserData(json); // store register usr for develop other authenticated feature // TypeError: setUserData is not a function
 
       navigate("/");
     } catch (err) {

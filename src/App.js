@@ -12,8 +12,8 @@ import { Login, Register } from "./routes";
 
 function App() {
   // sign in or sign up state
-  const [userData, setUserData] = useState(null); // store sign in/sign up user data // can't pass setUserData to Register or Login ?
-  
+  const [userData, setUserData] = useState(null); // store sign in/sign up user data 
+
   return (
     <div className="App">
       <Router>
@@ -23,11 +23,7 @@ function App() {
           <Route path="/stars" element={<Stars />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile/:id" element={<Profile />} />
-          <Route
-            path="/login"
-            element={<Login />}
-            setUserData={setUserData}
-          />
+          <Route path="/login" element={<Login setUserData={setUserData} />} />
           <Route
             path="/register"
             element={<Register setUserData={setUserData} />}
