@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import FlexBox from "../flex-box/FlexBox";
-import "./RegisterForm.module.css";
+import styles from "../login-form/LoginForm.module.css";
 
 const RegisterFormSchema = Yup.object().shape({
   username: Yup.string().required("Username is required!"),
@@ -25,11 +25,11 @@ const RegisterForm = ({ onSubmit }) => {
       {({ errors, touched, values, handleChange }) => (
         <Form>
           <FlexBox alignItems="center" flexDirection="column">
-            <label className="sign-up--label" htmlFor="username">
+            <label className={styles.label} htmlFor="username">
               Username:
             </label>
             <Field
-              className="username user-input"
+              className={styles.input}
               id="username"
               name="username"
               placeholder="Enter username"
@@ -38,14 +38,14 @@ const RegisterForm = ({ onSubmit }) => {
               //   required
             />
             {errors.username && touched.username && (
-              <p className="validation-error error">{errors.username}</p>
+              <p className={styles.error}>{errors.username}</p>
             )}
 
-            <label htmlFor="email" className="sign-up--label">
+            <label htmlFor="email" className={styles.label}>
               Email:
             </label>
             <Field
-              className="sign-up--email user-input"
+              className={styles.input}
               id="email"
               name="email"
               placeholder="Enter Email"
@@ -55,14 +55,14 @@ const RegisterForm = ({ onSubmit }) => {
               //   type="email"
             />
             {errors.email && touched.email && (
-              <p className="validation-error error">{errors.email}</p>
+              <p className={styles.error}>{errors.email}</p>
             )}
 
-            <label htmlFor="password" className="sign-up--label">
+            <label htmlFor="password" className={styles.label}>
               Password:
             </label>
             <Field
-              className="sign-up--password user-input"
+              className={styles.input}
               id="password"
               name="password"
               placeholder="Enter Password"
@@ -72,10 +72,10 @@ const RegisterForm = ({ onSubmit }) => {
               //   type="password"
             />
             {errors.password && touched.password && (
-              <p className="validation-error error">{errors.password}</p>
+              <p className={styles.error}>{errors.password}</p>
             )}
 
-            <button className="sign-up--button btn" type="submit">
+            <button className={styles.btn} type="submit">
               Sign Up
             </button>
           </FlexBox>
