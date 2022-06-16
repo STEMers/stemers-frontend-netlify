@@ -3,13 +3,14 @@ import { MdHttps } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 import FlexBox from "../components/flex-box/FlexBox";
+import styles from "../components/login-form/LoginForm.module.css"; // style
 import LoginForm from "../components/login-form/LoginForm";
 import ContinueWithLinkedIn from "../components/continue-with-linked-in/ContinueWithLinkedIn";
 import { baseUrl } from "../config";
 
 const loginUrl = `${baseUrl}/auth/local`;
 
-const LoginRoute = ({ setCurrentUserData }) => {
+const LoginRoute = ({ setUserData }) => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +40,7 @@ const LoginRoute = ({ setCurrentUserData }) => {
       const json = await response.json();
       console.log("LOGIN SUCCESS", json);
 
-      setCurrentUserData(json); // store register usr for develop other authenticated feature
+      // setUserData(json); // store register usr for develop other authenticated feature // TypeError: setUserData is not a function
 
       navigate("/");
     } catch (err) {
@@ -59,10 +60,10 @@ const LoginRoute = ({ setCurrentUserData }) => {
 
   return (
     <FlexBox alignItems="center" flexDirection="column" gap="1rem">
-      <div className="stemers-description-section">
-        Recognize <span className="stem-highlight">STEM</span> women who go
+      <div className={styles.description}>
+        Recognize <span className={styles.highlight}>STEM</span> women who go
         above and beyond. Lift up the women who inspire and educate your
-        communities with <span className="stem-highlight">STEMers</span>
+        communities with <span className={styles.highlight}>STEMers</span>
         program
       </div>
 
@@ -74,32 +75,29 @@ const LoginRoute = ({ setCurrentUserData }) => {
             type="checkbox"
             name="signInCheckbox"
             id="remember-me"
-            className="sign-in--checkbox"
+            className={styles.checkbox}
           />
           <label htmlFor="remember-me" className="label-remember-me">
             Remember me
           </label>
         </div>
 
-        <div className="forgot-password-section">
-          <MdHttps className="sign-in--lock" />
+        <div className={styles.forgotPasswordSection}>
+          <MdHttps className={styles.lock} />
           <span className="span-forgot-password">Forgot your password?</span>
         </div>
       </FlexBox>
 
-      <div className="switch-to-Sign-up-section switch-section">
-        <p className="to-sign-up to-another">
+      <div className={styles.switchSection}>
+        <p className={styles.toAnother}>
           Not register yet?
-          <span
-            className="toggle-sign-up"
-            onClick={() => navigate("/register")}
-          >
+          <span className={styles.switch} onClick={() => navigate("/register")}>
             Sign Up
           </span>
         </p>
       </div>
 
-      <p className="or">OR</p>
+      <p className={styles.or}>OR</p>
       <ContinueWithLinkedIn />
     </FlexBox>
   );
