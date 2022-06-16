@@ -1,2 +1,90 @@
 /* https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/ */
 /* https://reactgo.com/react-app-css-modules/ */
+
+/* stemers description section */
+.description {
+  max-width: 65%;
+  margin: 2px auto;
+  font-weight: 700;
+  padding: 10px;
+  line-height: 2;
+
+  text-align: center;
+}
+
+.highlight {
+  color: #ffa800;
+  padding-right: 5px;
+}
+
+.label {
+  display: block;
+  /* text-align: start; */
+  align-self: start;
+}
+
+.input {
+  width: 258px;
+  height: 36px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn {
+  color: white;
+  border: 1px solid #e60000;
+  border-radius: 4px;
+  width: 258px;
+  height: 36px;
+  margin: 10px auto;
+  font-size: 16px;
+  background-color: #e60000;
+}
+
+.btn[type="submit"] {
+  cursor: pointer;
+}
+
+.btn[type="submit"]:hover {
+  transform: scale(1.05);
+}
+
+.error {
+  color: #e60000;
+  margin: 2px auto;
+}
+
+.forgotPasswordSection {
+  text-align: start;
+}
+
+.checkbox {
+  margin-right: 5px;
+}
+
+.lock {
+  font-size: 18px;
+  padding-right: 3px;
+}
+
+.or {
+  margin: 0px;
+}
+
+.switchSection {
+  margin: 0px;
+}
+
+.toAnother {
+  margin: 0;
+}
+
+.switch {
+  color: blue;
+  padding-left: 5px;
+  text-decoration: underline;
+}
