@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { MdHttps } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { MdHttps } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-import FlexBox from '../components/flex-box/FlexBox';
-import LoginForm from '../components/login-form/LoginForm';
-import { baseUrl } from '../config';
+import FlexBox from "../components/flex-box/FlexBox";
+import LoginForm from "../components/login-form/LoginForm";
+import ContinueWithLinkedIn from "../components/continue-with-linked-in/ContinueWithLinkedIn";
+import { baseUrl } from "../config";
 
 const loginUrl = `${baseUrl}/auth/local`;
 
-const LoginRoute = () => {
+const LoginRoute = ({ setCurrentUserData }) => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -18,14 +19,14 @@ const LoginRoute = () => {
 
     try {
       const response = await fetch(encodeURI(loginUrl), {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          identifier: values.username,
-          password: values.password
-        })
+          identifier: values.usernameOrEmail,
+          password: values.password,
+        }),
       });
 
       if (!response.ok) {
@@ -36,9 +37,11 @@ const LoginRoute = () => {
       }
 
       const json = await response.json();
-      console.log('LOGIN SUCCESS', json);
+      console.log("LOGIN SUCCESS", json);
 
-      navigate('/');
+      setCurrentUserData(json); // store register usr for develop other authenticated feature
+
+      navigate("/");
     } catch (err) {
       alert(err);
     } finally {
@@ -49,7 +52,7 @@ const LoginRoute = () => {
   if (isLoading) {
     return (
       <div>
-        <p>Loading..</p>
+        <p>Loading...</p>
       </div>
     );
   }
@@ -65,7 +68,7 @@ const LoginRoute = () => {
 
       <LoginForm onSubmit={handleLoginSubmit} />
 
-      <FlexBox>
+      <FlexBox alignItems="center" flexDirection="column" gap="1rem">
         <div className="remember-me-section">
           <input
             type="checkbox"
@@ -73,32 +76,33 @@ const LoginRoute = () => {
             id="remember-me"
             className="sign-in--checkbox"
           />
-          <label
-            htmlFor="remember-me"
-            className="label-remember-me"
-          >
+          <label htmlFor="remember-me" className="label-remember-me">
             Remember me
           </label>
         </div>
 
         <div className="forgot-password-section">
           <MdHttps className="sign-in--lock" />
-          <span className="span-forgot-password">
-            Forgot your password?
-          </span>
+          <span className="span-forgot-password">Forgot your password?</span>
         </div>
       </FlexBox>
 
       <div className="switch-to-Sign-up-section switch-section">
         <p className="to-sign-up to-another">
           Not register yet?
-          <span className="toggle-sign-up" onClick={() => navigate('/register')}>
+          <span
+            className="toggle-sign-up"
+            onClick={() => navigate("/register")}
+          >
             Sign Up
           </span>
         </p>
       </div>
+
+      <p className="or">OR</p>
+      <ContinueWithLinkedIn />
     </FlexBox>
   );
-}
+};
 
 export default LoginRoute;
