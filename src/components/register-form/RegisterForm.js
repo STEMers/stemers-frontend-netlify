@@ -35,7 +35,6 @@ const RegisterForm = ({ onSubmit }) => {
               placeholder="Enter username"
               value={values.username}
               onChange={handleChange("username")}
-              //   required
             />
             {errors.username && touched.username && (
               <p className={styles.error}>{errors.username}</p>
@@ -51,8 +50,6 @@ const RegisterForm = ({ onSubmit }) => {
               placeholder="Enter Email"
               value={values.email}
               onChange={handleChange("email")}
-              //   required
-              //   type="email"
             />
             {errors.email && touched.email && (
               <p className={styles.error}>{errors.email}</p>
@@ -68,8 +65,6 @@ const RegisterForm = ({ onSubmit }) => {
               placeholder="Enter Password"
               value={values.password}
               onChange={handleChange("password")}
-              //   required
-              //   type="password"
             />
             {errors.password && touched.password && (
               <p className={styles.error}>{errors.password}</p>
