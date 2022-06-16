@@ -1,0 +1,64 @@
+section .about {
+    width: 100%;
+    text-align: center;
+    /* margin-top: 100px; */
+}
+.about .about-wrapper{
+    width: 80%;
+    margin: 40px auto;
+    text-align: center;
+}
+.about-title{
+    color: var(--blue);
+    text-transform: capitalize;
+    margin: 40px;
+}
+.about-content{
+   list-style-type: none;
+}
+.about-content{
+    text-align:left;
+}
+.about-content p {
+    text-align: justify;
+}
+.about-developers .about-content{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.about-requirements .requirements-list{
+    display: flex; 
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 30px 0;   
+}
+.about-requirements ul li{
+    padding: 8px;
+    font-size: 1.2rem;
+}
+.about-badges .badges-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 80px 0;
+    flex-wrap: wrap;
+}
+.badges-description{
+    text-align: left;
+    list-style-type: none;
+}
+.descriptions ul li{
+padding: 8px;
+    font-size: 1.2rem;
+}
+.badges{
+ display: flex;
+ flex-direction: column;
+ justify-content: space-evenly;
+}
+.badges img{
+    width: 60px;
+    margin: 10px;
+    border-radius: 50%;
+}

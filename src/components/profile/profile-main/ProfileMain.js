@@ -1,17 +1,17 @@
-import './styles.css';
+import { useParams } from "react-router-dom";
 
-import { useParams } from 'react-router-dom';
-
-import { baseUrl, imgUrl } from '../../../config';
-import { useFetchUser } from '../../../hooks';
+import "./styles.css";
+import { baseUrl, imgUrl } from "../../../config";
+import useFetch from "../../../hooks/useFetch";  // src/hooks/useFetch.js
 
 export default function ProfileMain() {
   // get ID from url
   const params = useParams();
   const userId = params.id;
   const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
+  const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
 
-  const { data, loading } = useFetchUser(profileUrl);
+  const { data, loading } = useFetch(profileUrl);
 
   /* prevent reading data before end loading */
   if (loading) return <div className="loading">Loading...</div>;
@@ -21,7 +21,7 @@ export default function ProfileMain() {
         <div className="infos-left">
           <div className="image-container">
             <img
-              src={`${imgUrl}${data.avatar.url}`}
+              src={data.avatar?`${imgUrl}${data.avatar.url}`:defaultImgUrl}
               alt="user face"
               className="profile-img"
             />
