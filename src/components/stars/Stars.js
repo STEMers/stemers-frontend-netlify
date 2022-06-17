@@ -8,7 +8,7 @@ import User from "./user/User";
 import badge1 from "../../images/badge1.png";
 import badge2 from "../../images/badge2.png";
 import badge3 from "../../images/badge3.png";
-import { countries, categories } from "../../json-data/countriesAndCategories"; // for map countries and categories option in filter form section
+// import { countries, categories } from "../../json-data/countriesAndCategories"; // for map countries and categories option in filter form section // abandoned！
 
 export default function Stars() {
   const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
@@ -24,7 +24,28 @@ export default function Stars() {
   const starsUrl =
     !selectedCountry && !selectedCategory ? defaultUrl : filteredUrl;
 
+  const countriesUrl = `${baseUrl}/countries`;
+   // const { countriesL, countriesLoading } = useFetch(categoriesUrl, null);  // not work
+  const ctryObj = useFetch(countriesUrl);
+  const countriesL = ctryObj.data;
+  const countriesLoading = ctryObj.loading;
+  // if (countriesL) {
+  //   console.log("countriesL", countriesL);
+  // }
+
+  const categoriesUrl = `${baseUrl}/categories`;
+  // const { categoriesL, categoriesLoading } = useFetch(categoriesUrl, null);  // not work
+  const ctgyObj = useFetch(categoriesUrl);
+  const categoriesL = ctgyObj.data;
+  const categoriesLoading = ctgyObj.loading;
+  // if (categoriesL) {
+  //   console.log("categoriesL", categoriesL);
+  // }
+
   const { data, loading } = useFetch(starsUrl, submitCount);
+  if (data) {
+    console.log("data 1", data);
+  }
 
   /* submit filter form */
   const handleSubmit = (e) => {
@@ -41,7 +62,8 @@ export default function Stars() {
   };
 
   /* prevent reading data before end loading */
-  if (loading) return <div className="loading">Loading...</div>;
+  if (countriesLoading || categoriesLoading || loading)
+    return <div className="loading">Loading...</div>;
   return (
     <div className="stars-page">
       <div className=" stars--title-section">
@@ -59,12 +81,12 @@ export default function Stars() {
           <div className="country-section">
             <label htmlFor="country"></label>
             <select name="country" id="country" className="country-select">
-              {countries.map((option, index) => (
+              {countriesL.data.map((option, index) => (
                 <option
-                  value={index === 0 ? "" : option.name}
+                  value={option.attributes.name}
                   key={`country-${index}`}
                 >
-                  {option.name}
+                  {option.attributes.name}
                 </option>
               ))}
             </select>
@@ -72,12 +94,12 @@ export default function Stars() {
           <div className="category-section">
             <label htmlFor="category"></label>
             <select name="category" id="category" className="category-select">
-              {categories.map((category, index) => (
+              {categoriesL.data.map((category, index) => (
                 <option
-                  value={index === 0 ? "" : category}
+                  value={category.attributes.type}
                   key={`category-${index}`}
                 >
-                  {category}
+                  {category.attributes.type}
                 </option>
               ))}
             </select>
@@ -100,14 +122,12 @@ export default function Stars() {
               userId={user.id}
               firstName={user.first_name}
               lastName={user.last_name}
-              country={user.country.name}
               countrySN={user.country.shortName}
               nominationsR={user.nominations_received}
               badge1={badge1}
               badge2={badge2}
               badge3={badge3}
               job={user.job}
-              emoji={user.country.emoji}
             />
           </Link>
         ))}
@@ -115,8 +135,3 @@ export default function Stars() {
     </div>
   );
 }
-
-/* 
-ref:
-https://stemers-backend-heroku.herokuapp.com/uploads/famale2_f67bc5a834_54fe281aeb.png    // issue 404
-*/
