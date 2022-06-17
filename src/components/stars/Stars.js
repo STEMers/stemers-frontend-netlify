@@ -100,14 +100,12 @@ export default function Stars() {
               userId={user.id}
               firstName={user.first_name}
               lastName={user.last_name}
-              country={user.country.name}
               countrySN={user.country.shortName}
               nominationsR={user.nominations_received}
               badge1={badge1}
               badge2={badge2}
               badge3={badge3}
               job={user.job}
-              emoji={user.country.emoji}
             />
           </Link>
         ))}
