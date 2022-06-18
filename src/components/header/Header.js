@@ -8,7 +8,6 @@ import { baseUrl, imgUrl } from "../../config";
 import useFetch from "../../hooks/useFetch";  // src/hooks/useFetch.js
 
 import logo from "../../json-data/nav/logo.png";
-import photo from "../../json-data/home/shikka.png";
 import { useState } from "react";
 import { Loading } from "../loading/Loading";
 
