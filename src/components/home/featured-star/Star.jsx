@@ -6,7 +6,6 @@ import { imgUrl ,baseUrl} from "../../../config";
 import { Link } from "react-router-dom";
 import badge1 from "../../../images/badge1.png";
 import badge2 from "../../../images/badge2.png";
-import badge3 from "../../../images/badge3.png";
 import {Loading} from "../../loading/Loading"
 
 export const Star = () => {
