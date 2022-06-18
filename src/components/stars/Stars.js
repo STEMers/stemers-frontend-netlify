@@ -8,6 +8,7 @@ import User from "./user/User";
 import badge1 from "../../images/badge1.png";
 import badge2 from "../../images/badge2.png";
 import badge3 from "../../images/badge3.png";
+import { Loading } from "../loading/Loading";
 // import { countries, categories } from "../../json-data/countriesAndCategories"; // for map countries and categories option in filter form section // abandoned！
 
 export default function Stars() {
@@ -63,7 +64,7 @@ export default function Stars() {
 
   /* prevent reading data before end loading */
   if (countriesLoading || categoriesLoading || loading)
-    return <div className="loading">Loading...</div>;
+    return <Loading />
   return (
     <div className="stars-page">
       <div className=" stars--title-section">
@@ -81,6 +82,7 @@ export default function Stars() {
           <div className="country-section">
             <label htmlFor="country"></label>
             <select name="country" id="country" className="country-select">
+              <option value="">select country</option>
               {countriesL.data.map((option, index) => (
                 <option
                   value={option.attributes.name}
@@ -94,6 +96,7 @@ export default function Stars() {
           <div className="category-section">
             <label htmlFor="category"></label>
             <select name="category" id="category" className="category-select">
+              <option value="">select category</option>
               {categoriesL.data.map((category, index) => (
                 <option
                   value={category.attributes.type}
