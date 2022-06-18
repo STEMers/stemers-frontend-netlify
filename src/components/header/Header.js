@@ -1,34 +1,108 @@
-import './styles.css';
+import "./styles.css";
 
-import { FaAngleDown, FaBars } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaAngleDown} from "react-icons/fa";
+import { BsChevronDoubleDown, BsChevronDoubleUp } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 
-import logo from '../../json-data/nav/logo.png';
-import photo from '../../json-data/home/cristi.png'
+import { baseUrl, imgUrl } from "../../config";
+import useFetch from "../../hooks/useFetch";  // src/hooks/useFetch.js
+
+import logo from "../../json-data/nav/logo.png";
+import photo from "../../json-data/home/shikka.png";
+import { useState } from "react";
+import { Loading } from "../loading/Loading";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const [toggle, setToggle] = useState(true); //start with hidden dropdown menu in mobile menu
+  // logging status update based on jwt
+  const loggedIn = localStorage.getItem("jwt-token");
+  const userId = localStorage.getItem("user-id");
+  const username = localStorage.getItem("username");
+
+  // Fetch user photo for navbar
+   const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
+   const { data, loading } = useFetch(profileUrl);
+
+  
+   //handle logout 
+  const handleLogOut = (e) => {
+    localStorage.removeItem("jwt-token");
+    navigate("/");
+  };
+
+// handling a click for a toggle icon for mobile view
+  const toggleMenu = () => {
+    setToggle(!toggle);
+  };
+if(loading) return <Loading />
   return (
     <header className="header">
       <nav className="navbar">
-        <Link to="/"><img src={logo} alt="logo" className="logo" /></Link>
-        <ul className="nav-right-unloggedIn">
-          <Link to="/signin" style={{ textDecoration: 'none' }}><li>SignIn/SignUp</li></Link>
-        </ul>
-        <ul className="nav-right-loggedIn">
-          <li><img src={photo} alt="avatar" /></li>
-          <li className="angle-down"><FaAngleDown /></li>
-          <ul className="dropdown-list">
-            <li>my profile</li>
-            <li>change password</li>
-            <li>logout</li>
+        <Link to="/">
+          <img src={logo} alt="logo" className="logo" />
+        </Link>
+        <div className="desktop-menu">
+          <ul className="nav-right">
+            <li>
+              <Link to="/stars">Stars</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
           </ul>
-        </ul>
+          <ul
+            className={
+              loggedIn
+                ? "nav-right-unloggedIn display-none"
+                : "nav-right-unloggedIn display-view"
+            }
+          >
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </ul>
+          <ul
+            className={
+              loggedIn
+                ? "nav-right-loggedIn display-view"
+                : "nav-right-loggedIn  display-none"
+            }
+          >
+            <li>
+              <Link to={`/profile/${userId}`}>
+                <img  src={data.avatar?`${imgUrl}${data.avatar.url}`:""} alt="avatar" />
+              </Link>
+            </li>
+            <div className="dropdown">
+              <div className="angle-down">
+                <FaAngleDown />
+              </div>
+              <div className="dropdown-list">
+                <h4>Hello, {username}</h4>
+                <li>
+                  <Link to={`/profile/${userId}`}>My profile</Link>
+                </li>
+                <li>
+                  <Link to="/">change password</Link>
+                </li>
+                <li onClick={(e) => handleLogOut(e)}>
+                  <Link to="/">logout</Link>
+                </li>
+              </div>
+            </div>
+          </ul>
+        </div>
         <ul className="toggle-menu">
-          <li><button><FaBars /></button></li>
+          <li>
+            <button onClick={(e) => toggleMenu(e)}>
+              {toggle ? <BsChevronDoubleDown /> : <BsChevronDoubleUp />}
+            </button>
+          </li>
         </ul>
       </nav>
     </header>
-  )
-}
+  );
+};
 
 export default Header;
