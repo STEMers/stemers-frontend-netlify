@@ -11,16 +11,20 @@ import logo from "../../json-data/nav/logo.png";
 import { useState } from "react";
 import { Loading } from "../loading/Loading";
 
+
 const Header = () => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(true); //start with hidden dropdown menu in mobile menu
+  const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`;
   // logging status update based on jwt
   const loggedIn = localStorage.getItem("jwt-token");
   const userId = localStorage.getItem("user-id");
   const username = localStorage.getItem("username");
 
   // Fetch user photo for navbar
-   const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
+ 
+    const profileUrl = loggedIn?`${baseUrl}/users/${userId}?populate=*`:`${baseUrl}/users`;
+   
    const { data, loading } = useFetch(profileUrl);
 
   
@@ -69,8 +73,8 @@ if(loading) return <Loading />
             }
           >
             <li>
-              <Link to={`/profile/${userId}`}>
-                <img  src={data.avatar?`${imgUrl}${data.avatar.url}`:""} alt="avatar" />
+              <Link to={data.avatar?`/profile/${userId}`:"/"}>
+                <img  src={data.avatar?`${imgUrl}${data.avatar.url}`:defaultImgUrl} alt="avatar" />
               </Link>
             </li>
             <div className="dropdown">
