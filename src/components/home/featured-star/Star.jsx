@@ -10,6 +10,7 @@ import {Loading} from "../../loading/Loading"
 
 export const Star = () => {
 const url = `${baseUrl}/users?populate=*`;
+const defaultImgUrl = `${imgUrl}/uploads/default_c53e4fba66.jpg`;
 const {data, loading} = useFetch(url);
 
 console.log("star data",data);
@@ -18,7 +19,7 @@ if(loading) return <Loading />
   return data.map((star) => (
     <div className="star" key={star.username}>
       <Link to={`profile/${star.id}`}>
-      <img src={`${imgUrl}${star.avatar.url}`} alt={star.avatar.caption} className="star-photo" />   
+      <img src={star.avatar?`${imgUrl}${star.avatar.url}`:defaultImgUrl} alt={star.avatar.caption} className="star-photo" />   
       <img src={star.nominations_received.length?badge1:badge2}   className="star-badge" alt="badge"/>   
       <div className="star-info">        
         <div className="star-job">{star.job}</div>
