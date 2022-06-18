@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./styles.css";
 import { baseUrl, imgUrl } from "../../../config";
 import useFetch from "../../../hooks/useFetch";  // src/hooks/useFetch.js
+import { Loading } from "../../loading/Loading";
 
 export default function ProfileMain() {
   // get ID from url
@@ -14,7 +15,7 @@ export default function ProfileMain() {
   const { data, loading } = useFetch(profileUrl);
 
   /* prevent reading data before end loading */
-  if (loading) return <div className="loading">Loading...</div>;
+  if (loading) return <Loading/>;
   return (
     <div className="profile-main">
       <div className="profile-infos">
