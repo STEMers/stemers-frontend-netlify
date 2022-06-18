@@ -8,7 +8,8 @@
 
 .btn-nominate,
 .btn-invite {
-    padding: 10px 25px;
+    padding: 10px 20px;
+    margin: 2px 8px;
     border-radius: 10px;
     color: var(--bg);
     font-weight: 600;    
