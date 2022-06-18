@@ -28,7 +28,7 @@ function App() {
             path="/register"
             element={<Register setUserData={setUserData} />}
           />
-          <Route path="*" element={<NotFound />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Router>
       <Footer />
