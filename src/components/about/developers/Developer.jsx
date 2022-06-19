@@ -18,6 +18,7 @@ export const Developer = () => {
         <Link to={developer.github}><BsGithub /></Link>
         <Link to={developer.linkedin}><BsLinkedin/></Link>
       </div>
+      <hr />
     </div>
   ));
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles.css";
 import { Button } from "./button/Button";
+import { Link } from "react-router-dom";
 
 export const Intro = () => {
   return (
@@ -10,8 +11,8 @@ export const Intro = () => {
        This program offers an opportunity to showcase women in <span>STEM</span> work, reach more people, shape their future.
       </div>
       <div className="nominate-star">
-          <Button name="nominate" cls="btn-nominate"/>
-          <Button name="invite" cls="btn-invite" />
+          <Link to="/stars"><Button name="nominate" cls="btn-nominate"/></Link>
+          <Link to="/"><Button name="invite" cls="btn-invite" /></Link>
       </div>
     </div>
   );

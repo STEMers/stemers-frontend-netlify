@@ -1,0 +1,19 @@
+.not-found{
+    margin: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.not-found img{
+    max-width: 50%;
+}
+.not-found h3{
+    color: blueviolet;
+}
+
+@media only screen and (max-width: 600px) {
+    .not-found img{
+        max-width: 100%;
+    }
+}
