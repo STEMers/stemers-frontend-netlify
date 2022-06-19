@@ -1,0 +1,30 @@
+.developer{
+    text-align: center;
+    margin: 30px;
+    width: 20%;
+}
+.developer img{
+    width: 100px;
+    border-radius: 50%;
+    border: 2px var(--blue) solid;
+}
+.developer p{
+    text-align: center;
+}
+.developer h3{
+    color: var(--blue);
+    font-weight: 600;
+}
+.developer h5 {
+    color: var(--orange);
+    font-weight: 600;
+}
+.developer .social{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content:space-evenly ;
+    text-align: center;
+    color: var(--blue);
+    font-size: 1.2rem;
+}
