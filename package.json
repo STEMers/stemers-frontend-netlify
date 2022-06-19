@@ -6,12 +6,8 @@
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.3.0",
     "@testing-library/user-event": "13.5.0",
-<<<<<<< HEAD
-    "country-flag-emoji": "^1.0.3",
-=======
     "country-flag-emoji": "1.0.3",
     "formik": "2.2.9",
->>>>>>> Refactor of forms setup
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
