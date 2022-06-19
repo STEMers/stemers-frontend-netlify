@@ -4,6 +4,7 @@ import "./styles.css";
 import { baseUrl, imgUrl } from "../../../config";
 import useFetch from "../../../hooks/useFetch";  // src/hooks/useFetch.js
 import { Loading } from "../../loading/Loading";
+import { voteStar } from "../../../hooks/voteStar";
 
 export default function ProfileMain() {
   // get ID from url
@@ -16,6 +17,16 @@ export default function ProfileMain() {
 
   /* prevent reading data before end loading */
   if (loading) return <Loading/>;
+  const handleVote =(e)=>{
+    e.preventDefault();
+    const url = `${baseUrl}/nominations`;
+    const voter = localStorage.getItem("user-id");
+    const candidate = userId;
+    const vote_response = voteStar(url,voter,candidate)
+    console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
+    console.log("vote response",vote_response);
+  }
+
   return (
     <div className="profile-main">
       <div className="profile-infos">
@@ -60,7 +71,14 @@ export default function ProfileMain() {
             <p className="profile-bio">{data.bio}</p>
           </div>
         </div>
+        <div>
+          <p>Total Nominations: {data.nominations_received.length}</p>
+          {console.log("data after nomination count",data)}
+        </div>
       </div>
+      <form>
+        <button onClick={(e)=>handleVote(e)}>Nominate</button>
+      </form>
     </div>
   );
 }
