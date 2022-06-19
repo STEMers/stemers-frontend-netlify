@@ -38,6 +38,9 @@ const LoginRoute = ({ setUserData }) => {
       }
 
       const json = await response.json();
+      localStorage.setItem("jwt-token", json.jwt);
+      localStorage.setItem("user-id",json.user.id);
+      localStorage.setItem("username",json.user.username);
       console.log("LOGIN SUCCESS", json);
 
       setUserData(json); // store register usr for develop other authenticated feature // TypeError: setUserData is not a function

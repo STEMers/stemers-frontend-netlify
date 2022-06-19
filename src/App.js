@@ -8,10 +8,11 @@ import About from "./components/about/About";
 import Profile from "./components/profile/Profile";
 import Stars from "./components/stars/Stars";
 import { Login, Register } from "./routes";
+import { NotFound } from "./components/404/NotFound";
 
 function App() {
   // sign in or sign up state
-  const [userData, setUserData] = useState(null); // store sign in/sign up user data 
+  const [userData, setUserData] = useState(null); // store sign in/sign up user data
 
   return (
     <div className="App">
@@ -27,6 +28,7 @@ function App() {
             path="/register"
             element={<Register setUserData={setUserData} />}
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
       <Footer />
@@ -35,20 +37,3 @@ function App() {
 }
 
 export default App;
-
-/* 
-  <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Welcome to STEMers
-        </a>
-      </header>
-*/
