@@ -13,11 +13,14 @@ const LoginFormSchema = Yup.object().shape({
     .required("Password is required"),
 });
 
+const localStorageBody = JSON.parse(localStorage.getItem("stemers")); //
+console.log("localStorageBody", localStorageBody);
+
 const LoginForm = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={{ usernameOrEmail: "", password: "" }}
-      validationSchema={LoginFormSchema}
+      validationSchema={localStorageBody ? null : LoginFormSchema}
       onSubmit={onSubmit}
     >
       {({ errors, touched, values, handleChange }) => (
@@ -31,8 +34,12 @@ const LoginForm = ({ onSubmit }) => {
               id="usernameOrEmail"
               name="usernameOrEmail"
               placeholder="Enter Username or Email"
-              value={values.usernameOrEmail}
-              onChange={handleChange("usernameOrEmail")}
+              value={
+                localStorageBody
+                  ? localStorageBody.identifier
+                  : values.usernameOrEmail
+              }
+              onChange={handleChange}
             />
             {errors.usernameOrEmail && touched.usernameOrEmail && (
               <p className={styles.error}>{errors.usernameOrEmail}</p>
@@ -46,8 +53,11 @@ const LoginForm = ({ onSubmit }) => {
               id="password"
               name="password"
               placeholder="Enter Password"
-              value={values.password}
-              onChange={handleChange("password")}
+              value={
+                localStorageBody ? localStorageBody.password : values.password
+              }
+              onChange={handleChange}
+              type="password"
             />
             {errors.password && touched.password && (
               <p className={styles.error}>{errors.password}</p>
