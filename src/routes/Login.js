@@ -18,16 +18,28 @@ const LoginRoute = ({ setUserData }) => {
   async function handleLoginSubmit(values) {
     setIsLoading(true);
 
+    const inputBody = {
+      identifier: values.usernameOrEmail,
+      password: values.password,
+    };
+
+    // remember me: store user input to local storage
+    if (
+      document.getElementById("remember-me").checked === true &&
+      inputBody.identifier &&
+      inputBody.password
+    ) {
+      localStorage.setItem("stemers", JSON.stringify(inputBody));
+    }
+    const localStorageBody = JSON.parse(localStorage.getItem("stemers"));
+
     try {
       const response = await fetch(encodeURI(loginUrl), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          identifier: values.usernameOrEmail,
-          password: values.password,
-        }),
+        body: JSON.stringify(localStorageBody ? localStorageBody : inputBody),
       });
 
       if (!response.ok) {
@@ -76,6 +88,7 @@ const LoginRoute = ({ setUserData }) => {
           name="signInCheckbox"
           id="remember-me"
           className={styles.checkbox}
+          // onClick={handleRememberMe} // ?
         />
         <label htmlFor="remember-me" className="label-remember-me">
           Remember me
