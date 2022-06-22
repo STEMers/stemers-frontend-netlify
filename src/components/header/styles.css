@@ -130,9 +130,6 @@ header {
     width: 110px;
     border-radius: 10px;
 }
-
-@media only screen and (max-width: 800px) {}
-
 @media only screen and (max-width: 600px) {
     .toggle-menu {
         margin: 10px 2px;       
