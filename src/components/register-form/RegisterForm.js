@@ -34,7 +34,7 @@ const RegisterForm = ({ onSubmit }) => {
               name="username"
               placeholder="Enter username"
               value={values.username}
-              onChange={handleChange("username")}
+              onChange={handleChange}
             />
             {errors.username && touched.username && (
               <p className={styles.error}>{errors.username}</p>
@@ -49,7 +49,7 @@ const RegisterForm = ({ onSubmit }) => {
               name="email"
               placeholder="Enter Email"
               value={values.email}
-              onChange={handleChange("email")}
+              onChange={handleChange}
             />
             {errors.email && touched.email && (
               <p className={styles.error}>{errors.email}</p>
@@ -63,8 +63,9 @@ const RegisterForm = ({ onSubmit }) => {
               id="password"
               name="password"
               placeholder="Enter Password"
+              type="password"
               value={values.password}
-              onChange={handleChange("password")}
+              onChange={handleChange}
             />
             {errors.password && touched.password && (
               <p className={styles.error}>{errors.password}</p>
