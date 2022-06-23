@@ -31,10 +31,6 @@
   text-transform: uppercase;
 }
 
-/* .link {
-    position: relative;
-  } */
-
 .user-badge {
   position: absolute;
   max-width: 25px;
@@ -43,4 +39,20 @@
   /* border: 3px var(--bg) solid; */
   top: 5px;
   right: 5px;
+}
+
+@media only screen and (max-width: 918px) {
+  .card .user-avatar {
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card .user-avatar {
+    width: 100%;
+    height: 60vw;
+    object-fit: cover;
+  }
 }
