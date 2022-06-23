@@ -22,13 +22,13 @@ export default function ProfileMain({
   const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
   const { data, loading } = useFetch(profileUrl);
 
-  /* prevent reading data before end loading */
+  /* prevent reading data before data loading finishes*/
   if (loading) return <Loading />;
   const handleVote = (e) => {
-    if(!loggedInUser){        
-        navigate("/login");
-        alert("Please login to vote !");
-        return;
+    if (!loggedInUser) {
+      navigate("/login");
+      alert("Please login to vote !");
+      return;
     }
     const url = `${baseUrl}/nominations`;
     const candidate = userId;
@@ -92,7 +92,7 @@ export default function ProfileMain({
             <div className="star-job-profile">{data.job}</div>
             <div className="my-details">
               <label>STEMer</label>
-              <span>: {data.category.type}</span>
+              <span>: {data.category ? data.category.type : ""}</span>
             </div>
           </div>
           <div className="social-media">
@@ -114,7 +114,10 @@ export default function ProfileMain({
           <div className="votes">
             <h3>Nominations and Badges</h3>
             <p>
-              Total Nominations: <span className="vote-count">{data.nominations_received.length}</span>
+              Total Nominations:{" "}
+              <span className="vote-count">
+                {data.nominations_received.length}
+              </span>
             </p>
             <p>
               Badge Earned: <span>Badge1</span>
@@ -140,8 +143,17 @@ export default function ProfileMain({
             </div>
             <div className="my-details">
               <label>Country</label>
-              <span> : {data.country.name}</span>
-              <span> {countryFlagEmoji.get(data.country.shortName).emoji}</span>
+              {data.country ? (
+                <>
+                  <span> : {data.country.name}</span>
+                  <span>
+                    {" "}
+                    {countryFlagEmoji.get(data.country.shortName).emoji}
+                  </span>
+                </>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

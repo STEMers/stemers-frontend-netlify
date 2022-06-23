@@ -15,6 +15,7 @@ import { Loading } from "../loading/Loading";
 const Header = () => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(true); //start with hidden dropdown menu in mobile menu
+  const [dropdown, setDropDown] = useState(false);
   const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`;
   // logging status update based on jwt
   const loggedIn = localStorage.getItem("jwt-token");
@@ -39,6 +40,10 @@ const Header = () => {
   const toggleMenu = () => {
     setToggle(!toggle);
   };
+
+  const handleArrowDownClick = ()=>{
+    setDropDown(!dropdown)
+  }
 if(loading) return <Loading />
   return (
     <header className="header">
@@ -83,10 +88,10 @@ if(loading) return <Loading />
               </Link>
             </li>
             <div className="dropdown">
-              <div className="angle-down">
+              <div className="angle-down" onClick={(e)=>handleArrowDownClick()}>
                 <FaAngleDown />
               </div>
-              <div className="dropdown-list">
+              <div className={dropdown?"dropdown-list show-drop-down-menu":"dropdown-list hide-drop-down-menu"}>
                 <h4>Hello, {username}</h4>
                 <li>
                   <Link to={`/profile/${userId}`}>My profile</Link>

@@ -122,10 +122,15 @@ header {
     color: #fff;
 }
 
-.nav-right-loggedIn:hover .dropdown-list {
+/* .nav-right-loggedIn:hover .dropdown-list {
+    display: block;
+} */
+.show-drop-down-menu{
     display: block;
 }
-
+.hide-drop-down-menu{
+display: none;
+}
 .logo {
     width: 110px;
     border-radius: 10px;
