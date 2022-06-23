@@ -53,6 +53,7 @@ if(loading) return <Loading />
             </li>
             <li>
               <Link to="/invite">Invite</Link>
+
             </li>
             <li>
               <Link to="/about">About</Link>
