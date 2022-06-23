@@ -48,7 +48,7 @@ if(loading) return <Loading />
         <div className="desktop-menu">
           <ul className="nav-right">
             <li>
-              <Link to="/stars">Stars</Link>
+              <Link to="/stars">Nominate</Link>
             </li>
             <li>
               <Link to="/about">About</Link>
