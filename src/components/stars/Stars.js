@@ -119,7 +119,7 @@ export default function Stars() {
               userId={user.id}
               firstName={user.first_name}
               lastName={user.last_name}
-              countrySN={user.country?user.country.shortName:"null"}
+              countrySN={user.country?user.country.shortName:null}
               nominationsR={user.nominations_received}
               badge1={badge1}
               badge2={badge2}
