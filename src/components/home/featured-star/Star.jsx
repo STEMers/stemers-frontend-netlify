@@ -10,7 +10,6 @@ import {Loading} from "../../loading/Loading"
 
 export const Star = () => {
 const url = `${baseUrl}/users?populate=*`;
-const defaultImgUrl = `${imgUrl}/uploads/default_c53e4fba66.jpg`;
 const {data, loading} = useFetch(url);
 
 console.log("star data",data);
