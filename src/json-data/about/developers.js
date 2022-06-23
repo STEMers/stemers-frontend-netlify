@@ -14,7 +14,7 @@ export const developers = [
     },
       {
         photo:alina,
-        name:"Alina TaoRao",
+        name:"Alina Tao Rao",
         job:"Front End Web Developer",
         bio:"Vivamus ornare ligula maximus diam feugiat",
         github:"",

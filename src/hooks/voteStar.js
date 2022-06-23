@@ -2,7 +2,13 @@
   const body = {
     "data":{
       "voter_id":voter,
-      "candidate_id":candidate
+      "candidate_id":candidate,
+      user_who_give_vote :{
+        id:voter
+      },
+      user_who_receive_vote :{
+        id:candidate
+      }
     }
   };
   const response = await fetch(url, {

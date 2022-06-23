@@ -9,6 +9,7 @@ import Profile from "./components/profile/Profile";
 import Stars from "./components/stars/Stars";
 import { Login, Register } from "./routes";
 import { NotFound } from "./components/404/NotFound";
+import { Invite } from "./components/invitation/Invite";
 
 function App() {
   // sign in or sign up state
@@ -20,6 +21,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/invite" element={<Invite />} />
           <Route path="/stars" element={<Stars />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile/:id" element={<Profile />} />

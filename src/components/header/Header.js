@@ -31,6 +31,7 @@ const Header = () => {
    //handle logout 
   const handleLogOut = (e) => {
     localStorage.removeItem("jwt-token");
+    localStorage.removeItem("user-id");
     navigate("/");
   };
 
@@ -48,7 +49,10 @@ if(loading) return <Loading />
         <div className="desktop-menu">
           <ul className="nav-right">
             <li>
-              <Link to="/stars">Stars</Link>
+              <Link to="/stars">Nominate</Link>
+            </li>
+            <li>
+              <Link to="/invite">Invite</Link>
             </li>
             <li>
               <Link to="/about">About</Link>
