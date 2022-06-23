@@ -17,14 +17,14 @@ export const EditProfile = ({ seteditmodetofalse }) => {
   /* prevent reading data before end loading */
   if (loading) return <Loading />;
   console.log(data.first_name);
-  const handleVote = (e) => {
-    e.preventDefault();
-    const url = `${baseUrl}/nominations`;
-    const voter = localStorage.getItem("user-id");
-    const candidate = userId;
-    voteStar(url, voter, candidate);
-    console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
-  };
+  // const handleVote = (e) => {
+  //   e.preventDefault();
+  //   const url = `${baseUrl}/nominations`;
+  //   const voter = localStorage.getItem("user-id");
+  //   const candidate = userId;
+  //   voteStar(url, voter, candidate);
+  //   console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
+  // };
   return (
     <div className="profile">
        <div onClick={seteditmodetofalse} className="cancel-edit-profile">
@@ -132,7 +132,7 @@ export const EditProfile = ({ seteditmodetofalse }) => {
               <label>Hobbies</label>
               <textarea>My hobbies</textarea>
             </div>
-            <button>Save changes</button>
+            <button >Save changes</button>
           </form>
         </div>
       </div>

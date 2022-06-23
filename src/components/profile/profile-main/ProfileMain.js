@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import countryFlagEmoji from "country-flag-emoji";
 import "./styles.css";
 import { baseUrl, imgUrl, defaultprofilephoto } from "../../../config";
@@ -17,6 +17,7 @@ export default function ProfileMain({
   // get ID from url
   const params = useParams();
   const userId = params.id;
+  const navigate = useNavigate();
   const loggedInUser = localStorage.getItem("user-id");
   const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
   const { data, loading } = useFetch(profileUrl);
@@ -24,11 +25,16 @@ export default function ProfileMain({
   /* prevent reading data before end loading */
   if (loading) return <Loading />;
   const handleVote = (e) => {
-    e.preventDefault();
+    if(!loggedInUser){        
+        navigate("/login");
+        alert("Please login to vote !");
+        return;
+    }
     const url = `${baseUrl}/nominations`;
     const candidate = userId;
     voteStar(url, loggedInUser, candidate);
-
+    alert("Thank you for voting !");
+    navigate("/stars");
     console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
   };
 
@@ -85,7 +91,7 @@ export default function ProfileMain({
             </div>
             <div className="star-job-profile">{data.job}</div>
             <div className="my-details">
-              <lable>STEMer</lable>
+              <label>STEMer</label>
               <span>: {data.category.type}</span>
             </div>
           </div>
@@ -108,7 +114,7 @@ export default function ProfileMain({
           <div className="votes">
             <h3>Nominations and Badges</h3>
             <p>
-              Total Nominations: <span className="vote-count">34</span>
+              Total Nominations: <span className="vote-count">{data.nominations_received.length}</span>
             </p>
             <p>
               Badge Earned: <span>Badge1</span>
@@ -117,23 +123,23 @@ export default function ProfileMain({
           <hr></hr>
           <div className="details-container">
             <div className="my-details">
-              <lable>Phone</lable>
+              <label>Phone</label>
               <span> : +123456789</span>
             </div>
             <div className="my-details">
-              <lable>Sex</lable>
+              <label>Sex</label>
               <span> : Female</span>
             </div>
             <div className="my-details">
-              <lable>DoB</lable>
+              <label>DoB</label>
               <span>: 01/02/1234</span>
             </div>
             <div className="my-details">
-              <lable for="email">Email</lable>
+              <label htmlFor="email">Email</label>
               <span> : {data.email}</span>
             </div>
             <div className="my-details">
-              <lable>Country</lable>
+              <label>Country</label>
               <span> : {data.country.name}</span>
               <span> {countryFlagEmoji.get(data.country.shortName).emoji}</span>
             </div>
