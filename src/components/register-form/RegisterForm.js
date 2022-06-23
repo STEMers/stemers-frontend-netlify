@@ -63,6 +63,7 @@ const RegisterForm = ({ onSubmit }) => {
               id="password"
               name="password"
               placeholder="Enter Password"
+              type="password"
               value={values.password}
               onChange={handleChange("password")}
             />
