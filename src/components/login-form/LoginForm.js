@@ -32,7 +32,7 @@ const LoginForm = ({ onSubmit }) => {
               name="usernameOrEmail"
               placeholder="Enter Username or Email"
               value={values.usernameOrEmail}
-              onChange={handleChange("usernameOrEmail")}
+              onChange={handleChange}
             />
             {errors.usernameOrEmail && touched.usernameOrEmail && (
               <p className={styles.error}>{errors.usernameOrEmail}</p>
@@ -48,7 +48,7 @@ const LoginForm = ({ onSubmit }) => {
               placeholder="Enter Password"
               type="password"
               value={values.password}
-              onChange={handleChange("password")}
+              onChange={handleChange}
             />
             {errors.password && touched.password && (
               <p className={styles.error}>{errors.password}</p>
