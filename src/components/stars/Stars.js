@@ -26,13 +26,13 @@ export default function Stars() {
     !selectedCountry && !selectedCategory ? defaultUrl : filteredUrl;
 
   const countriesUrl = `${baseUrl}/countries`;
-   const { data:countriesL, loading: countriesLoading } = useFetch(countriesUrl, null);  
+   const { data:countriesL, loading: countriesLoading } = useFetch(countriesUrl);  
   // if (countriesL) {
   //   console.log("countriesL", countriesL);
   // }
 
   const categoriesUrl = `${baseUrl}/categories`;
-  const { data:categoriesL, loading:categoriesLoading } = useFetch(categoriesUrl, null);  
+  const { data:categoriesL, loading:categoriesLoading } = useFetch(categoriesUrl);  
   // if (categoriesL) {
   //   console.log("categoriesL", categoriesL);
   // }
