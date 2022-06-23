@@ -1,10 +1,12 @@
 .stars-page {
   max-width: 80vw;
-  margin: 0 auto;
+  min-width: 400px;
+  margin: 55px auto;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
+
 .highlight-stars {
   color: #ffa800;
 }
@@ -54,4 +56,36 @@ option {
 
 .stars--stars-container a {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 918px) {
+  .stars-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 50vw;
+  }
+
+  .stars--stars-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .stars-page {
+    max-width: 90vw;
+  }
+
+  .stars-form {
+    text-align: start;
+    font-size: 16px;
+  }
+
+  .stars--stars-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
 }
