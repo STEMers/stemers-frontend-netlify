@@ -6,6 +6,7 @@ export const Invite = () => {
   const navigate=useNavigate();
 const handleInvitation = (e)=>{
   if(!e.target.form.email.value){
+    e.preventDefault();
     alert("Please insert email to continue.")
     return;
   }
