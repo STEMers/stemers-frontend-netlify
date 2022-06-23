@@ -33,7 +33,7 @@ export default function User({
           {`${firstName} ${lastName}`}
         </p>
         <span className="user-country-sn">{countrySN}</span>
-        <span className="user-flag">{countryFlagEmoji.get(countrySN).emoji}</span>
+        <span className="user-flag">{countrySN?countryFlagEmoji.get(countrySN).emoji:""}</span>
       </div>
     </div>
   );
