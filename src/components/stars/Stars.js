@@ -9,7 +9,7 @@ import badge1 from "../../images/badge1.png";
 import badge2 from "../../images/badge2.png";
 import badge3 from "../../images/badge3.png";
 import { Loading } from "../loading/Loading";
-// import { countries, categories } from "../../json-data/countriesAndCategories"; // for map countries and categories option in filter form section // abandoned！
+
 
 export default function Stars() {
   const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
@@ -119,7 +119,7 @@ export default function Stars() {
               userId={user.id}
               firstName={user.first_name}
               lastName={user.last_name}
-              countrySN={user.country.shortName}
+              countrySN={user.country?user.country.shortName:"null"}
               nominationsR={user.nominations_received}
               badge1={badge1}
               badge2={badge2}
