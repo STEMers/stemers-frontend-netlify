@@ -7,7 +7,8 @@ import { Loading } from "../../loading/Loading";
 import { voteStar } from "../../../hooks/voteStar";
 import { FiEdit3 } from "react-icons/fi";
 import { BsFacebook, BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { useState } from "react";
+import swal from 'sweetalert';
+
 
 export default function ProfileMain({
   seteditmodetotrue,
@@ -27,13 +28,13 @@ export default function ProfileMain({
   const handleVote = (e) => {
     if (!loggedInUser) {
       navigate("/login");
-      alert("Please login to vote !");
+      swal("Login required !","Please login to vote !","info");
       return;
     }
     const url = `${baseUrl}/nominations`;
     const candidate = userId;
     voteStar(url, loggedInUser, candidate);
-    alert("Thank you for voting !");
+    swal("Thank you for voting !","You have voted your star","success");
     navigate("/stars");
     console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
   };
@@ -114,9 +115,15 @@ export default function ProfileMain({
           <div className="votes">
             <h3>Nominations and Badges</h3>
             <p>
-              Total Nominations:{" "}
+              Nominations Received:{" "}
               <span className="vote-count">
                 {data.nominations_received.length}
+              </span>
+            </p>
+            <p>
+              Nominations Given: {" "}
+              <span className="vote-count">
+                {data.nominations_given.length}
               </span>
             </p>
             <p>
