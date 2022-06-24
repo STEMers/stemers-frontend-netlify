@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
+import swal from 'sweetalert';
 
 export const Invite = () => {
   const navigate=useNavigate();
@@ -10,7 +11,7 @@ const handleInvitation = (e)=>{
     alert("Please insert email to continue.")
     return;
   }
-  alert("Thank you for inviting. We hope the star that you invited will join us soon.");
+  swal("Thank you for inviting.","We hope the star that you invited will join us soon.","success");
   navigate("/stars");
 }
   return (

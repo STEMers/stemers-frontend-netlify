@@ -7,6 +7,7 @@ import styles from "../components/login-form/LoginForm.module.css"; // style
 import LoginForm from "../components/login-form/LoginForm";
 import ContinueWithLinkedIn from "../components/continue-with-linked-in/ContinueWithLinkedIn";
 import { baseUrl } from "../config";
+import swal from 'sweetalert';
 
 const loginUrl = `${baseUrl}/auth/local`;
 
@@ -42,12 +43,13 @@ const LoginRoute = ({ setUserData }) => {
       localStorage.setItem("user-id",json.user.id);
       localStorage.setItem("username",json.user.username);
       console.log("LOGIN SUCCESS", json);
+      swal("Success","Login success!", "success");
 
       setUserData(json); // store register usr for develop other authenticated feature // TypeError: setUserData is not a function
 
       navigate("/");
     } catch (err) {
-      alert(err);
+      swal("Wrong credentials","Either username or password is incorrect!", "warning");
     } finally {
       setIsLoading(false);
     }

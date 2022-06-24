@@ -12,7 +12,7 @@ export const Intro = () => {
       </div>
       <div className="nominate-star">
           <Link to="/stars"><Button name="nominate" cls="btn-nominate"/></Link>
-          <Link to="/"><Button name="invite" cls="btn-invite" /></Link>
+          <Link to="/invite"><Button name="invite" cls="btn-invite" /></Link>
       </div>
     </div>
   );

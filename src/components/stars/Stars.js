@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { Button } from "../home/intro/button/Button";
 import "./styles.css";
 import { baseUrl, imgUrl } from "../../config";
 import { useFetch } from "../../hooks";
@@ -9,7 +9,7 @@ import badge1 from "../../images/badge1.png";
 import badge2 from "../../images/badge2.png";
 import badge3 from "../../images/badge3.png";
 import { Loading } from "../loading/Loading";
-
+import { FaSearch} from "react-icons/fa";
 
 export default function Stars() {
   const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
@@ -17,30 +17,34 @@ export default function Stars() {
   const [selectedCountry, setSelectedCountry] = useState(null); // store user input
   const [selectedCategory, setSelectedCategory] = useState(null); // store user input
   const defaultUrl = `${baseUrl}/users?populate=*`; // by default display all users/stars
-  const filteredUrl = !selectedCategory
-    ? `${baseUrl}/users?populate=*&filters[country][name][$containsi]=${selectedCountry}`
-    : !selectedCountry
-    ? `${baseUrl}/users?populate=*&filters[category][type][$containsi]=${selectedCategory}`
-    : `${baseUrl}/users?populate=*&filters[category][type][$containsi]=${selectedCategory}&filters[country][name][$containsi]=${selectedCountry}`; // for filter with country, category
-  const starsUrl =
-    !selectedCountry && !selectedCategory ? defaultUrl : filteredUrl;
+
+  // Filter list of star based on country and category selected by user
+  let filteredUrl = [];
+  if (selectedCategory && !selectedCountry) {
+    filteredUrl = `${baseUrl}/users?populate=*&filters[category][id][$eq]=${selectedCategory}`;
+  } else if (!selectedCategory && !selectedCountry) {
+    filteredUrl = defaultUrl;
+  } else if (!selectedCategory && selectedCountry) {
+    filteredUrl = `${baseUrl}/users?populate=*&filters[country][id][$eq]=${selectedCountry}`;
+  } else {
+    filteredUrl = `${baseUrl}/users?populate=*&filters[category][id][$eq]=${selectedCategory}&filters[country][id][$eq]=${selectedCountry}`;
+  }
+  const starsUrl = filteredUrl;
 
   const countriesUrl = `${baseUrl}/countries`;
-   const { data:countriesL, loading: countriesLoading } = useFetch(countriesUrl, null);  
-  // if (countriesL) {
-  //   console.log("countriesL", countriesL);
-  // }
+  const { data: countriesL, loading: countriesLoading } = useFetch(
+    countriesUrl,
+    null
+  );
 
   const categoriesUrl = `${baseUrl}/categories`;
-  const { data:categoriesL, loading:categoriesLoading } = useFetch(categoriesUrl, null);  
-  // if (categoriesL) {
-  //   console.log("categoriesL", categoriesL);
-  // }
+  const { data: categoriesL, loading: categoriesLoading } = useFetch(
+    categoriesUrl,
+    null
+  );
 
+  // Fetch data from remote backend
   const { data, loading } = useFetch(starsUrl, submitCount);
-  if (data) {
-    console.log("data 1", data);
-  }
 
   /* submit filter form */
   const handleSubmit = (e) => {
@@ -48,6 +52,8 @@ export default function Stars() {
 
     /* get user input*/
     const country = document.getElementById("country").value;
+
+    console.log("Selected country", country);
     setSelectedCountry(country);
     const category = document.getElementById("category").value;
     setSelectedCategory(category);
@@ -56,9 +62,8 @@ export default function Stars() {
     setSubmitCount((c) => c + 1);
   };
 
-  /* prevent reading data before end loading */
-  if (countriesLoading || categoriesLoading || loading)
-    return <Loading />
+  /* prevent reading data before fetching finishes */
+  if (countriesLoading || categoriesLoading || loading) return <Loading />;
   return (
     <div className="stars-page">
       <div className=" stars--title-section">
@@ -73,40 +78,43 @@ export default function Stars() {
           className="stars-form"
           onSubmit={handleSubmit}
         >
-          <div className="country-section">
-            <label htmlFor="country"></label>
-            <select name="country" id="country" className="country-select">
-              <option value="">select country</option>
-              {countriesL.data.map((option, index) => (
-                <option
-                  value={option.attributes.name}
-                  key={`country-${index}`}
-                >
-                  {option.attributes.name}
+          <div className="filter-stars">
+            <select
+              name="country"
+              id="country"
+              className="select-country"
+              defaultValue={selectedCountry}
+            >
+              <option value="" key="0">
+                Select Country
+              </option>
+              {countriesL.data.map((country, index) => (
+                <option value={country.id} key={index}>
+                  {country.attributes.name}
                 </option>
               ))}
             </select>
-          </div>
-          <div className="category-section">
-            <label htmlFor="category"></label>
-            <select name="category" id="category" className="category-select">
-              <option value="">select category</option>
+            <select
+              name="category"
+              className="select-category"
+              id="category"
+              defaultValue={selectedCategory}
+            >
+              <option value="" key="0">
+                Select category
+              </option>
               {categoriesL.data.map((category, index) => (
-                <option
-                  value={category.attributes.type}
-                  key={`category-${index}`}
-                >
+                <option value={category.id} key={index}>
                   {category.attributes.type}
                 </option>
               ))}
             </select>
+            <Button
+              cls="btn-submit"
+              name={<FaSearch />}
+              onClick={(e) => handleSubmit()}
+            />
           </div>
-          <input
-            type="submit"
-            value="Submit"
-            className="stars-form-submit"
-            onClick={handleSubmit}
-          ></input>
         </form>
       </div>
       <div className="stars--stars-container">
@@ -119,7 +127,7 @@ export default function Stars() {
               userId={user.id}
               firstName={user.first_name}
               lastName={user.last_name}
-              countrySN={user.country?user.country.shortName:null}
+              countrySN={user.country ? user.country.shortName : null}
               nominationsR={user.nominations_received}
               badge1={badge1}
               badge2={badge2}
