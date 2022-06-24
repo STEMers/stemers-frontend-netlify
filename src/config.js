@@ -1,4 +1,4 @@
-import profilephoto from "../src/images/default.jpg"
+import profilephoto from "../src/images/default2.jpg"
 export const localhostUrl = "http://localhost:1337/api";
 export const herokuUrl = "https://stemers-backend-heroku.herokuapp.com/api";
 export const baseUrl = herokuUrl;

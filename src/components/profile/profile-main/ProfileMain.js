@@ -7,8 +7,8 @@ import { Loading } from "../../loading/Loading";
 import { voteStar } from "../../../hooks/voteStar";
 import { FiEdit3 } from "react-icons/fi";
 import { BsFacebook, BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
-import swal from 'sweetalert';
-
+import swal from "sweetalert";
+import { useEffect, useState } from "react";
 
 export default function ProfileMain({
   seteditmodetotrue,
@@ -25,18 +25,31 @@ export default function ProfileMain({
 
   /* prevent reading data before data loading finishes*/
   if (loading) return <Loading />;
+
+  //handle user vote
   const handleVote = (e) => {
     if (!loggedInUser) {
       navigate("/login");
-      swal("Login required !","Please login to vote !","info");
+      swal("Login required !", "Please login to vote !", "info");
       return;
     }
-    const url = `${baseUrl}/nominations`;
-    const candidate = userId;
-    voteStar(url, loggedInUser, candidate);
-    swal("Thank you for voting !","You have voted your star","success");
-    navigate("/stars");
-    console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
+    if (data.nominations_received) {
+      for (let index = 0; index < data.nominations_received.length; index++) {
+        if (data.nominations_received[index].voter_id === loggedInUser) {
+          console.log("you have already nominated her!",index);
+           swal("oops !", `you have already nominated her before`, "info");  
+           return                         
+        }       
+      } 
+      
+    }
+      const url = `${baseUrl}/nominations`;
+      const candidate = userId;
+      voteStar(url, loggedInUser, candidate);
+      swal("Thank you for voting !", "You have voted your star", "success");
+      navigate("/stars");
+      console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
+    
   };
 
   const isprofileowner = userId === loggedInUser;
@@ -121,7 +134,7 @@ export default function ProfileMain({
               </span>
             </p>
             <p>
-              Nominations Given: {" "}
+              Nominations Given:{" "}
               <span className="vote-count">
                 {data.nominations_given.length}
               </span>
@@ -198,61 +211,9 @@ export default function ProfileMain({
         ""
       ) : (
         <div className="nominate">
-          <button onClick={(e) => handleVote(e)}>Nominate</button>
+          <button onClick={(e) => handleVote(e)}>Nominate </button>
         </div>
       )}
     </div>
   );
 }
-// <div className="profile-main">
-//   <div className="profile-infos">
-//     <div className="infos-left">
-//       <div className="image-container">
-//         <img
-//           src={data.avatar?`${imgUrl}${data.avatar.url}`:defaultProfilePhoto}
-//           alt="user face"
-//           className="profile-img"
-//         />
-//       </div>
-//       <div className="short-infos-container">
-//         <div className="age short-info">
-//           <p className="profile-left-list">Age:</p>
-//           <p className="s-info-property">{data.age}</p>
-//         </div>
-//         <div className="location short-info">
-//           <p className="profile-left-list">Location:</p>
-//           <p className="s-info-property">{data.location}</p>
-//         </div>
-//         <div className="eduction short-info">
-//           <p className="profile-left-list">Education:</p>
-//           <p className="profile-eduction">{data.education}</p>
-//         </div>
-//         <div className="job short-info">
-//           <p className="profile-left-list">Job:</p>
-//           <p className="profile-job">{data.job}</p>
-//         </div>
-//         <div className="family short-info">
-//           <p className="profile-left-list">Family:</p>
-//           <p className="profile-family">{data.family}</p>
-//         </div>
-//       </div>
-//     </div>
-//     <div className="infos-right">
-//       <h2 className="profile-name">
-//         {data.firstname} {data.lastname}
-//       </h2>
-//       <p className="profile-quote">{data.quote}</p>
-//       <div className="bio-container">
-//         <p className="profile-right-list">BIO</p>
-//         <p className="profile-bio">{data.bio}</p>
-//       </div>
-//     </div>
-//     <div>
-//       <p>Total Nominations: {data.nominations_received}</p>
-//       {console.log("data after nomination count",data)}
-//     </div>
-//   </div>
-//   <form>
-//     <button onClick={(e)=>handleVote(e)}>Nominate</button>
-//   </form>
-// </div>
