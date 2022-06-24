@@ -8,7 +8,7 @@ export const Invite = () => {
 const handleInvitation = (e)=>{
   if(!e.target.form.email.value){
     e.preventDefault();
-    alert("Please insert email to continue.")
+    swal("Email missing","Please type email in the box to continue.","warning")
     return;
   }
   swal("Thank you for inviting.","We hope the star that you invited will join us soon.","success");
