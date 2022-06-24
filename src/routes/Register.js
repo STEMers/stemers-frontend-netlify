@@ -6,6 +6,7 @@ import styles from "../components/login-form/LoginForm.module.css"; // not work
 import RegisterForm from "../components/register-form/RegisterForm";
 import ContinueWithLinkedIn from "../components/continue-with-linked-in/ContinueWithLinkedIn";
 import { baseUrl } from "../config";
+import swal from 'sweetalert';
 
 const SignUpUrl = `${baseUrl}/auth/local/register`;
 
@@ -38,9 +39,11 @@ const RegisterRoute = ({ setUserData }) => {
       }
 
       const json = await response.json();
-      console.log("SIGN UP SUCCESS", json);
-
-      setUserData(json); // store register usr for develop other authenticated feature 
+     localStorage.setItem("jwt-token", json.jwt);
+      localStorage.setItem("user-id",json.user.id);
+      localStorage.setItem("username",json.user.username);
+      console.log("Registration SUCCESS", json);
+      swal("Registration Success!","You have successfully registered!", "success");
 
       navigate("/");
     } catch (err) {
