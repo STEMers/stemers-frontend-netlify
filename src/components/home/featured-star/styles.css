@@ -10,6 +10,8 @@
 }
 .star-photo {
   width: 250px;
+  height: 150px;
+  object-fit: cover;
   border-radius: 16px;
 }
 
