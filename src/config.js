@@ -5,8 +5,8 @@ export const baseUrl = herokuUrl;
 
 export const localhostImgUrl = "http://localhost:1337";
 export const herokuImgUrl = "https://stemers-backend-heroku.herokuapp.com";
-export const imgUrl = localhostImgUrl;
-// export const imgUrl = herokuImgUrl; // 404 not found
+// export const imgUrl = localhostImgUrl;
+export const imgUrl = herokuImgUrl; // 404 not found
 
 /* 
 ref:
