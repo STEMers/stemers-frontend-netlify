@@ -4,7 +4,7 @@
   margin: 80px auto;
 }
 .about .about-wrapper {
-  width: 80%;
+  width: 85%;
   margin: 40px auto;
   text-align: center;
 }
@@ -24,7 +24,7 @@
 }
 .about-developers .developers {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -51,6 +51,7 @@
 .descriptions ul li {
   padding: 8px;
   font-size: 1.2rem;
+  margin: 15px;
 }
 .badges {
   display: flex;

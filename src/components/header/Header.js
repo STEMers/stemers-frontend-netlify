@@ -10,6 +10,7 @@ import useFetch from "../../hooks/useFetch";  // src/hooks/useFetch.js
 import logo from "../../json-data/nav/logo.png";
 import { useState } from "react";
 import { Loading } from "../loading/Loading";
+import { StickyShareButtons } from "sharethis-reactjs";
 
 
 const Header = () => {
@@ -46,6 +47,7 @@ const Header = () => {
 if(loading) return <Loading />
   return (
     <header className="header">
+      <StickyShareButtons />
       <nav className="navbar">
         <Link to="/">
           <img src={logo} alt="logo" className="logo" />
