@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../home/intro/button/Button";
 import "./styles.css";
-import { baseUrl, imgUrl } from "../../config";
+import { baseUrl, imgUrl,defaultprofilephoto } from "../../config";
 import { useFetch } from "../../hooks";
 import User from "./user/User";
 import badge1 from "../../images/badge1.png";
@@ -12,7 +12,7 @@ import { Loading } from "../loading/Loading";
 import { FaSearch} from "react-icons/fa";
 
 export default function Stars() {
-  const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
+  // const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`; // for users who didn't upload img yet.
   const [submitCount, setSubmitCount] = useState(0);
   const [selectedCountry, setSelectedCountry] = useState(null); // store user input
   const [selectedCategory, setSelectedCategory] = useState(null); // store user input
@@ -122,7 +122,7 @@ export default function Stars() {
           <Link to={`/profile/${user.id}`} key={`${user}-${index}`}>
             <User
               srcAvatar={
-                user.avatar ? `${imgUrl}${user.avatar.url}` : defaultImgUrl
+                user.avatar ? `${imgUrl}${user.avatar.url}` : defaultprofilephoto
               }
               userId={user.id}
               firstName={user.first_name}

@@ -7,8 +7,8 @@ import { Loading } from "../../loading/Loading";
 import { voteStar } from "../../../hooks/voteStar";
 import { FiEdit3 } from "react-icons/fi";
 import { BsFacebook, BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
-import swal from 'sweetalert';
-
+import swal from "sweetalert";
+import { useEffect, useState } from "react";
 
 export default function ProfileMain({
   seteditmodetotrue,
@@ -25,18 +25,31 @@ export default function ProfileMain({
 
   /* prevent reading data before data loading finishes*/
   if (loading) return <Loading />;
+
+  //handle user vote
   const handleVote = (e) => {
     if (!loggedInUser) {
       navigate("/login");
-      swal("Login required !","Please login to vote !","info");
+      swal("Login required !", "Please login to vote !", "info");
       return;
     }
-    const url = `${baseUrl}/nominations`;
-    const candidate = userId;
-    voteStar(url, loggedInUser, candidate);
-    swal("Thank you for voting !","You have voted your star","success");
-    navigate("/stars");
-    console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
+    if (data.nominations_received) {
+      for (let index = 0; index < data.nominations_received.length; index++) {
+        if (data.nominations_received[index].voter_id === loggedInUser) {
+          console.log("you have already nominated her!",index);
+           swal("oops !", `you have already nominated her before`, "info");  
+           return                         
+        }       
+      } 
+      
+    }
+      const url = `${baseUrl}/nominations`;
+      const candidate = userId;
+      voteStar(url, loggedInUser, candidate);
+      swal("Thank you for voting !", "You have voted your star", "success");
+      navigate("/stars");
+      console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
+    
   };
 
   const isprofileowner = userId === loggedInUser;
@@ -167,7 +180,7 @@ export default function ProfileMain({
         ""
       ) : (
         <div className="nominate">
-          <button onClick={(e) => handleVote(e)}>Nominate</button>
+          <button onClick={(e) => handleVote(e)}>Nominate </button>
         </div>
       )}
     </div>
