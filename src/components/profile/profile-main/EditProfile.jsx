@@ -6,11 +6,14 @@ import { BsFacebook, BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import { BsFillSkipBackwardCircleFill } from "react-icons/bs";
 import { updateProfile } from "../../../hooks/updateProfile";
+import axios from "axios";
 
 export const EditProfile = ({ seteditmodetofalse }) => {
   // get ID from url
   const params = useParams();
   const userId = params.id;
+   const [files, setFiles] = useState();
+   const [imgId, setImgId] = useState("");
 
   //form values
 
@@ -26,6 +29,58 @@ export const EditProfile = ({ seteditmodetofalse }) => {
 
   const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
   const { data, loading } = useFetch(profileUrl);
+
+
+
+  // upload image-------------------------
+
+  const uploadImage = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("files", files[0]);
+
+    axios
+      .post(`${baseUrl}/upload`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt-token")}`,
+        },
+      })
+      .then((response) => {
+        const imageId = response.data[0].id;
+        
+          const body = {
+              avatar:{
+                id:imageId
+              }
+          }
+           updateProfile(userprofileURL, body);
+        console.log("uploaded image id", imageId);
+
+        axios
+          .post(
+            `${baseUrl}/users/${userId}?populate=*`,
+            { "avatar": {"id":imageId} },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt-token")}`,
+              },
+            }
+          )
+          .then((response) => {
+            //handle success
+          })
+          .catch((error) => {
+            //handle error
+          });
+      })
+      .catch((error) => {
+        //handle error
+      });
+  };
+
+  //---------------------------------------
 
   //submit post request
 
@@ -66,7 +121,7 @@ export const EditProfile = ({ seteditmodetofalse }) => {
       },
       category: {
         id: categoryId,
-      },
+      },     
     };
     updateProfile(userprofileURL, body);  
   };
@@ -111,9 +166,9 @@ export const EditProfile = ({ seteditmodetofalse }) => {
               </ul>
             </div>
             <div className="change-photo">
-              <form>
-                <input type="file" name="profilephoto" />
-                <input type="submit" value="Save photo" />
+             <form onSubmit={uploadImage}>
+                <input type="file" onChange={(e) => setFiles(e.target.files)} />
+                <input type="submit" value="Submit" />
               </form>
             </div>
           </div>
