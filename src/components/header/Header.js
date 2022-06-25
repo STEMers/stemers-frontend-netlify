@@ -4,7 +4,7 @@ import { FaAngleDown} from "react-icons/fa";
 import { BsChevronDoubleDown, BsChevronDoubleUp } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 
-import { baseUrl, imgUrl } from "../../config";
+import { baseUrl, imgUrl,defaultprofilephoto } from "../../config";
 import useFetch from "../../hooks/useFetch";  // src/hooks/useFetch.js
 
 import logo from "../../json-data/nav/logo.png";
@@ -16,7 +16,6 @@ const Header = () => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(true); //start with hidden dropdown menu in mobile menu
   const [dropdown, setDropDown] = useState(false);
-  const defaultImgUrl = `${imgUrl}/uploads/default_avatar2_076e77e12e.png`;
   // logging status update based on jwt
   const loggedIn = localStorage.getItem("jwt-token");
   const userId = localStorage.getItem("user-id");
@@ -84,7 +83,7 @@ if(loading) return <Loading />
           >
             <li>
               <Link to={`/profile/${userId}`}>
-                <img  src={data.avatar?`${imgUrl}${data.avatar.url}`:defaultImgUrl} alt="avatar" />
+                <img  src={data.avatar?`${imgUrl}${data.avatar.url}`:defaultprofilephoto} alt="avatar" />
               </Link>
             </li>
             <div className="dropdown">
