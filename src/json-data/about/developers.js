@@ -8,15 +8,15 @@ export const developers = [
         photo:sanne,
         name:"Sanne Sofie",
         job:"Front End Web Developer",
-        bio:"Vivamus ornare ligula maximus diam feugiat",
+        bio:"Future Front End Developer in the making!",
         github:"",
         linkedin:""
     },
       {
         photo:alina,
         name:"Alina Tao Rao",
-        job:"Front End Web Developer",
-        bio:"Vivamus ornare ligula maximus diam feugiat",
+        job:"Future Front End Web Developer",
+        bio:"A future web developer.",
         github:"",
         linkedin:""
     },
@@ -24,7 +24,7 @@ export const developers = [
         photo:abu,
         name:"Abu Mahmoud ",
         job:"Front End Web Developer",
-        bio:"Vivamus ornare ligula maximus diam feugiat",
+        bio:"My dream is to travel the world",
         github:"",
         linkedin:""
     },
@@ -32,7 +32,7 @@ export const developers = [
         photo:ashenafi,
         name:"Ashenafi Kebede",
         job:"Front End Web Developer",
-        bio:"Vivamus ornare ligula maximus diam feugiat",
+        bio:"Big things happen to those who dream big!",
         github:"",
         linkedin:""
     }
