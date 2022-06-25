@@ -1,10 +1,11 @@
 import "./styles.css";
 import checklist from "../../json-data/about/checklist.webp";
-import badge1 from "../../json-data/about/badge1.png";
-import badge2 from "../../json-data/about/badge2.png";
-import badge3 from "../../json-data/about/badge3.png";
-import { BsCheck2Circle } from "react-icons/bs"
+import badge1 from "../../images/badge1.png";
+import badge2 from "../../images/badge2.png";
+import badge3 from "../../images/badge3.png";
+import { BsCheck2Circle } from "react-icons/bs";
 import { Developer } from "./developers/Developer";
+import { Link } from "react-router-dom";
 
 export default function About() {
   return (
@@ -13,21 +14,26 @@ export default function About() {
         <h2 className="about-title"> About STEMers</h2>
         <div className="about-content">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut varius
-            sapien eu turpis commodo fringilla. Etiam laoreet elementum ante.
-            Aenean sit amet lacus in nulla gravida semper. Suspendisse eu mauris
-            ut libero eleifend volutpat sed eget libero. Vestibulum tristique
-            ultricies imperdiet. Etiam ut fringilla diam, hendrerit interdum
-            purus.
+            You've likely heard the term STEM, but what does it stand for? STEM
+            is an acronym for science, technology, engineering, and math. These
+            four fields share an emphasis on innovation, problem-solving, and
+            critical thinking. And together they make up a popular and
+            fast-growing industry. Most STEM workers use computers and other
+            technology in their day-to-day jobs. Many also use the scientific
+            method to test hypotheses and theories.
           </p>
           <p>
-            Pellentesque at enim nec enim interdum aliquam a ac ligula. Fusce
-            tempor risus massa, vel blandit nibh euismod eu. Sed nec mattis
-            metus. Nullam dictum pretium arcu, id fringilla ligula consequat
-            non. Sed vitae placerat sapien, lobortis cursus lorem. Cras est
-            ipsum, pharetra vitae faucibus non, auctor at risus. Aliquam vitae
-            congue erat.
+            What Are STEM Fields? STEM comprises the following major areas of
+            study: Natural, physical, and life sciences (sometimes including
+            medicine, sometimes not) Computer, electronics, and other
+            technology-related disciplines All types of engineering Mathematics,
+            or any field involving a heavy application of mathematical
+            principles
           </p>
+          <p> The idea of STEMers is born to create a platform that gives STEM women the exposure and attention they deserve and to recognize STEM professionals who go
+        above and beyond. Lift up the women who inspire and educate your
+        communities with STEMers platform .</p>
+        <p><Link to="/register">Join</Link> the platform now, <Link to="/invite">invite</Link> your stars, <Link to="/nominate">nominate </Link>those achieve in STEM fields. </p>
         </div>
         <div className="about-developers">
           <h2 className="about-title"> Our Passionate Developers</h2>
@@ -40,31 +46,27 @@ export default function About() {
           <div className="requirements-list">
             <ul className="about-content">
               <li>
-                <BsCheck2Circle /> Phasellus libero justo, varius eu eleifend
-                sed,
-              </li>
-              <li>
-                <BsCheck2Circle /> Curabitur at massa nec leo consectetur
-                fringilla.
+                <BsCheck2Circle /> Everyone can join
               </li>
               <li>
                 <BsCheck2Circle />
-                Mauris tempus lorem nisi, egestas faucibus tortor dapibus vel.
+                profile of only female STEM professionals will be listed for nomination
               </li>
               <li>
+                <BsCheck2Circle /> Female professionals from Natural, physical, and life sciences
+              </li>              
+              <li>
                 {" "}
-                <BsCheck2Circle /> Phasellus libero justo, varius eu eleifend
+                <BsCheck2Circle /> Computer, electronics, and other technology-related disciplines
                 sed,
               </li>
               <li>
                 {" "}
-                <BsCheck2Circle /> Curabitur at massa nec leo consectetur
-                fringilla.
+                <BsCheck2Circle /> Mathematics, or any field involving a heavy application of mathematical principles
+
               </li>
               <li>
-                {" "}
-                <BsCheck2Circle />
-                Mauris tempus lorem nisi, egestas faucibus tortor dapibus vel.
+                All types of engineering
               </li>
             </ul>
             <img src={checklist} alt="checklist" />
@@ -74,41 +76,28 @@ export default function About() {
           <h2 className="about-title"> Nominations and Badges</h2>
           <div className="badges-wrapper">
             <div className="badges">
-            <img src={badge1} alt="badge1" />
-            <span>Badge 1</span>
-            <img src={badge2} alt="badge2" />
-            <span>Badge 2</span>
-            <img src={badge3} alt="badge3" />
-            <span>Badge 3</span>
-          </div>
-          <div className="descriptions">
-            <ul className="badges-description">
-              <li>
-                <BsCheck2Circle /> Phasellus libero justo, varius eu eleifend
-                sed,
-              </li>
-              <li>
-                <BsCheck2Circle /> Curabitur at massa nec leo consectetur
-                fringilla.
-              </li>
-              <li>
-                <BsCheck2Circle />
-                Mauris tempus lorem nisi, egestas faucibus tortor dapibus vel.
-              </li>
-              <li>
-                <BsCheck2Circle /> Phasellus libero justo, varius eu eleifend
-                sed,
-              </li>
-              <li>
-                <BsCheck2Circle /> Curabitur at massa nec leo consectetur
-                fringilla.
-              </li>
-              <li>
-                <BsCheck2Circle />
-                Mauris tempus lorem nisi, egestas faucibus tortor dapibus vel.
-              </li>
-            </ul>
-          </div>
+              <img src={badge1} alt="badge1" />
+              <span>Badge 1</span>
+              <img src={badge2} alt="badge2" />
+              <span>Badge 2</span>
+              <img src={badge3} alt="badge3" />
+              <span>Badge 3</span>
+            </div>
+            <div className="descriptions">
+              <ul className="badges-description">
+                <li>
+                  <BsCheck2Circle /> Badge 1 is awarded for stars who get more than 20 nominations
+                </li>
+                <li></li>
+                <li>
+                  <BsCheck2Circle /> Badge 2 is awarded for stars who get more than 15 nominations
+                </li>
+                <li></li>
+                <li>
+                  <BsCheck2Circle /> Badge 3 is awarded for stars who get more than 10 nominations
+                </li>                
+              </ul>
+            </div>
           </div>
         </div>
       </div>
