@@ -37,14 +37,12 @@ const RegisterRoute = ({ setUserData }) => {
 
         throw new Error(message);
       }
-
       const json = await response.json();
      localStorage.setItem("jwt-token", json.jwt);
       localStorage.setItem("user-id",json.user.id);
       localStorage.setItem("username",json.user.username);
       console.log("Registration SUCCESS", json);
       swal("Registration Success!","You have successfully registered!", "success");
-
       navigate("/");
     } catch (err) {
       alert(err);

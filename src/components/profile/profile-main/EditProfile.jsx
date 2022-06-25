@@ -1,39 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
 import { baseUrl, imgUrl, defaultprofilephoto } from "../../../config";
 import useFetch from "../../../hooks/useFetch"; // src/hooks/useFetch.js
 import { Loading } from "../../loading/Loading";
-import { voteStar } from "../../../hooks/voteStar";
 import { BsFacebook, BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
-import { FiEdit3 } from "react-icons/fi";
+import { BsFillSkipBackwardCircleFill } from "react-icons/bs";
+import { updateProfile } from "../../../hooks/updateProfile";
 
 export const EditProfile = ({ seteditmodetofalse }) => {
   // get ID from url
   const params = useParams();
   const userId = params.id;
+
+  //form values
+
+  const [aboutme, setAboutme] = useState("");
+  const [education, setEducation] = useState("");
+  const [hobby, setHobby] = useState("");
+  const [myjob, setMyjob] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [countryId, setCountryId] = useState("");
+  const [sex, setSex] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+
   const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
   const { data, loading } = useFetch(profileUrl);
 
+  //submit post request
+
+  const userprofileURL = `${baseUrl}/users/${userId}`;
+
+  // Fetch countries
+
+  const countriesUrl = `${baseUrl}/countries`;
+  const { data: countriesL, loading: countriesLoading } = useFetch(
+    countriesUrl,
+    null
+  );
+
+  // Fetch categories
+
+  const categoriesUrl = `${baseUrl}/categories`;
+  const { data: categoriesL, loading: categoriesLoading } = useFetch(
+    categoriesUrl,
+    null
+  );
+
   /* prevent reading data before end loading */
-  if (loading) return <Loading />;
-  console.log(data.first_name);
-  // const handleVote = (e) => {
-  //   e.preventDefault();
-  //   const url = `${baseUrl}/nominations`;
-  //   const voter = localStorage.getItem("user-id");
-  //   const candidate = userId;
-  //   voteStar(url, voter, candidate);
-  //   console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
-  // };
+  if (countriesLoading || categoriesLoading || loading) return <Loading />;
+  console.log("Aboutme from data", aboutme);
+  // handle edit form submit
+  const handleEdit = (e) => {
+    e.preventDefault();
+    const body = {
+      first_name: firstname,
+      last_name: lastname,
+      sex: sex,
+      job: myjob,
+      aboutme: aboutme,
+      education: education,
+      hobby: hobby,
+      country: {
+        id: countryId,
+      },
+      category: {
+        id: categoryId,
+      },
+    };
+    updateProfile(userprofileURL, body);  
+  };
+
   return (
     <div className="profile">
-       <div onClick={seteditmodetofalse} className="cancel-edit-profile">
-          <Link to="">
-            cancel editing ...
-            <FiEdit3 />
-          </Link>
+      <div onClick={seteditmodetofalse} className="cancel-edit-profile">
+        <Link to="">
+          <BsFillSkipBackwardCircleFill />
+          Go Back
+        </Link>
       </div>
-      <div className="profile-container">       
+      <div className="profile-container">
         <div className="profile-left">
           <div className="photo">
             <img
@@ -44,6 +90,10 @@ export const EditProfile = ({ seteditmodetofalse }) => {
               }
               alt="profile pic"
             />
+            <div>
+              <span>{lastname}</span>
+              <span>{firstname}</span>
+            </div>
             <div className="social-media">
               <ul>
                 <li>
@@ -70,7 +120,12 @@ export const EditProfile = ({ seteditmodetofalse }) => {
           <div className="votes">
             <h3>Nominations and Badges</h3>
             <p>
-              Total Nominations: <span>34</span>
+              Total Nominations:{" "}
+              <span>
+                {data.nominations_received
+                  ? data.nominations_received.length
+                  : ""}
+              </span>
             </p>
             <p>
               Badge Earned: <span>Badge1</span>
@@ -78,61 +133,106 @@ export const EditProfile = ({ seteditmodetofalse }) => {
           </div>
         </div>
         <div className="profile-right">
-          <form>
+          <form id="edit-profile">
             <div className="form-data">
-              <lable>First Name</lable>
+              <label>First Name</label>
               <input
                 type="text"
                 name="first-name"
                 defaultValue={data.first_name}
+                onChange={(e) => setFirstname(e.target.value)}
+                required
               />
             </div>
             <div className="form-data">
-              <lable>Last Name</lable>
+              <label>Last Name</label>
               <input
                 type="text"
                 name="last-name"
                 defaultValue={data.last_name}
+                onChange={(e) => setLastname(e.target.value)}
               />
             </div>
             <div className="form-data">
-              <lable>Phone</lable>
-              <input type="number" name="phone" />
-            </div>
-             <div className="form-data">
-              <lable>Sex</lable>
-              <input type="text" name="sex" />
-            </div>
-             <div className="form-data">
-              <lable>DoB</lable>
-              <input type="datetime" name="dob" />
-            </div>
-            <div className="form-data">
-              <lable>Country</lable>
-              <input type="text" name="country" />
+              <label>Sex</label>
+              <select
+                defaultValue={data.sex}
+                onChange={(e) => setSex(e.target.value)}
+              >
+                <option value="">Select sex</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="notosay">Prefer not to say</option>
+              </select>
             </div>
             <div className="form-data">
-              <lable>STEMer</lable>
+              <label>Job</label>
               <input
                 type="text"
-                name="category"
-                defaultValue={data.category.type}
+                name="job"
+                defaultValue={data.job}
+                onChange={(e) => setMyjob(e.target.value)}
               />
+            </div>
+            <div className="form-data">
+              <label>Country</label>
+              <select
+                defaultValue={data.country ? data.country.id : ""}
+                onChange={(e) => setCountryId(e.target.value)}
+              >
+                <option value="">Select country</option>
+                {countriesL.data.map((country, index) => (
+                  <option value={country.id} key={index}>
+                    {country.attributes.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="form-data">
+              <label>STEM</label>
+              <select
+                defaultValue={data.category ? data.category.id : ""}
+                onChange={(e) => setCategoryId(e.target.value)}
+              >
+                <option value="">Select STEM</option>
+                {categoriesL.data.map((category, index) => (
+                  <option value={category.id} key={index}>
+                    {category.attributes.type}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="form-data">
               <label>About me</label>
-              <textarea>about me</textarea>
+              <textarea
+                id="aboutme"
+                name="aboutme"
+                defaultValue={data.aboutme}
+                onChange={(e) => setAboutme(e.target.value)}
+              />              
             </div>
             <div className="form-data">
               <label>Education</label>
-              <textarea>my education</textarea>
+              <textarea
+                id="education"
+                name="education"
+                defaultValue={data.education}
+                onChange={(e) => setEducation(e.target.value)}
+              />
             </div>
             <div className="form-data">
               <label>Hobbies</label>
-              <textarea>My hobbies</textarea>
+              <textarea
+                id="hobby"
+                name="hobby"
+                defaultValue={data.hobby}
+                onChange={(e) => setHobby(e.target.value)}
+              />
             </div>
-            <button >Save changes</button>
+            <button className="btn-save-changes" onClick={(e) => handleEdit(e)}>
+              Save Changes
+            </button>
           </form>
         </div>
       </div>
