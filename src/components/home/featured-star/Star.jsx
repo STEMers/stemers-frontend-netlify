@@ -11,7 +11,7 @@ import {Loading} from "../../loading/Loading"
 
 export const Star = () => {
   const sex="Female";
-const url = `${baseUrl}/users?populate=*&filters[users][sex][$eq]=${sex}`;
+const url = `${baseUrl}/users?populate=*`;
 const {data, loading} = useFetch(url);
 
 console.log("star data",data);

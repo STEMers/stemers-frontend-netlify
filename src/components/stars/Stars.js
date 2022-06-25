@@ -29,7 +29,7 @@ export default function Stars() {
   } else {
     filteredUrl = `${baseUrl}/users?populate=*&filters[category][id][$eq]=${selectedCategory}&filters[country][id][$eq]=${selectedCountry}`;
   }
-  const starsUrl = `${filteredUrl}&filters[users][sex][$eq]="Female"`;
+  const starsUrl = `${filteredUrl}`;
 
   const countriesUrl = `${baseUrl}/countries`;
   const { data: countriesL, loading: countriesLoading } = useFetch(
