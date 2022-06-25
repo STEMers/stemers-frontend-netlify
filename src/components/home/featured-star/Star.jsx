@@ -6,10 +6,12 @@ import { imgUrl ,baseUrl, defaultprofilephoto} from "../../../config";
 import { Link } from "react-router-dom";
 import badge1 from "../../../images/badge1.png";
 import badge2 from "../../../images/badge2.png";
+import badge3 from "../../../images/badge3.png";
 import {Loading} from "../../loading/Loading"
 
 export const Star = () => {
-const url = `${baseUrl}/users?populate=*`;
+  const sex="Female";
+const url = `${baseUrl}/users?populate=*&filters[users][sex][$eq]=${sex}`;
 const {data, loading} = useFetch(url);
 
 console.log("star data",data);
@@ -20,7 +22,7 @@ if(loading) return <Loading />
       <Link to={`profile/${star.id}`}>
       <img src={star.avatar?`${imgUrl}${star.avatar.url}`:defaultprofilephoto} alt="our star" className="star-photo" /> 
       {star.avatar?console.log(`${imgUrl}${star.avatar.url}`):"nothing found"}  
-      <img src={star.nominations_received.length?badge1:badge2}   className="star-badge" alt="badge"/>   
+      <img src={star.nominations_received?(star.nominations_received.length>20?badge1:(star.nominations_received.length>15?badge2:badge3)):""}   className="star-badge" alt="badge"/>   
       <div className="star-info">        
         <div className="star-job">{star.job}</div>
         <h2 className="star-name">{star.username}</h2><span className="start-country>">
