@@ -9,6 +9,8 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsFacebook, BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 import swal from "sweetalert";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { updateProfile } from "../../../hooks/updateProfile";
 
 export default function ProfileMain({
   seteditmodetotrue,
@@ -23,6 +25,57 @@ export default function ProfileMain({
   const profileUrl = `${baseUrl}/users/${userId}?populate=*`;
   const { data, loading } = useFetch(profileUrl);
 
+  const [files, setFiles] = useState();
+
+  // upload image-------------------------
+
+  const uploadImage = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("files", files[0]);
+
+    axios
+      .post(`${baseUrl}/upload`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt-token")}`,
+        },
+      })
+      .then((response) => {
+        const imageId = response.data[0].id;
+        const body = {
+              avatar:{
+                id:imageId
+              }
+          }
+           updateProfile(profileUrl, body);
+        console.log("uploaded image id", imageId);
+
+        axios
+          .post(
+            `${baseUrl}/users/${userId}?populate=*`,
+            { "avatar": {"id":imageId} },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt-token")}`,
+              },
+            }
+          )
+          .then((response) => {
+            //handle success
+          })
+          .catch((error) => {
+            //handle error
+          });
+      })
+      .catch((error) => {
+        //handle error
+      });
+  };
+
+  //---------------------------------------
+
   /* prevent reading data before data loading finishes*/
   if (loading) return <Loading />;
 
@@ -36,20 +89,18 @@ export default function ProfileMain({
     if (data.nominations_received) {
       for (let index = 0; index < data.nominations_received.length; index++) {
         if (data.nominations_received[index].voter_id === loggedInUser) {
-          console.log("you have already nominated her!",index);
-           swal("oops !", `you have already nominated her before`, "info");  
-           return                         
-        }       
-      } 
-      
+          console.log("you have already nominated her!", index);
+          swal("oops !", `you have already nominated this star before`, "info");
+          return;
+        }
+      }
     }
-      const url = `${baseUrl}/nominations`;
-      const candidate = userId;
-      voteStar(url, loggedInUser, candidate);
-      swal("Thank you for voting !", "You have voted your star", "success");
-      navigate("/stars");
-      console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
-    
+    const url = `${baseUrl}/nominations`;
+    const candidate = userId;
+    voteStar(url, loggedInUser, candidate);
+    swal("Thank you for voting !", "You have voted your star", "success");
+    navigate("/stars");
+    console.log(`${localStorage.getItem("user-id")} voted ${userId}`);
   };
 
   const isprofileowner = userId === loggedInUser;
@@ -90,9 +141,9 @@ export default function ProfileMain({
           </div>
           {isprofileowner && editphoto ? (
             <div className="change-photo">
-              <form>
-                <input type="file" name="profilephoto" />
-                <input type="submit" value="Save photo" />
+              <form onSubmit={uploadImage}>
+                <input type="file" onChange={(e) => setFiles(e.target.files)} />
+                <input type="submit" value="Submit" />
               </form>
             </div>
           ) : (
@@ -101,11 +152,20 @@ export default function ProfileMain({
           <br></br>
           <div className="my-details">
             <div className="star-name-profile">
-              <span>{data.last_name}</span> <span>{data.first_name}</span><span>{data.country?countryFlagEmoji.get(data.country.shortName).emoji:""}</span>
+              <span>{data.last_name}</span> <span>{data.first_name}</span>
+              <span>
+                {data.country
+                  ? countryFlagEmoji.get(data.country.shortName).emoji
+                  : ""}
+              </span>
             </div>
-            <div className="star-job-profile"><h3>{data.job}</h3></div>
+            <div className="star-job-profile">
+              <h3>{data.job}</h3>
+            </div>
             <div className="my-details">
-              <span><h5>{data.category ? data.category.type : ""}</h5></span>
+              <span>
+                <h5>{data.category ? data.category.type : ""}</h5>
+              </span>
             </div>
           </div>
           <div className="social-media">
@@ -124,19 +184,21 @@ export default function ProfileMain({
               </li>
             </ul>
           </div>
-          <hr/>
+          <hr />
           <div className="votes">
             <h3>Nominations and Badges</h3>
             <p>
               Nominations Received:{" "}
               <span className="votes-received">
-                {data.nominations_received?data.nominations_received.length:""}
+                {data.nominations_received
+                  ? data.nominations_received.length
+                  : ""}
               </span>
             </p>
             <p>
-              Nominations Given: {" "}
+              Nominations Given:{" "}
               <span className="votes-given">
-                {data.nominations_given?data.nominations_given.length:""}
+                {data.nominations_given ? data.nominations_given.length : ""}
               </span>
             </p>
             <p>
@@ -152,27 +214,21 @@ export default function ProfileMain({
             <div className="my-details">
               <label htmlFor="email">Email</label>
               <span> : {data.email}</span>
-            </div>           
+            </div>
           </div>
         </div>
         <div className="profile-right">
           <div className="my-details">
             <h3>About me</h3>
-            <div className="about-me">
-              {data.aboutme}
-            </div>
+            <div className="about-me">{data.aboutme}</div>
           </div>
           <div className="my-details">
             <h3>Education</h3>
-            <div className="education">
-              {data.education}             
-            </div>
+            <div className="education">{data.education}</div>
           </div>
           <div className="my-details">
             <h3 className="hobbies">Hobbies</h3>
-            <div>
-              {data.hobby}
-            </div>
+            <div>{data.hobby}</div>
           </div>
         </div>
       </div>
