@@ -31,9 +31,9 @@
   margin: 30px 2px;
   text-align: center;
 }
-.profile-left .votes .vote-count{
- font-weight: 600;
- font-size: 1.3rem;
+.profile-left .votes .vote-count {
+  font-weight: 600;
+  font-size: 1.3rem;
 }
 .profile-left .social-media ul li {
   list-style-type: none;
@@ -45,18 +45,37 @@
   position: relative;
   align-items: center;
 }
-.profile-left .details-container .my-details lable{
+.profile-left .details-container .my-details lable {
   color: var(--blue);
   font-size: 1.1rem;
 }
-.star-name-profile{
-color: var(--blue);
-font-size: 1.2rem;
-font-weight: 600;
-font-style: italic;
+.star-name-profile {
+  color: var(--blue);
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-style: italic;
 }
-.star-job-profile {
-
+.btn-save-changes {
+  padding: 10px 20px;
+  margin: 2px 8px;
+  border-radius: 10px;
+  color: var(--bg);
+  font-weight: 600;
+  background-color: var(--blue);
+}
+.btn-save-changes:hover{
+background-color:var(--bg);
+color:var(--blue);;
+}
+.profile-right .form-data input,
+.profile-right .form-data select,
+.profile-right .form-data textarea {
+  width: 250px;
+  border: 2px var(--blue) solid;
+  display: block;
+  padding: 4px;
+  border-radius: 6px;
+  margin: 4px;
 }
 .profile-left .photo img {
   display: block;
@@ -75,6 +94,31 @@ font-style: italic;
   margin: 4px;
   margin: 0;
 }
+.photo div span {
+  margin: 4px;
+}
+.votes p .votes-given {
+  border: 3px solid var(--bg);
+  background-color: var(--blue);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 50%;
+}
+.votes p {
+  margin: 20px;
+  text-align: center;
+}
+.votes p .votes-received {
+  border: 3px solid var(--bg);
+  background-color: var(--blue);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 50%;
+}
 .photo p {
   display: block;
   position: absolute;
@@ -91,34 +135,42 @@ font-style: italic;
   font-weight: 600;
   border: 1px solid var(--blue);
 }
-.profile .cancel-edit-profile a{
+.profile .cancel-edit-profile a {
   display: block;
   text-align: center;
   margin: 6px;
-  color:brown
+  color: brown;
 }
 .profile .edit-profile a {
   display: block;
   text-align: center;
   margin: 6px;
-  color: rgb(15, 100, 12)
+  color: rgb(15, 100, 12);
+}
+.form-data select {
+  width: 200px;
+}
+.my-details h5,
+.my-details .star-name-profile span {
+  text-transform: capitalize;
 }
 .change-photo input[type="submit"]:hover {
   color: var(--bg);
   background-color: var(--blue);
 }
-.profile-right h3,.votes h3 {
+.profile-right h3,
+.votes h3 {
   color: var(--blue);
   text-transform: capitalize;
   margin: 10px;
 }
-.profile-right .about-me{
-  text-align: justify ;
+.profile-right .about-me {
+  text-align: justify;
 }
 .profile-right .my-details {
   margin: 10px;
 }
-.profile-right .my-details label{
+.profile-right .my-details label {
   color: var(--blue);
   margin: 4px;
 }
@@ -129,12 +181,6 @@ font-style: italic;
   top: 10px;
   right: 40px;
   font-size: 1.2rem;
-}
-.profile-right input,
-.profile-right textarea {
-  display: block;
-  padding: 4px;
-  border-radius: 6px;
 }
 .nominate {
   width: 100%;

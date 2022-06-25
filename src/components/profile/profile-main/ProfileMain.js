@@ -88,12 +88,11 @@ export default function ProfileMain({
           <br></br>
           <div className="my-details">
             <div className="star-name-profile">
-              <span>{data.last_name}</span> <span>{data.first_name}</span>
+              <span>{data.last_name}</span> <span>{data.first_name}</span><span>{data.country?countryFlagEmoji.get(data.country.shortName).emoji:""}</span>
             </div>
-            <div className="star-job-profile">{data.job}</div>
+            <div className="star-job-profile"><h3>{data.job}</h3></div>
             <div className="my-details">
-              <label>STEMer</label>
-              <span>: {data.category ? data.category.type : ""}</span>
+              <span><h5>{data.category ? data.category.type : ""}</h5></span>
             </div>
           </div>
           <div className="social-media">
@@ -112,18 +111,19 @@ export default function ProfileMain({
               </li>
             </ul>
           </div>
+          <hr/>
           <div className="votes">
             <h3>Nominations and Badges</h3>
             <p>
               Nominations Received:{" "}
-              <span className="vote-count">
-                {data.nominations_received.length}
+              <span className="votes-received">
+                {data.nominations_received?data.nominations_received.length:""}
               </span>
             </p>
             <p>
               Nominations Given: {" "}
-              <span className="vote-count">
-                {data.nominations_given.length}
+              <span className="votes-given">
+                {data.nominations_given?data.nominations_given.length:""}
               </span>
             </p>
             <p>
@@ -133,63 +133,32 @@ export default function ProfileMain({
           <hr></hr>
           <div className="details-container">
             <div className="my-details">
-              <label>Phone</label>
-              <span> : +123456789</span>
-            </div>
-            <div className="my-details">
               <label>Sex</label>
-              <span> : Female</span>
-            </div>
-            <div className="my-details">
-              <label>DoB</label>
-              <span>: 01/02/1234</span>
+              <span> : {data.sex}</span>
             </div>
             <div className="my-details">
               <label htmlFor="email">Email</label>
               <span> : {data.email}</span>
-            </div>
-            <div className="my-details">
-              <label>Country</label>
-              {data.country ? (
-                <>
-                  <span> : {data.country.name}</span>
-                  <span>
-                    {" "}
-                    {countryFlagEmoji.get(data.country.shortName).emoji}
-                  </span>
-                </>
-              ) : (
-                ""
-              )}
-            </div>
+            </div>           
           </div>
         </div>
         <div className="profile-right">
           <div className="my-details">
             <h3>About me</h3>
             <div className="about-me">
-              Lorem ipsum dolor sit amet, consectetur adipisciplacerat purus, in
-              eleifend libero vestibulum vitae. Aenean commodo vestibulum
-              placerat. In fermentum nunc nunc, eget maximus augue vehicula sit
-              amet. Ut aliquet purus mauris, sed vulputate nibh mattis quis
+              {data.aboutme}
             </div>
           </div>
           <div className="my-details">
             <h3>Education</h3>
-            <div className="about-me">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.eros non
-              varius. Vestibulum laoreet placerat purus, in eleifend libero
-              vestibulum vitae. Aenean commodo vestibulum placerat. In fermentum
-              nunc nunc, eget maximus augue vehicula sit amet. Ut aliquet purus
-              mauris, sed vulputate nibh mattis quis
+            <div className="education">
+              {data.education}             
             </div>
           </div>
           <div className="my-details">
-            <h3 className="about-me">Hobbies</h3>
+            <h3 className="hobbies">Hobbies</h3>
             <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              ut tincidunt erosue vehicula sit amet. Ut aliquet purus mauris,
-              sed vulputate nibh mattis quis
+              {data.hobby}
             </div>
           </div>
         </div>
@@ -204,55 +173,3 @@ export default function ProfileMain({
     </div>
   );
 }
-// <div className="profile-main">
-//   <div className="profile-infos">
-//     <div className="infos-left">
-//       <div className="image-container">
-//         <img
-//           src={data.avatar?`${imgUrl}${data.avatar.url}`:defaultProfilePhoto}
-//           alt="user face"
-//           className="profile-img"
-//         />
-//       </div>
-//       <div className="short-infos-container">
-//         <div className="age short-info">
-//           <p className="profile-left-list">Age:</p>
-//           <p className="s-info-property">{data.age}</p>
-//         </div>
-//         <div className="location short-info">
-//           <p className="profile-left-list">Location:</p>
-//           <p className="s-info-property">{data.location}</p>
-//         </div>
-//         <div className="eduction short-info">
-//           <p className="profile-left-list">Education:</p>
-//           <p className="profile-eduction">{data.education}</p>
-//         </div>
-//         <div className="job short-info">
-//           <p className="profile-left-list">Job:</p>
-//           <p className="profile-job">{data.job}</p>
-//         </div>
-//         <div className="family short-info">
-//           <p className="profile-left-list">Family:</p>
-//           <p className="profile-family">{data.family}</p>
-//         </div>
-//       </div>
-//     </div>
-//     <div className="infos-right">
-//       <h2 className="profile-name">
-//         {data.firstname} {data.lastname}
-//       </h2>
-//       <p className="profile-quote">{data.quote}</p>
-//       <div className="bio-container">
-//         <p className="profile-right-list">BIO</p>
-//         <p className="profile-bio">{data.bio}</p>
-//       </div>
-//     </div>
-//     <div>
-//       <p>Total Nominations: {data.nominations_received}</p>
-//       {console.log("data after nomination count",data)}
-//     </div>
-//   </div>
-//   <form>
-//     <button onClick={(e)=>handleVote(e)}>Nominate</button>
-//   </form>
-// </div>

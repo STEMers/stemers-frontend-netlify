@@ -83,7 +83,7 @@ if(loading) return <Loading />
             }
           >
             <li>
-              <Link to={data.avatar?`/profile/${userId}`:"/"}>
+              <Link to={`/profile/${userId}`}>
                 <img  src={data.avatar?`${imgUrl}${data.avatar.url}`:defaultImgUrl} alt="avatar" />
               </Link>
             </li>

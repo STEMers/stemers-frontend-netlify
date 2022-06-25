@@ -38,9 +38,7 @@ const RegisterRoute = ({ setUserData }) => {
       }
 
       const json = await response.json();
-      console.log("SIGN UP SUCCESS", json);
-
-      setUserData(json); // store register usr for develop other authenticated feature 
+      console.log("SIGN UP SUCCESS", json); 
 
       navigate("/");
     } catch (err) {
