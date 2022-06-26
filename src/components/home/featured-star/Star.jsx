@@ -11,8 +11,10 @@ import {Loading} from "../../loading/Loading"
 
 export const Star = () => {
   const sex="Female";
-const url = `${baseUrl}/users?populate=*`;
-const {data, loading} = useFetch(url);
+// const url = `${baseUrl}/users?populate=*`;
+const famaleUrl= `${baseUrl}/users?populate=category,country,avatar&filters[sex][$eq]=Female`
+// const {data, loading} = useFetch(url);
+const {data, loading} = useFetch(famaleUrl);
 
 console.log("star data",data);
 
